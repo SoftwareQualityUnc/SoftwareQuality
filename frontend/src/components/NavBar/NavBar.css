@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+
+.navContainer {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin: 0;  
+    height: 140px;
+    top: 0;
+    background-image: url("https://th.bing.com/th/id/R.52ee2dd388b546e3af355782c5fe3e3a?rik=ryDggF%2f%2b8tHtpg&riu=http%3a%2f%2fblog.facialix.com%2fwp-content%2fuploads%2f2020%2f03%2fAWS_Apple_Microchip_Bloomberg_sm.jpg&ehk=jtO2xsCkEwThjdEqUvzk86SOVDt3BIU9DCplDHfkwCw%3d&risl=&pid=ImgRaw&r=0");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.navLogo {
+    width: auto;
+    height: auto;
+}
+
+.cartStyles {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+
+.searchBarStyles {
+    width: 450px;
+    height: 30px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.searchBar {
+    width: 100px;
+}

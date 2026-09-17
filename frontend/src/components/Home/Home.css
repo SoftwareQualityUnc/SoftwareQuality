@@ -1,0 +1,24 @@
+.homeFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.containerFilterAndItems {
+  display: flex;
+}
+
+
+.carousel {
+  height: 400px;
+  width: 100%;
+}
+
+.filterBar {
+  width: 20%;
+}
+
+.itemListContainer {
+  width: 80%;
+}

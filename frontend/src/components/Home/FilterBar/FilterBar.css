@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+
+
+.filterBar {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.selectorFiltro {
+    margin-bottom: 70px;
+}
+
+.filtersTitle {
+    font-family: "Montserrat", sans-serif;
+    color: antiquewhite;
+}
+
+/* Estilo básico para el select */
+select {
+    /* Ajusta el ancho del select */
+    width: 200px;
+    /* Agrega un borde */
+    border: 1px solid #ccc;
+    /* Agrega un relleno interno */
+    padding: 5px;
+    /* Redondea las esquinas */
+    border-radius: 5px;
+    /* Agrega una sombra */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Ajusta el tamaño de la fuente */
+    font-size: 16px;
+    /* Agrega color a la fuente */
+    color: #b8b8b8;
+  }
+  
+  /* Estilo para las opciones del select */
+  option {
+    /* Agrega un espacio entre las opciones */
+    padding: 5px 10px;
+  }
+  
+  /* Estilo para la opción seleccionada */
+  option:selected {
+    /* Cambia el color de fondo de la opción seleccionada */
+    background-color: #eee;
+  }
+  

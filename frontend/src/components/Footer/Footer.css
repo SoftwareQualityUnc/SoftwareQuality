@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+.footerContainer{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    align-items:center;
+    background-color:rgb(30,30,30);
+}
+.footerTitle{
+    justify-content:center;
+    font-size:medium;
+    font-family: "Montserrat", sans-serif;
+    color: antiquewhite;
+}
+.integranteContainer{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    align-items:center;
+    background-color:rgb(30,30,30);
+}
+.integrante{
+    justify-content:center;
+    font-size:medium;
+    font-family: "Montserrat", sans-serif;
+    color: antiquewhite;
+}

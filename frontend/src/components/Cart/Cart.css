@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+
+
+.containerGrande {
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+}
+
+.precio {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    color: black;
+    gap: 10px;
+}
+
+.precio h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.precio h2 {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.container button {
+    background-color: antiquewhite;
+    border-style: none;
+    border-radius: 3px;
+    display: flex;
+    font-size: 1.2rem;
+}
