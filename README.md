@@ -89,7 +89,6 @@ Esta organización prioriza la simplicidad para el contexto académico actual; n
 │   ├── src/App.jsx
 │   ├── package.json
 │   └── vite.config.js
-├── Linter/                    # Herramienta auxiliar Python presente en el repositorio
 └── .github/workflows/         # Flujos de automatización existentes
 ```
 
