@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
-import ItemDetailContainer from "./components/ItemDetail/ItemDeatilContainer";
+import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
 
 import CartContextProvider from "./context/context";
 

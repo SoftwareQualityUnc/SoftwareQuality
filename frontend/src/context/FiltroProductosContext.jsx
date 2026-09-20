@@ -4,8 +4,8 @@ const FiltroProductosContext = createContext();
 
 const FiltroProductosProvider = ({ children }) => {
   const [filtroProductos, setFiltroProductos] = useState({
-    idCategoria: 0,
-    idSubCategoria: 0,
+    idCategoria: null,
+    idSubCategoria: null,
     descrip: "",
   }); 
 

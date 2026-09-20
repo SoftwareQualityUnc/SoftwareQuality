@@ -32,20 +32,16 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x backend/gradlew
 
-      - name: Set up Firebase credentials
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS}}
-        run: |
-          printenv GOOGLE_APPLICATION_CREDENTIALS
-
       - name: Build with Gradle
         run: ./gradlew build
         working-directory: backend
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS}}
+          API_KEY_INSERT: ${{ secrets.API_KEY_INSERT }}
 
       - name: Run tests with Gradle
         run: ./gradlew test
         working-directory: backend
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS}}
+          API_KEY_INSERT: ${{ secrets.API_KEY_INSERT }}

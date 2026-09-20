@@ -15,7 +15,7 @@ function Card(props) {
       <h3 className="card-title">{props?.title}</h3>
       <h4 className="card-price">Precio: ${props?.price}</h4>
       </div>
-      <Link to={`/item/${props?.id}`} className="card-button">
+      <Link to={`/detalle/${props?.id}`} className="card-button">
         Ver más
       </Link>
     </div>

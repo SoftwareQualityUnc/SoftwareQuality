@@ -45,7 +45,7 @@ const FilterBar = () => {
     setSubCategorias(tmp);
     setFiltroProductos((prevVal) => ({
       ...prevVal,
-      idCategoria: idCategoria,
+      idCategoria: idCategoria === "0" || !idCategoria ? null : idCategoria,
     }));
   };
 
@@ -53,9 +53,13 @@ const FilterBar = () => {
     setIdSubCategoriaseleccionada(idSubCategoria);
 
     if (idCategoriaSeleccionada == 0 || !idCategoriaSeleccionada) {
-      let idCategoria = subCategoriasOriginal.find(
+      const categoria = subCategoriasOriginal.find(
         (x) => x.idSubCategoria === idSubCategoria
-      ).idCategoria;
+      );
+      if (!categoria) {
+        return;
+      }
+      let idCategoria = categoria.idCategoria;
       setIdCategoriaSeleccionada(idCategoria);
       seleccionaCategoria(idCategoria);
       setFiltroProductos((prevVal) => ({
@@ -65,7 +69,7 @@ const FilterBar = () => {
     }
     setFiltroProductos((prevVal) => ({
       ...prevVal,
-      idSubCategoria: idSubCategoria,
+      idSubCategoria: idSubCategoria === "0" || !idSubCategoria ? null : idSubCategoria,
     }));
   };
 

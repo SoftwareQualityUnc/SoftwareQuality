@@ -2,7 +2,6 @@ package com.backend.backend.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +26,13 @@ import com.backend.backend.services.ProductoService;
 @RestController()
 @RequestMapping("api/v1/producto")
 public class ProductoController {
-    @Autowired
-    private ProductoService service;
-    @Autowired
-    private ApiKeyValidationService apiKey;
+    private final ProductoService service;
+    private final ApiKeyValidationService apiKey;
+
+    public ProductoController(ProductoService service, ApiKeyValidationService apiKey) {
+        this.service = service;
+        this.apiKey = apiKey;
+    }
 
     @GetMapping("/{idProducto}")
     public ResponseEntity<ProductoDTO> get(@PathVariable(value = "idProducto") String idProducto)
@@ -47,8 +49,8 @@ public class ProductoController {
 
         FiltroProductosDTO filtro = new FiltroProductosDTO();
         filtro.setDescrip(descrip);
-        filtro.setIdCategoria(idCategoria.length() == 20 ? idCategoria : null);
-        filtro.setIdSubCategoria(idSubCategoria.length() == 20 ? idSubCategoria : null);
+        filtro.setIdCategoria(idCategoria != null && idCategoria.length() == 20 ? idCategoria : null);
+        filtro.setIdSubCategoria(idSubCategoria != null && idSubCategoria.length() == 20 ? idSubCategoria : null);
         return new ResponseEntity<List<ProductoDTO>>(service.getProductosPorFiltro(filtro), HttpStatus.OK);
     }
 
@@ -64,7 +66,7 @@ public class ProductoController {
         if (!apiKey.isValidApiKeyInsert(authorizationHeader)) {
             throw new UnauthorizedException();
         }
-        if ((pr.getDescrip() != null)) {
+        if ((pr.getDescrip() == null)) {
             throw new BadReqException("No hay descripción.");
         }
         if ((pr.getPrecio() == null)) {

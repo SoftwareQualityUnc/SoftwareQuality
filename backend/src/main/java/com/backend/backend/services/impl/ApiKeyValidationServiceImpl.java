@@ -8,8 +8,11 @@ import com.backend.backend.services.ApiKeyValidationService;
 @Service
 public class ApiKeyValidationServiceImpl implements ApiKeyValidationService {
 
-    @Value("${API_KEY_INSERT}")
-    private String apiKeyInsert;
+    private final String apiKeyInsert;
+
+    public ApiKeyValidationServiceImpl(@Value("${API_KEY_INSERT}") String apiKeyInsert) {
+        this.apiKeyInsert = apiKeyInsert;
+    }
 
     public boolean isValidApiKeyInsert(String authorizationHeader) {
         return authorizationHeader != null && authorizationHeader.equals("Bearer " + apiKeyInsert);

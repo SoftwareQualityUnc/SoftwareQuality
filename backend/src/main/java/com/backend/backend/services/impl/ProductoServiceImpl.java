@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.FiltroProductosDTO;
@@ -15,14 +14,14 @@ import com.backend.backend.error.NotFoundException;
 import com.backend.backend.repositories.ProductoRepository;
 import com.backend.backend.services.ProductoService;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Service
 public class ProductoServiceImpl implements ProductoService {
 
-    @Autowired
-    private ProductoRepository productoRepositoryImpl; // Unica instancia
+    private final ProductoRepository productoRepositoryImpl; // Unica instancia
+
+    public ProductoServiceImpl(ProductoRepository productoRepositoryImpl) {
+        this.productoRepositoryImpl = productoRepositoryImpl;
+    }
 
     @Override
     public List<ProductoDTO> list() throws NotFoundException {
