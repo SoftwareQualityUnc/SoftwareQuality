@@ -32,5 +32,35 @@ jobs:
         working-directory: backend
 
       - name: Run Checkstyle
+        id: checkstyle
         run: ./gradlew checkstyleMain --no-daemon
         working-directory: backend
+
+      - name: Add Checkstyle summary
+        if: always()
+        shell: bash
+        run: |
+          report="backend/build/reports/checkstyle/main.xml"
+          {
+            echo "## Backend Checkstyle"
+            echo "- Result: \`${{ steps.checkstyle.outcome }}\`"
+            if [ -f "$report" ]; then
+              errors=$(grep -o '<error ' "$report" | wc -l || true)
+              files=$(grep -o '<file ' "$report" | wc -l || true)
+              echo "- Files with violations: \`$files\`"
+              echo "- Violations: \`$errors\`"
+              echo "- Detailed HTML and XML reports are available in the \`checkstyle-reports\` artifact."
+            else
+              echo "- The Checkstyle XML report was not generated."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Checkstyle reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkstyle-reports
+          path: |
+            backend/build/reports/checkstyle/main.html
+            backend/build/reports/checkstyle/main.xml
+          if-no-files-found: warn

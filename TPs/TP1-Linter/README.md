@@ -102,12 +102,14 @@ El workflow está en `.github/workflows/quality-gate.yml`, que es la ubicación 
 - Java 17 Temurin mediante `actions/setup-java@v4`.
 - Gradle mediante `gradle/actions/setup-gradle@v4`.
 - Comando exacto: `./gradlew checkstyleMain --no-daemon`, ejecutado con `working-directory: backend`.
+- Job Summary con cantidad de archivos y violaciones detectadas.
+- Artifact `checkstyle-reports` con los reportes HTML y XML de Gradle, incluso cuando el linter falla.
 
 El comando no usa `continue-on-error` ni oculta violaciones: una salida distinta de cero hace fallar naturalmente el job.
 
 ### Evidencia y límites de esta etapa
 
-La primera ejecución remota confirmó el runner Ubuntu, Java 17 y Gradle, pero falló antes de ejecutar Checkstyle con `Permission denied` porque el wrapper `backend/gradlew` no tenía permiso de ejecución en Linux. El workflow incorpora ahora un paso `chmod +x gradlew` antes de invocarlo. Esta primera ejecución todavía no constituye evidencia de Checkstyle remoto; después de corregir el permiso se debe observar una nueva ejecución y registrar allí los 10 errores ya encontrados localmente.
+La primera ejecución remota confirmó el runner Ubuntu, Java 17 y Gradle, pero falló antes de ejecutar Checkstyle con `Permission denied` porque el wrapper `backend/gradlew` no tenía permiso de ejecución en Linux. El workflow incorpora ahora un paso `chmod +x gradlew` antes de invocarlo. Además, el workflow genera un resumen visible y conserva los reportes como artifact mediante pasos `if: always()`.
 
 La configuración del workflow y la ejecución remota son evidencias distintas: el archivo local demuestra qué se solicitará a GitHub, mientras que una ejecución del Action produciría la evidencia remota. La protección de ramas todavía no existe como parte de esta tarea.
 
