@@ -107,7 +107,7 @@ El comando no usa `continue-on-error` ni oculta violaciones: una salida distinta
 
 ### Evidencia y límites de esta etapa
 
-La inspección local del YAML confirma la ruta, los triggers, las acciones y el comando configurado. No se invocó GitHub Actions remotamente. La ejecución local con Java 17 sí alcanzó Checkstyle y produjo 10 errores; por eso el resultado de fallo del job es actualmente esperado. No se corrigieron violaciones de Checkstyle.
+La primera ejecución remota confirmó el runner Ubuntu, Java 17 y Gradle, pero falló antes de ejecutar Checkstyle con `Permission denied` porque el wrapper `backend/gradlew` no tenía permiso de ejecución en Linux. El workflow incorpora ahora un paso `chmod +x gradlew` antes de invocarlo. Esta primera ejecución todavía no constituye evidencia de Checkstyle remoto; después de corregir el permiso se debe observar una nueva ejecución y registrar allí los 10 errores ya encontrados localmente.
 
 La configuración del workflow y la ejecución remota son evidencias distintas: el archivo local demuestra qué se solicitará a GitHub, mientras que una ejecución del Action produciría la evidencia remota. La protección de ramas todavía no existe como parte de esta tarea.
 
