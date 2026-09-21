@@ -27,8 +27,8 @@ El alcance de la consigna también incluye crear un repositorio público, proteg
 ## Estado actual
 
 - [x] TP1-2: crear y verificar la configuración local de Checkstyle para el backend.
-- [ ] TP1-3: verificar y, si corresponde, completar la configuración local de ESLint para el frontend.
-- [ ] TP1-4: ejecutar ambos linters y registrar la línea base y los hallazgos.
+- [x] TP1-3: completar y verificar la configuración local de ESLint para el frontend.
+- [x] TP1-4: ejecutar ambos linters y registrar la línea base y los hallazgos.
 - [ ] TP1-5: completar este documento con el diseño del workflow, el análisis ISO 25000 y la evidencia.
 - [x] TP1-6a: configurar localmente el workflow de Checkstyle; falta observar una ejecución remota.
 - [ ] TP1-6b: configurar y verificar la protección remota de `main`.
@@ -80,6 +80,34 @@ Además, la compilación mostró una advertencia de Lombok sobre `@EqualsAndHash
 
 No se ejecutó la suite de pruebas ni se corrigieron los hallazgos. Se revisarán y corregirán en una etapa posterior, después de completar la configuración de ambos linters.
 
+## TP1-3: ESLint local del frontend
+
+### Rol seleccionado
+
+ESLint funciona como una verificación estática local para JavaScript/JSX y las convenciones específicas de React. Se conserva el script existente `npm run lint`, incluyendo su comportamiento de salida distinta de cero ante errores y `--max-warnings 0`.
+
+### Configuración y comando
+
+- Archivo: `frontend/.eslintrc.cjs`
+- Dependencias utilizadas: ESLint 8.57.0, `eslint-plugin-react` y `eslint-plugin-react-hooks` ya declaradas en `frontend/package.json`.
+- Desde `frontend/`: `npm run lint`
+
+La configuración usa el formato legacy compatible con ESLint 8. Incluye `eslint:recommended`, `plugin:react/recommended` y `plugin:react-hooks/recommended`, con parser para módulos ES2021 y JSX, entorno de navegador, detección automática de la versión de React y el runtime JSX de React 17+ (`react/react-in-jsx-scope` deshabilitada). `react/prop-types` queda intencionalmente diferida para no iniciar una reescritura amplia de componentes existentes que no usan PropTypes.
+
+Las reglas adicionales seleccionadas como errores son `no-unused-vars`, `eqeqeq`, `curly`, `no-var` y `prefer-const`. No se agregaron reglas de formato para evitar una diferencia masiva no relacionada con el objetivo del TP.
+
+### Resultado exacto de verificación
+
+Las dependencias ya estaban disponibles (`node_modules/` y ESLint 8.57.0), por lo que no fue necesario ejecutar `npm ci`. Desde `frontend/` se ejecutó:
+
+```powershell
+npm run lint
+```
+
+Resultado: **falló naturalmente con 14 problemas: 13 errores y 1 advertencia**. La configuración conserva la exclusión existente de `frontend/dist/` para no analizar código generado; los hallazgos corresponden a `frontend/src/`. No se modificó el script para ocultar hallazgos de fuente ni se corrigió ningún finding.
+
+Los hallazgos de código fuente son variables no utilizadas, comparaciones no estrictas, variables que pueden ser `const`, propiedades JSX `class` en lugar de `className` y una advertencia de dependencias de `useEffect`. La exclusión de `dist/` evita reportar código generado y no cambia las reglas aplicadas al código fuente. La corrección de estos 14 hallazgos queda para el siguiente paso.
+
 ### Corrección de la línea base
 
 Luego de registrar la evidencia del fallo, se corrigieron las 10 violaciones de Checkstyle sin modificar la lógica funcional:
@@ -117,7 +145,7 @@ Los comandos exactos se confirmarán después de completar cada configuración; 
 
 ### Configuración local del workflow
 
-El workflow está en `.github/workflows/quality-gate.yml`, que es la ubicación que GitHub reconoce para workflows del repositorio. En este primer paso contiene únicamente el job de Checkstyle del backend:
+El workflow está en `.github/workflows/quality-gate.yml`, que es la ubicación que GitHub reconoce para workflows del repositorio. Actualmente contiene jobs separados para Checkstyle del backend y ESLint del frontend:
 
 - Cualquier push, independientemente de la rama.
 - Pull requests cuyo destino es `main` o `develop`.
@@ -127,12 +155,14 @@ El workflow está en `.github/workflows/quality-gate.yml`, que es la ubicación 
 - Comando exacto: `./gradlew checkstyleMain --no-daemon`, ejecutado con `working-directory: backend`.
 - Job Summary con cantidad de archivos y violaciones detectadas.
 - Artifact `checkstyle-reports` con los reportes HTML y XML de Gradle, incluso cuando el linter falla.
+- Job `frontend-eslint`, con Node.js 20, `npm ci` y `npm run lint` desde `frontend/`.
+- El job genera un resumen siempre que termina e intenta publicar `frontend/eslint-report.json` como artifact `eslint-reports`, independiente del artifact de Checkstyle.
 
 El comando no usa `continue-on-error` ni oculta violaciones: una salida distinta de cero hace fallar naturalmente el job.
 
 ### Evidencia y límites de esta etapa
 
-La primera ejecución remota confirmó el runner Ubuntu, Java 17 y Gradle, pero falló antes de ejecutar Checkstyle con `Permission denied` porque el wrapper `backend/gradlew` no tenía permiso de ejecución en Linux. El workflow incorpora ahora un paso `chmod +x gradlew` antes de invocarlo. Además, el workflow genera un resumen visible y conserva los reportes como artifact mediante pasos `if: always()`.
+La primera ejecución remota confirmó el runner Ubuntu, Java 17 y Gradle, pero falló antes de ejecutar Checkstyle con `Permission denied` porque el wrapper `backend/gradlew` no tenía permiso de ejecución en Linux. El workflow incorpora ahora un paso `chmod +x gradlew` antes de invocarlo. Además, ambos jobs generan un resumen visible y conservan sus reportes como artifacts mediante pasos `if: always()`.
 
 La configuración del workflow y la ejecución remota son evidencias distintas: el archivo local demuestra qué se solicitará a GitHub, mientras que una ejecución del Action produciría la evidencia remota. La protección de ramas todavía no existe como parte de esta tarea.
 
@@ -158,9 +188,9 @@ No se presentan capturas ni resultados como si ya hubieran sido verificados.
 ## Checklist de entrega
 
 - [x] Configurar y verificar Checkstyle localmente.
-- [ ] Verificar y, si corresponde, ajustar ESLint localmente.
-- [ ] Ejecutar ambos linters y registrar resultados.
-- [x] Crear el workflow de GitHub Actions para el job inicial de Checkstyle.
+- [x] Verificar y, si corresponde, ajustar ESLint localmente.
+- [x] Ejecutar ambos linters y registrar resultados.
+- [x] Crear el workflow de GitHub Actions para Checkstyle y ESLint en jobs separados.
 - [ ] Verificar que el Action bloquee el merge cuando falle el linteo.
 - [ ] Configurar y verificar la protección de `main`.
 - [ ] Completar el análisis ISO 25000.
@@ -169,4 +199,4 @@ No se presentan capturas ni resultados como si ya hubieran sido verificados.
 
 ## Próximo paso
 
-Mantener registrados los 10 hallazgos de Checkstyle sin corregirlos todavía. El próximo bloque es verificar la configuración local de ESLint para React y luego ampliar el workflow para que el gate controle ambos módulos.
+Mantener registrados los hallazgos de Checkstyle y ESLint sin corregirlos todavía. El próximo bloque es decidir y documentar el tratamiento de los archivos generados bajo `frontend/dist/`, corregir la línea base del frontend por etapas y observar una ejecución remota del workflow; la protección de ramas sigue fuera de esta etapa.
