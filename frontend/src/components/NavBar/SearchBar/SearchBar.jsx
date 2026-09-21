@@ -3,7 +3,7 @@ import { FiltroProductosContext } from "../../../context/FiltroProductosContext"
 import "./SearchBar.css";
 
 const SearchBar = () => {
-  const { filtroProductos, setFiltroProductos } = useContext(
+  const { setFiltroProductos } = useContext(
     FiltroProductosContext
   );
   const [descrip, setDescrip] = useState(0);
@@ -17,11 +17,11 @@ const SearchBar = () => {
   };
   return (
     <>
-      <div class="search-container">
+      <div className="search-container">
         <input
           onKeyUp={(descrip) => buscaProducto(descrip)}
           type="text"
-          class="search-bar"
+          className="search-bar"
           placeholder="Buscar productos..."
         />
       </div>

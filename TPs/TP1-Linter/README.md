@@ -108,6 +108,24 @@ Resultado: **falló naturalmente con 14 problemas: 13 errores y 1 advertencia**.
 
 Los hallazgos de código fuente son variables no utilizadas, comparaciones no estrictas, variables que pueden ser `const`, propiedades JSX `class` en lugar de `className` y una advertencia de dependencias de `useEffect`. La exclusión de `dist/` evita reportar código generado y no cambia las reglas aplicadas al código fuente. La corrección de estos 14 hallazgos queda para el siguiente paso.
 
+### Corrección local de los hallazgos
+
+Se corrigieron localmente los 14 hallazgos de la línea base sin deshabilitar reglas ni ejecutar pruebas:
+
+- `Carousel.jsx`: callback estable con `useCallback`, dependencias completas del efecto y limpieza del intervalo con `clearInterval`.
+- `FilterBar.jsx`: eliminación de estado y destructuring sin uso, comparaciones explícitas para conservar los casos numérico `0` y string `"0"`, y uso de `const`.
+- `ItemList.jsx` y `ItemListContainer.jsx`: eliminación de parámetros sin uso.
+- `CartWidget.jsx` y `context.jsx`: variables que no se reasignan cambiadas a `const`.
+- `SearchBar.jsx`: eliminación de destructuring sin uso y reemplazo de `class` por `className`.
+
+Desde `frontend/` se ejecutó exactamente:
+
+```powershell
+npm run lint
+```
+
+Resultado: **exit code 0**. ESLint finalizó sin errores ni advertencias; los 14 hallazgos anteriores (13 errores y 1 advertencia) están resueltos localmente.
+
 ### Corrección de la línea base
 
 Luego de registrar la evidencia del fallo, se corrigieron las 10 violaciones de Checkstyle sin modificar la lógica funcional:
@@ -137,7 +155,7 @@ Resultado: `BUILD SUCCESSFUL`. La compilación todavía informa una advertencia 
 2. Verificar la configuración existente de ESLint en `frontend/` y ajustarla solo si es necesario para JavaScript/JSX.
 3. Ejecutar los comandos locales de cada herramienta, sin mezclarlos con la suite de pruebas.
 4. Registrar comandos, versiones, resultado de ejecución, advertencias y decisiones de la línea base.
-5. Revisar los hallazgos y dejar el backend y el frontend en un estado que permita automatizar el control.
+5. Revisar los hallazgos y dejar el backend y el frontend en un estado que permita automatizar el control. **Completado localmente para los hallazgos actuales.**
 
 Los comandos exactos se confirmarán después de completar cada configuración; por ahora, la ejecución y sus resultados están pendientes.
 
@@ -199,4 +217,4 @@ No se presentan capturas ni resultados como si ya hubieran sido verificados.
 
 ## Próximo paso
 
-Mantener registrados los hallazgos de Checkstyle y ESLint sin corregirlos todavía. El próximo bloque es decidir y documentar el tratamiento de los archivos generados bajo `frontend/dist/`, corregir la línea base del frontend por etapas y observar una ejecución remota del workflow; la protección de ramas sigue fuera de esta etapa.
+Mantener la evidencia histórica de la línea base y observar una ejecución remota del workflow. La protección de ramas sigue fuera de esta etapa.

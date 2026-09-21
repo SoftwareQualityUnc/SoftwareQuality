@@ -7,7 +7,7 @@ function CartWidget() {
 
   useEffect(() => {
     let a = 0;
-    let newCart = [...cart];
+    const newCart = [...cart];
     newCart.forEach((item) => {
       a = a + item.count;
     });

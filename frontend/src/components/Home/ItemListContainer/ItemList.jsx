@@ -7,7 +7,7 @@ import { FiltroProductosContext } from "../../../context/FiltroProductosContext"
 import Card from "./Card/Card";
 import "./ItemList.css";
 
-function ItemList(data) {
+function ItemList() {
   const [productos, setProductos] = useState([]);
   const { filtroProductos } = useContext(FiltroProductosContext);
   // useEffect(() => {

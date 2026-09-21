@@ -10,9 +10,7 @@ const FilterBar = () => {
   const [categorias, setCategorias] = useState([]);
   const [idCategoriaSeleccionada, setIdCategoriaSeleccionada] = useState(0);
   const [subCategorias, setSubCategorias] = useState([]);
-  const [idSubCategoriaseleccionada, setIdSubCategoriaseleccionada] =
-    useState(0);
-  const { filtroProductos, setFiltroProductos } = useContext(
+  const { setFiltroProductos } = useContext(
     FiltroProductosContext
   );
 
@@ -40,7 +38,11 @@ const FilterBar = () => {
   const seleccionaCategoria = (idCategoria) => {
     setIdCategoriaSeleccionada(idCategoria);
     const tmp = subCategoriasOriginal.filter(
-      (s) => s.idCategoria === idCategoria || idCategoria == 0 || !idCategoria
+      (s) =>
+        s.idCategoria === idCategoria ||
+        idCategoria === 0 ||
+        idCategoria === "0" ||
+        !idCategoria
     );
     setSubCategorias(tmp);
     setFiltroProductos((prevVal) => ({
@@ -50,16 +52,18 @@ const FilterBar = () => {
   };
 
   const seleccionaSubCategoria = (idSubCategoria) => {
-    setIdSubCategoriaseleccionada(idSubCategoria);
-
-    if (idCategoriaSeleccionada == 0 || !idCategoriaSeleccionada) {
+    if (
+      idCategoriaSeleccionada === 0 ||
+      idCategoriaSeleccionada === "0" ||
+      !idCategoriaSeleccionada
+    ) {
       const categoria = subCategoriasOriginal.find(
         (x) => x.idSubCategoria === idSubCategoria
       );
       if (!categoria) {
         return;
       }
-      let idCategoria = categoria.idCategoria;
+      const idCategoria = categoria.idCategoria;
       setIdCategoriaSeleccionada(idCategoria);
       seleccionaCategoria(idCategoria);
       setFiltroProductos((prevVal) => ({

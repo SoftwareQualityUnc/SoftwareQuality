@@ -21,7 +21,7 @@ const producto4 = {
 
 const productList = [producto1, producto2, producto3, producto4];
 
-function ItemListContainer(props) {
+function ItemListContainer() {
   return (
     <>
       <div className="itemListContainerStyle">
