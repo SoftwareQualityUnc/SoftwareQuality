@@ -93,6 +93,7 @@ La ejecución remota fallida utilizada como línea base está disponible en:
 <https://github.com/SoftwareQualityUnc/SoftwareQuality/actions/runs/35541760139>
 
 También se conserva la captura `TPs/TP1-Linter/assets/checkstyle-fail.png` como evidencia visual.
+![Evidencia 1](./assets/checkstyle-fail.png)
 
 Con Java 17, la verificación local posterior se ejecutó desde `backend/` con:
 
