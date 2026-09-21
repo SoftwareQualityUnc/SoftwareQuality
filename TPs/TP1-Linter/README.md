@@ -80,6 +80,28 @@ Además, la compilación mostró una advertencia de Lombok sobre `@EqualsAndHash
 
 No se ejecutó la suite de pruebas ni se corrigieron los hallazgos. Se revisarán y corregirán en una etapa posterior, después de completar la configuración de ambos linters.
 
+### Corrección de la línea base
+
+Luego de registrar la evidencia del fallo, se corrigieron las 10 violaciones de Checkstyle sin modificar la lógica funcional:
+
+- Se reemplazaron tabs por espacios en `BackendApplication.java`.
+- Se normalizó la inyección de dependencias en `SubCategoriasController.java` mediante campos privados finales y constructor.
+- Se agregaron llaves a las estructuras `if` y `else` señaladas por Checkstyle.
+
+La ejecución remota fallida utilizada como línea base está disponible en:
+
+<https://github.com/SoftwareQualityUnc/SoftwareQuality/actions/runs/35541760139>
+
+También se conserva la captura `TPs/TP1-Linter/assets/checkstyle-fail.png` como evidencia visual.
+
+Con Java 17, la verificación local posterior se ejecutó desde `backend/` con:
+
+```powershell
+.\gradlew.bat checkstyleMain --no-daemon
+```
+
+Resultado: `BUILD SUCCESSFUL`. La compilación todavía informa una advertencia independiente de Lombok y una nota sobre operaciones no verificadas; ninguna corresponde a una violación de Checkstyle.
+
 ## Pasos locales planificados
 
 1. Configurar Checkstyle en el módulo `backend/`, conservando una configuración reproducible mediante el Gradle Wrapper.
@@ -124,6 +146,8 @@ También queda pendiente verificar la protección de `main`, el bloqueo de commi
 **Pendiente.** Se incorporarán capturas o referencias verificables de:
 
 - ejecución local exitosa o fallida de Checkstyle;
+- ejecución remota fallida de la línea base: [Quality Gate run 35541760139](https://github.com/SoftwareQualityUnc/SoftwareQuality/actions/runs/35541760139);
+- captura visual de la línea base: `assets/checkstyle-fail.png`;
 - ejecución local exitosa o fallida de ESLint;
 - workflow de GitHub Actions ejecutándose como gate;
 - protección de la rama `main` y restricciones de merge.

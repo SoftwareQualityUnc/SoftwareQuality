@@ -26,20 +26,23 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public List<ProductoDTO> list() throws NotFoundException {
         List<ProductoDTO> ret = productoRepositoryImpl.list();
-        if (ret == null || ret.isEmpty())
+        if (ret == null || ret.isEmpty()) {
             throw new NotFoundException("No se encontraron productos");
+        }
         return ret;
     }
 
     @Override
     public ProductoDTO get(String idProducto) throws NotFoundException, BadReqException {
-        if (idProducto == null || idProducto.length() != 20)
+        if (idProducto == null || idProducto.length() != 20) {
             throw new BadReqException("idProducto incorrecto");
+        }
         ProductoDTO ret = productoRepositoryImpl.get(idProducto);
-        if (ret != null)
+        if (ret != null) {
             return ret;
-        else
+        } else {
             throw new NotFoundException("No se encontro el producto solicitado");
+        }
 
     }
 

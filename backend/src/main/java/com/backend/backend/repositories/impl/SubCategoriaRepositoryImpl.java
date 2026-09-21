@@ -33,8 +33,9 @@ public class SubCategoriaRepositoryImpl implements SubCategoriaRepository {
             if (ret != null) {
                 ret.setIdSubCategoria(docRef.getId());
                 return ret;
-            } else
+            } else {
                 return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;

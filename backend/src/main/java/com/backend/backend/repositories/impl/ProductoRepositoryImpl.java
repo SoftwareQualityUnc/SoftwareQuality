@@ -100,8 +100,9 @@ public class ProductoRepositoryImpl implements ProductoRepository {
                     if (tmp.getDescrip().toLowerCase().contains(filtro.getDescrip().toLowerCase())) {
                         ret.add(tmp);
                     }
-                } else
+                } else {
                     ret.add(tmp);
+                }
             }
             return ret;
         } catch (Exception e) {

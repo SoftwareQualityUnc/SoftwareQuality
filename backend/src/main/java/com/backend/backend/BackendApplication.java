@@ -11,28 +11,28 @@ import io.github.cdimascio.dotenv.Dotenv;
 @SpringBootApplication
 public class BackendApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Dotenv dotenv = Dotenv.configure().directory("src/main/resources").load();
-		dotenv.entries().forEach(entry -> {
-			System.setProperty(entry.getKey(), entry.getValue());
-		});
-		SpringApplication.run(BackendApplication.class, args);
-		System.err.println("Backend iniciado!");
-	}
+        Dotenv dotenv = Dotenv.configure().directory("src/main/resources").load();
+        dotenv.entries().forEach(entry -> {
+            System.setProperty(entry.getKey(), entry.getValue());
+        });
+        SpringApplication.run(BackendApplication.class, args);
+        System.err.println("Backend iniciado!");
+    }
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:5173")
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-						.allowedHeaders("")
-						.allowCredentials(true);
-			}
-		};
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:5173")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("")
+                        .allowCredentials(true);
+            }
+        };
 
-	}
+    }
 }

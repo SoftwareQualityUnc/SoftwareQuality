@@ -45,10 +45,11 @@ public class SubCategoriaServiceImpl implements SubCategoriaService {
         docData.put("vigente", subCategoria.getVigente());
         docData.put("idCategoria", subCategoria.getIdCategoria());
         String idInsertado = subCategoriaRepository.insert(subCategoria);
-        if (idInsertado != null)
+        if (idInsertado != null) {
             return subCategoriaRepository.get(idInsertado);
-        else
+        } else {
             return null;
+        }
     }
 
     @Override
