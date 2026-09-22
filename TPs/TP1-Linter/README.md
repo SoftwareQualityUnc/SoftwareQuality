@@ -1,220 +1,165 @@
-# TP1: Linter — Documento de trabajo
+# TP1: Linter y gate de calidad
 
-Este documento reúne la resolución progresiva del TP1 para el repositorio público del grupo. Se actualizará a medida que avance el trabajo y, al finalizar, se copiará en la Issue `TP1: Linter` junto con la evidencia correspondiente.
+Este trabajo incorpora control de calidad estática para un repositorio con backend Java/Spring Boot y frontend React/Vite. Checkstyle y ESLint fueron configurados con reglas explícitas, se corrigieron los hallazgos de la línea base y se definió un workflow de GitHub Actions que ejecuta ambos controles de manera independiente.
 
-## Objetivo
+## Resultado
 
-Implementar herramientas de linteo adecuadas para los lenguajes utilizados en el repositorio y preparar un gate de calidad que, posteriormente, impida integrar una Pull Request cuando los controles definidos fallen. La entrega final también debe documentar el workflow, el área de calidad relacionada con ISO 25000 y las capturas de evidencia.
+| Área | Herramienta y versión | Verificación local | Resultado |
+|---|---|---|---|
+| Backend Java | Checkstyle 10.12.5 mediante Gradle | `./gradlew.bat checkstyleMain --no-daemon` con Java 17 | `BUILD SUCCESSFUL` |
+| Frontend JavaScript/JSX | ESLint 8.57.0, con plugins React y React Hooks | `npm run lint` | Exit code 0, sin errores ni warnings |
 
-## Alcance y fundamento de la decisión
+La línea base registró **10 errores de Checkstyle en 6 archivos** y **14 hallazgos de ESLint: 13 errores y 1 warning**. Todos fueron corregidos sin deshabilitar reglas, ocultar archivos de fuente ni convertir los fallos en advertencias toleradas.
 
-El repositorio actual contiene:
+## Alcance y decisiones
 
-- **Backend:** Java con Spring Boot.
-- **Frontend:** JavaScript/JSX con React y Vite.
+El repositorio combina dos tecnologías con necesidades de análisis diferentes:
 
-Por eso, las herramientas locales seleccionadas son:
+- **Backend:** Java con Spring Boot, controlado mediante Checkstyle integrado a Gradle.
+- **Frontend:** JavaScript/JSX con React y Vite, controlado mediante ESLint.
 
-| Área | Herramienta | Motivo |
+Se eligieron estas herramientas porque permiten detectar problemas de estilo, estructura y convenciones cerca del momento de escritura, sin reemplazar las pruebas funcionales ni otros controles de calidad. PMD y SpotBugs no forman parte del alcance de este TP1.
+
+## Checkstyle para el backend
+
+### Configuración
+
+- Configuración: [`backend/config/checkstyle/checkstyle.xml`](../../backend/config/checkstyle/checkstyle.xml).
+- Integración: [`backend/build.gradle`](../../backend/build.gradle).
+- Versión: Checkstyle `10.12.5`.
+- Java de compilación y verificación: `17`.
+- Política del gate: `ignoreFailures = false` y `maxWarnings = 0`.
+- Comando local, ejecutado desde `backend/`:
+
+  ```powershell
+  .\gradlew.bat checkstyleMain --no-daemon
+  ```
+
+El comando conserva el fallo natural cuando existe una violación. De esta forma, el resultado no se oculta ni se transforma en un éxito artificial.
+
+### Reglas principales y fundamento
+
+| Grupo | Reglas | Decisión y propósito |
 |---|---|---|
-| Java | Checkstyle | Controla convenciones y formato del código Java del backend. |
-| JavaScript/JSX | ESLint | Analiza el código del frontend React y sus reglas asociadas. |
-
-PMD y SpotBugs quedan fuera de la primera configuración enfocada, salvo que una decisión posterior justifique incorporarlos.
-
-El alcance de la consigna también incluye crear un repositorio público, proteger `main`, requerir que los checks pasen antes del merge y documentar el Action como gate. Esas actividades son posteriores a la configuración y verificación local.
-
-## Estado actual
-
-- [x] TP1-2: crear y verificar la configuración local de Checkstyle para el backend.
-- [x] TP1-3: completar y verificar la configuración local de ESLint para el frontend.
-- [x] TP1-4: ejecutar ambos linters y registrar la línea base y los hallazgos.
-- [ ] TP1-5: completar este documento con el diseño del workflow, el análisis ISO 25000 y la evidencia.
-- [x] TP1-6a: configurar localmente el workflow de Checkstyle; falta observar una ejecución remota.
-- [ ] TP1-6b: configurar y verificar la protección remota de `main`.
-
-**Importante:** el archivo del workflow ya está configurado en el repositorio, pero todavía no se afirma que GitHub Actions lo haya ejecutado. La protección de ramas y los requisitos de merge siguen sin configurarse.
-
-## TP1-2: Checkstyle local del backend
-
-### Rol seleccionado
-
-Checkstyle funciona como una verificación estática local de convenciones y mantenibilidad del código Java. El plugin existente de Gradle conserva Checkstyle 10.12.5, `ignoreFailures = false` y `maxWarnings = 0`, por lo que cualquier incumplimiento reportado mantiene el comando en estado fallido.
-
-### Configuración y comando
-
-- Archivo: `backend/config/checkstyle/checkstyle.xml`
-- Desde `backend/`: `./gradlew.bat checkstyleMain` (en PowerShell: `./gradlew.bat checkstyleMain`)
-- El `build.gradle` ya apuntaba a esa ruta; no fue necesario cambiarlo.
-
-### Reglas seleccionadas y fundamento
-
-| Grupo | Reglas | Motivo |
-|---|---|---|
-| Longitud y caracteres | `LineLength` (120), `FileTabCharacter` | Mantener líneas legibles y archivos consistentes en UTF-8. |
-| Imports | `AvoidStarImport`, `RedundantImport`, `UnusedImports`, `ImportOrder` | Hacer dependencias explícitas, ordenadas y sin entradas muertas. |
+| Longitud y caracteres | `LineLength` (120), `FileTabCharacter` | Favorecer la lectura y mantener archivos consistentes. |
+| Imports | `AvoidStarImport`, `RedundantImport`, `UnusedImports`, `ImportOrder` | Hacer explícitas y ordenadas las dependencias, eliminando imports innecesarios. |
 | Nombres | `PackageName`, `TypeName`, `MemberName`, `MethodName`, `ParameterName`, `LocalVariableName`, `ConstantName` | Hacer predecible el significado de tipos, miembros y variables. |
-| Visibilidad | `VisibilityModifier` | Evitar declaraciones accidentales con visibilidad de paquete. |
-| Estructura y formato | `NeedBraces`, reglas de llaves, reglas de espacios, `DeclarationOrder`, `ModifierOrder`, `EmptyBlock` | Clarificar flujo de control y reducir errores de lectura sin imponer una reescritura masiva. |
-| Javadoc | No habilitado en esta línea base | El código existente no documenta sistemáticamente sus APIs; activarlo ahora produciría ruido no relacionado con TP1-2. |
+| Visibilidad | `VisibilityModifier` | Evitar exposición accidental de miembros con visibilidad de paquete. |
+| Estructura y formato | `NeedBraces`, reglas de llaves y espacios, `DeclarationOrder`, `ModifierOrder`, `EmptyBlock` | Clarificar el flujo y reducir errores de lectura sin imponer una reescritura funcional. |
+| Javadoc | No habilitado en esta línea base | El código existente no documenta sistemáticamente sus APIs; activarlo ahora agregaría ruido fuera del objetivo principal. |
 
-### Resultado exacto de verificación
+### Línea base y corrección
 
-**Ejecutado correctamente con resultado fallido.** Desde `backend/` se ejecutó:
+La evidencia inicial mostró **10 errores en 6 archivos**, principalmente por tabs, visibilidad y estructuras `if`/`else` sin llaves. También aparecieron mensajes de compilación de Lombok y de operaciones no verificadas; se mantuvieron separados porque no son violaciones de Checkstyle.
 
-```powershell
-.\gradlew.bat checkstyleMain
-```
+Las correcciones consistieron en:
 
-Checkstyle se ejecutó y encontró **10 errores en 6 archivos**, por lo que `:checkstyleMain` terminó con código distinto de cero. El gate debe conservar este comportamiento: las violaciones no se ocultan y el workflow debe fallar mientras existan.
+- reemplazar tabs por espacios en `BackendApplication.java`;
+- normalizar la inyección de dependencias en `SubCategoriasController.java` mediante campos privados finales y constructor;
+- agregar llaves a las estructuras señaladas por `NeedBraces`.
 
-Hallazgos registrados:
+La ejecución posterior con Java 17 terminó en `BUILD SUCCESSFUL`. La compilación puede seguir mostrando advertencias independientes de Lombok, pero no corresponden al resultado de Checkstyle.
 
-| Regla | Archivo o archivos afectados | Cantidad o descripción |
-|---|---|---|
-| `FileTabCharacter` | `BackendApplication.java` | Contiene caracteres de tabulación. |
-| `VisibilityModifier` | `SubCategoriasController.java` | El campo `service` no es privado. |
-| `NeedBraces` | `ProductoRepositoryImpl.java`, `SubCategoriaRepositoryImpl.java`, `ProductoServiceImpl.java`, `SubCategoriaServiceImpl.java` | Hay `if`/`else` sin llaves. |
+## ESLint para el frontend
 
-Además, la compilación mostró una advertencia de Lombok sobre `@EqualsAndHashCode` en `CategoriasConSubCategoriasDTO.java` y una nota sobre operaciones no verificadas en `CategoriasController.java`. Esas advertencias no corresponden a Checkstyle y quedan separadas de los 10 errores del linter.
+### Configuración
 
-No se ejecutó la suite de pruebas ni se corrigieron los hallazgos. Se revisarán y corregirán en una etapa posterior, después de completar la configuración de ambos linters.
+- Configuración: [`frontend/.eslintrc.cjs`](../../frontend/.eslintrc.cjs).
+- Dependencias: ESLint `8.57.0`, `eslint-plugin-react` y `eslint-plugin-react-hooks`.
+- Script: [`frontend/package.json`](../../frontend/package.json), mediante `npm run lint`.
+- Exclusión: `frontend/dist/`, por contener código generado.
+- Comando local, ejecutado desde `frontend/`:
 
-## TP1-3: ESLint local del frontend
+  ```powershell
+  npm run lint
+  ```
 
-### Rol seleccionado
+La configuración utiliza `eslint:recommended`, `plugin:react/recommended` y `plugin:react-hooks/recommended`, con módulos ES2021, JSX, entorno de navegador, detección automática de React y el runtime JSX moderno. `react/react-in-jsx-scope` está deshabilitada porque React 17+ no requiere importar React para cada archivo JSX.
 
-ESLint funciona como una verificación estática local para JavaScript/JSX y las convenciones específicas de React. Se conserva el script existente `npm run lint`, incluyendo su comportamiento de salida distinta de cero ante errores y `--max-warnings 0`.
+### Reglas principales y fundamento
 
-### Configuración y comando
+| Regla | Propósito |
+|---|---|
+| `no-unused-vars` | Eliminar variables y parámetros sin uso que dificultan el mantenimiento. |
+| `eqeqeq` | Exigir comparaciones explícitas y evitar coerciones inesperadas. |
+| `curly` | Hacer visibles los bloques de control y reducir errores al modificarlos. |
+| `no-var` | Usar declaraciones con semántica de alcance adecuada. |
+| `prefer-const` | Expresar que una referencia no se reasigna. |
+| Reglas de React y React Hooks | Detectar errores frecuentes de componentes, JSX y dependencias de efectos. |
 
-- Archivo: `frontend/.eslintrc.cjs`
-- Dependencias utilizadas: ESLint 8.57.0, `eslint-plugin-react` y `eslint-plugin-react-hooks` ya declaradas en `frontend/package.json`.
-- Desde `frontend/`: `npm run lint`
+No se agregaron reglas de formato masivas: el objetivo fue detectar problemas de calidad estática relevantes sin convertir el TP en una reescritura visual del frontend. `react/prop-types` quedó fuera de esta línea base porque los componentes existentes no utilizan PropTypes de forma sistemática.
 
-La configuración usa el formato legacy compatible con ESLint 8. Incluye `eslint:recommended`, `plugin:react/recommended` y `plugin:react-hooks/recommended`, con parser para módulos ES2021 y JSX, entorno de navegador, detección automática de la versión de React y el runtime JSX de React 17+ (`react/react-in-jsx-scope` deshabilitada). `react/prop-types` queda intencionalmente diferida para no iniciar una reescritura amplia de componentes existentes que no usan PropTypes.
+### Línea base y corrección
 
-Las reglas adicionales seleccionadas como errores son `no-unused-vars`, `eqeqeq`, `curly`, `no-var` y `prefer-const`. No se agregaron reglas de formato para evitar una diferencia masiva no relacionada con el objetivo del TP.
+La línea base registró **14 hallazgos: 13 errores y 1 warning**. Incluía variables sin uso, comparaciones no estrictas, variables que podían ser `const`, propiedades `class` en JSX y una advertencia sobre dependencias de `useEffect`.
 
-### Resultado exacto de verificación
+Se corrigieron sin debilitar la configuración, entre otros, los siguientes puntos:
 
-Las dependencias ya estaban disponibles (`node_modules/` y ESLint 8.57.0), por lo que no fue necesario ejecutar `npm ci`. Desde `frontend/` se ejecutó:
-
-```powershell
-npm run lint
-```
-
-Resultado: **falló naturalmente con 14 problemas: 13 errores y 1 advertencia**. La configuración conserva la exclusión existente de `frontend/dist/` para no analizar código generado; los hallazgos corresponden a `frontend/src/`. No se modificó el script para ocultar hallazgos de fuente ni se corrigió ningún finding.
-
-Los hallazgos de código fuente son variables no utilizadas, comparaciones no estrictas, variables que pueden ser `const`, propiedades JSX `class` en lugar de `className` y una advertencia de dependencias de `useEffect`. La exclusión de `dist/` evita reportar código generado y no cambia las reglas aplicadas al código fuente. La corrección de estos 14 hallazgos queda para el siguiente paso.
-
-### Corrección local de los hallazgos
-
-Se corrigieron localmente los 14 hallazgos de la línea base sin deshabilitar reglas ni ejecutar pruebas:
-
-- `Carousel.jsx`: callback estable con `useCallback`, dependencias completas del efecto y limpieza del intervalo con `clearInterval`.
-- `FilterBar.jsx`: eliminación de estado y destructuring sin uso, comparaciones explícitas para conservar los casos numérico `0` y string `"0"`, y uso de `const`.
+- `Carousel.jsx`: callback estable, dependencias completas del efecto y limpieza del intervalo.
+- `FilterBar.jsx`: eliminación de estado sin uso, comparaciones explícitas y uso de `const`.
 - `ItemList.jsx` y `ItemListContainer.jsx`: eliminación de parámetros sin uso.
-- `CartWidget.jsx` y `context.jsx`: variables que no se reasignan cambiadas a `const`.
+- `CartWidget.jsx` y `context.jsx`: cambio a `const` cuando no había reasignación.
 - `SearchBar.jsx`: eliminación de destructuring sin uso y reemplazo de `class` por `className`.
 
-Desde `frontend/` se ejecutó exactamente:
+La verificación final con `npm run lint` terminó con exit code 0, sin errores ni warnings.
 
-```powershell
-npm run lint
-```
+## Workflow de GitHub Actions
 
-Resultado: **exit code 0**. ESLint finalizó sin errores ni advertencias; los 14 hallazgos anteriores (13 errores y 1 advertencia) están resueltos localmente.
+El workflow está definido en [`.github/workflows/quality-gate.yml`](../../.github/workflows/quality-gate.yml). Su diseño mantiene jobs independientes para que el resultado del backend no oculte el del frontend:
 
-### Corrección de la línea base
+| Job | Entorno y pasos | Evidencia generada |
+|---|---|---|
+| `checkstyle` | Ubuntu, Java Temurin 17, Gradle y `./gradlew checkstyleMain --no-daemon` desde `backend/` | Job Summary con archivos y violaciones; artifacts HTML/XML `checkstyle-reports`. |
+| `frontend-eslint` | Ubuntu, Node.js 20, `npm ci` y `npm run lint` desde `frontend/` | Job Summary con archivos, errores y warnings; artifact JSON `eslint-reports`. |
 
-Luego de registrar la evidencia del fallo, se corrigieron las 10 violaciones de Checkstyle sin modificar la lógica funcional:
+El workflow se dispara en cualquier `push` y en Pull Requests cuyo destino sea `main` o `develop`. Declara únicamente `contents: read`, prepara el wrapper de Gradle para Linux y usa pasos `if: always()` para conservar summaries y reportes aunque el linter falle. No utiliza `continue-on-error`: una salida distinta de cero mantiene el job fallido.
 
-- Se reemplazaron tabs por espacios en `BackendApplication.java`.
-- Se normalizó la inyección de dependencias en `SubCategoriasController.java` mediante campos privados finales y constructor.
-- Se agregaron llaves a las estructuras `if` y `else` señaladas por Checkstyle.
+La [ejecución remota de línea base](https://github.com/SoftwareQualityUnc/SoftwareQuality/actions/runs/35541760139) y la captura [`assets/checkstyle-fail.png`](./assets/checkstyle-fail.png) son evidencias concretas del fallo inicial. La configuración local del workflow demuestra qué solicitará GitHub Actions; por sí sola no demuestra que la ejecución remota actual sea exitosa ni que exista protección de ramas.
 
-La ejecución remota fallida utilizada como línea base está disponible en:
+## Relación con ISO 25000 e ISO/IEC 25010
 
-<https://github.com/SoftwareQualityUnc/SoftwareQuality/actions/runs/35541760139>
+ISO 25000 reúne normas para gestionar y evaluar la calidad de productos de software. Dentro de esa familia, ISO/IEC 25010 define un modelo de calidad que sirve como referencia para especificar, medir y evaluar características del producto. La edición 2023 presenta el modelo vigente de calidad de producto; la edición 2011 es la referencia conceptual utilizada para explicar sus características y subcaracterísticas en este TP.
 
-También se conserva la captura `TPs/TP1-Linter/assets/checkstyle-fail.png` como evidencia visual.
-![Evidencia 1](./assets/checkstyle-fail.png)
+El aporte principal de linters como Checkstyle y ESLint se relaciona con **mantenibilidad**, especialmente:
 
-Con Java 17, la verificación local posterior se ejecutó desde `backend/` con:
+- **Analizabilidad:** convenciones uniformes, imports claros, nombres previsibles y bloques explícitos facilitan comprender el código y localizar problemas.
+- **Modificabilidad:** reglas como `NeedBraces`, `prefer-const`, `eqeqeq` y las validaciones de Hooks reducen ambigüedades y riesgos al cambiar código existente.
+- **Testabilidad:** una estructura más consistente y componentes con dependencias de efectos explícitas facilitan aislar unidades y razonar sobre su comportamiento durante las pruebas.
 
-```powershell
-.\gradlew.bat checkstyleMain --no-daemon
-```
+El valor del TP consiste en detectar temprano incumplimientos repetibles, antes de que lleguen a una revisión o integración, y en mantener una base de código más consistente. Sin embargo, un linter **no demuestra por sí solo** toda la calidad ISO: no prueba el comportamiento funcional, la seguridad, el rendimiento, la compatibilidad ni la satisfacción de requisitos. Es un control estático complementario dentro de una estrategia de calidad más amplia.
 
-Resultado: `BUILD SUCCESSFUL`. La compilación todavía informa una advertencia independiente de Lombok y una nota sobre operaciones no verificadas; ninguna corresponde a una violación de Checkstyle.
+### Contexto argentino
 
-## Pasos locales planificados
+[IRAM representa a Argentina ante ISO](https://www.iso.org/member/1520.html). En términos generales, las normas técnicas se aplican voluntariamente, salvo que una autoridad competente disponga lo contrario. Por eso, este documento utiliza ISO/IEC 25010 como marco de referencia para analizar la calidad del producto, sin afirmar una adopción nacional específica de la norma. El [Centro de Documentación IRAM](https://www.iram.org.ar/venta-de-normas) informa sobre el acceso y el carácter de las normas disponibles.
 
-1. Configurar Checkstyle en el módulo `backend/`, conservando una configuración reproducible mediante el Gradle Wrapper.
-2. Verificar la configuración existente de ESLint en `frontend/` y ajustarla solo si es necesario para JavaScript/JSX.
-3. Ejecutar los comandos locales de cada herramienta, sin mezclarlos con la suite de pruebas.
-4. Registrar comandos, versiones, resultado de ejecución, advertencias y decisiones de la línea base.
-5. Revisar los hallazgos y dejar el backend y el frontend en un estado que permita automatizar el control. **Completado localmente para los hallazgos actuales.**
+## Alcance y limitaciones
 
-Los comandos exactos se confirmarán después de completar cada configuración; por ahora, la ejecución y sus resultados están pendientes.
+### Incluido
 
-## Gate de GitHub Actions
+- Calidad estática de Java mediante Checkstyle y de JavaScript/JSX mediante ESLint.
+- Corrección de la línea base sin desactivar reglas ni ocultar hallazgos.
+- Automatización declarada en GitHub Actions, con jobs, summaries y artifacts separados.
+- Relación argumentada con mantenibilidad en el modelo de calidad de ISO/IEC 25010.
 
-### Configuración local del workflow
+### No demostrado por este TP
 
-El workflow está en `.github/workflows/quality-gate.yml`, que es la ubicación que GitHub reconoce para workflows del repositorio. Actualmente contiene jobs separados para Checkstyle del backend y ESLint del frontend:
+- **Pruebas funcionales:** no se presentan como ejecutadas por las verificaciones de linters.
+- **Seguridad:** Checkstyle y ESLint no sustituyen análisis de vulnerabilidades ni revisión de seguridad.
+- **Protección de ramas:** no se afirma que `main` tenga branch protection, bloqueo de commits directos o checks obligatorios para hacer merge.
+- **Ejecución remota exitosa actual:** el run enlazado documenta la línea base fallida; la evidencia de éxito presentada en este documento es local.
 
-- Cualquier push, independientemente de la rama.
-- Pull requests cuyo destino es `main` o `develop`.
-- Permiso mínimo `contents: read`.
-- Java 17 Temurin mediante `actions/setup-java@v4`.
-- Gradle mediante `gradle/actions/setup-gradle@v4`.
-- Comando exacto: `./gradlew checkstyleMain --no-daemon`, ejecutado con `working-directory: backend`.
-- Job Summary con cantidad de archivos y violaciones detectadas.
-- Artifact `checkstyle-reports` con los reportes HTML y XML de Gradle, incluso cuando el linter falla.
-- Job `frontend-eslint`, con Node.js 20, `npm ci` y `npm run lint` desde `frontend/`.
-- El job genera un resumen siempre que termina e intenta publicar `frontend/eslint-report.json` como artifact `eslint-reports`, independiente del artifact de Checkstyle.
+## Fuentes
 
-El comando no usa `continue-on-error` ni oculta violaciones: una salida distinta de cero hace fallar naturalmente el job.
+- [ISO/IEC 25010:2023 — Product quality model](https://www.iso.org/standard/78176.html).
+- [ISO/IEC 25010:2011 — Systems and software quality models](https://www.iso.org/standard/35733.html).
+- [ISO — IRAM, miembro que representa a Argentina](https://www.iso.org/member/1520.html).
+- [Centro de Documentación IRAM](https://www.iram.org.ar/venta-de-normas).
 
-### Evidencia y límites de esta etapa
+## Archivos relevantes
 
-La primera ejecución remota confirmó el runner Ubuntu, Java 17 y Gradle, pero falló antes de ejecutar Checkstyle con `Permission denied` porque el wrapper `backend/gradlew` no tenía permiso de ejecución en Linux. El workflow incorpora ahora un paso `chmod +x gradlew` antes de invocarlo. Además, ambos jobs generan un resumen visible y conservan sus reportes como artifacts mediante pasos `if: always()`.
-
-La configuración del workflow y la ejecución remota son evidencias distintas: el archivo local demuestra qué se solicitará a GitHub, mientras que una ejecución del Action produciría la evidencia remota. La protección de ramas todavía no existe como parte de esta tarea.
-
-También queda pendiente verificar la protección de `main`, el bloqueo de commits directos y el requisito de checks exitosos. No se afirma que ninguna de estas configuraciones remotas exista actualmente.
-
-## Análisis ISO 25000
-
-**Pendiente.** Se documentará qué características y subcaracterísticas de calidad de ISO 25000 se relacionan con el uso de linters, especialmente mantenibilidad y sus aspectos aplicables al código fuente. El análisis final deberá distinguir entre la detección estática de incumplimientos y otras actividades de calidad, como pruebas funcionales o seguridad.
-
-## Evidencia
-
-**Pendiente.** Se incorporarán capturas o referencias verificables de:
-
-- ejecución local exitosa o fallida de Checkstyle;
-- ejecución remota fallida de la línea base: [Quality Gate run 35541760139](https://github.com/SoftwareQualityUnc/SoftwareQuality/actions/runs/35541760139);
-- captura visual de la línea base: `assets/checkstyle-fail.png`;
-- ejecución local exitosa o fallida de ESLint;
-- workflow de GitHub Actions ejecutándose como gate;
-- protección de la rama `main` y restricciones de merge.
-
-No se presentan capturas ni resultados como si ya hubieran sido verificados.
-
-## Checklist de entrega
-
-- [x] Configurar y verificar Checkstyle localmente.
-- [x] Verificar y, si corresponde, ajustar ESLint localmente.
-- [x] Ejecutar ambos linters y registrar resultados.
-- [x] Crear el workflow de GitHub Actions para Checkstyle y ESLint en jobs separados.
-- [ ] Verificar que el Action bloquee el merge cuando falle el linteo.
-- [ ] Configurar y verificar la protección de `main`.
-- [ ] Completar el análisis ISO 25000.
-- [ ] Adjuntar la evidencia requerida.
-- [ ] Copiar la versión final en la Issue `TP1: Linter` y asociar la Pull Request con `Closes #<número>`.
-
-## Próximo paso
-
-Mantener la evidencia histórica de la línea base y observar una ejecución remota del workflow. La protección de ramas sigue fuera de esta etapa.
+- [`backend/config/checkstyle/checkstyle.xml`](../../backend/config/checkstyle/checkstyle.xml): reglas de Checkstyle.
+- [`backend/build.gradle`](../../backend/build.gradle): versión e integración de Checkstyle.
+- [`frontend/.eslintrc.cjs`](../../frontend/.eslintrc.cjs): reglas de ESLint.
+- [`frontend/package.json`](../../frontend/package.json): script `npm run lint` y dependencias.
+- [`.github/workflows/quality-gate.yml`](../../.github/workflows/quality-gate.yml): gate automatizado.
+- [`assets/checkstyle-fail.png`](./assets/checkstyle-fail.png): captura de la línea base fallida.
