@@ -1,0 +1,1559 @@
+{
+  "finalAnalysis": "88ce83b9-036f-41be-b5f4-567b4a73641d",
+  "newIssues": [],
+  "removedIssues": [
+    {
+      "key": "69b351b4-c53c-4cb6-b4ed-12221ffb1fa5",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 40,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 40,
+        "endLine": 40,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 34,
+                "endLine": 34,
+                "startOffset": 46,
+                "endOffset": 49
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "8a3ced02-90cc-4fa5-8678-66b971a20639",
+      "rule": "java:S1168",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 41,
+      "hash": "540c13e9e156b687226421b24f2df178",
+      "textRange": {
+        "startLine": 41,
+        "endLine": 41,
+        "startOffset": 19,
+        "endOffset": 23
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Return an empty collection instead of null.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "",
+      "tags": [
+        "cert"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "523d3d1c-8031-4ec5-a6f0-2fa7aa883f6f",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 54,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 54,
+        "endLine": 54,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 50,
+                "endLine": 50,
+                "startOffset": 30,
+                "endOffset": 33
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "faf6cf43-1c72-4bd4-8934-5d16219bc252",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 67,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 67,
+        "endLine": 67,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 63,
+                "endLine": 63,
+                "startOffset": 50,
+                "endOffset": 53
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "73cf3dab-0f9c-485e-8105-cff01e3e1a2d",
+      "rule": "java:S106",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 68,
+      "hash": "50a907e50b6af78a1e2eb8e25595c109",
+      "textRange": {
+        "startLine": 68,
+        "endLine": 68,
+        "startOffset": 12,
+        "endOffset": 22
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Replace this use of System.err by a logger.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "",
+      "tags": [
+        "bad-practice",
+        "cert"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "MODULAR",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "c582f612-c470-4ede-b97c-1fd9b9e4ea44",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 43,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 43,
+        "endLine": 43,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+              "textRange": {
+                "startLine": 36,
+                "endLine": 36,
+                "startOffset": 46,
+                "endOffset": 49
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "417bbc59-970f-4318-bd3c-f6c06f4a3fc5",
+      "rule": "java:S1168",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 44,
+      "hash": "540c13e9e156b687226421b24f2df178",
+      "textRange": {
+        "startLine": 44,
+        "endLine": 44,
+        "startOffset": 19,
+        "endOffset": 23
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Return an empty collection instead of null.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "",
+      "tags": [
+        "cert"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "89ba2c2d-6264-4fd7-98ae-cd16720243d3",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 59,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 59,
+        "endLine": 59,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+              "textRange": {
+                "startLine": 51,
+                "endLine": 51,
+                "startOffset": 54,
+                "endOffset": 57
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "1a04191d-b32c-43ba-8293-1cdb41eee568",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 73,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 73,
+        "endLine": 73,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+              "textRange": {
+                "startLine": 69,
+                "endLine": 69,
+                "startOffset": 30,
+                "endOffset": 33
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "ea930ad3-fc4f-47d9-b0c6-25dce3c30e06",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 108,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 108,
+        "endLine": 108,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+              "textRange": {
+                "startLine": 95,
+                "endLine": 95,
+                "startOffset": 50,
+                "endOffset": 53
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "c68266f6-ed10-45bc-8171-667ba9b11ed4",
+      "rule": "java:S4507",
+      "severity": "MINOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 109,
+      "hash": "2dc1665d31b37f9aa7408939a0365027",
+      "textRange": {
+        "startLine": 109,
+        "endLine": 109,
+        "startOffset": 14,
+        "endOffset": 29
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "spring",
+        "debug",
+        "user-experience",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "3de208c1-eb0c-4445-8c80-d2267293cb1a",
+      "rule": "java:S1168",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 110,
+      "hash": "540c13e9e156b687226421b24f2df178",
+      "textRange": {
+        "startLine": 110,
+        "endLine": 110,
+        "startOffset": 19,
+        "endOffset": 23
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Return an empty collection instead of null.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "",
+      "tags": [
+        "cert"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "011e9f84-f452-40ef-941f-e763e7d55d74",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 39,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 39,
+        "endLine": 39,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 32,
+                "endLine": 32,
+                "startOffset": 47,
+                "endOffset": 50
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "1122abae-7fbe-4a99-9aca-afbec92935b5",
+      "rule": "java:S4507",
+      "severity": "MINOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 40,
+      "hash": "2dc1665d31b37f9aa7408939a0365027",
+      "textRange": {
+        "startLine": 40,
+        "endLine": 40,
+        "startOffset": 14,
+        "endOffset": 29
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "spring",
+        "debug",
+        "user-experience",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "a6b1f4bd-ddb7-438b-8708-3ecede5f0026",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 54,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 54,
+        "endLine": 54,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 50,
+                "endLine": 50,
+                "startOffset": 30,
+                "endOffset": 33
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "6dd4764c-4e7f-43c9-a3d4-4747becc8877",
+      "rule": "java:S4507",
+      "severity": "MINOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 55,
+      "hash": "2dc1665d31b37f9aa7408939a0365027",
+      "textRange": {
+        "startLine": 55,
+        "endLine": 55,
+        "startOffset": 14,
+        "endOffset": 29
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "spring",
+        "debug",
+        "user-experience",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "d721b072-c33f-4991-87ff-4c6dd900c080",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 77,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 77,
+        "endLine": 77,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 67,
+                "endLine": 67,
+                "startOffset": 46,
+                "endOffset": 49
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "6537361d-fcd9-4e85-aec6-5abc29c11444",
+      "rule": "java:S4507",
+      "severity": "MINOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 78,
+      "hash": "2dc1665d31b37f9aa7408939a0365027",
+      "textRange": {
+        "startLine": 78,
+        "endLine": 78,
+        "startOffset": 14,
+        "endOffset": 29
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "spring",
+        "debug",
+        "user-experience",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "3a47c06d-8aed-4f7a-870c-0bef4358b924",
+      "rule": "java:S1168",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 79,
+      "hash": "540c13e9e156b687226421b24f2df178",
+      "textRange": {
+        "startLine": 79,
+        "endLine": 79,
+        "startOffset": 19,
+        "endOffset": 23
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Return an empty collection instead of null.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "",
+      "tags": [
+        "cert"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "3bc3e854-6a89-40e8-9b1f-9e4c10d7dd5e",
+      "rule": "java:S2142",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 96,
+      "hash": "a50e423de97896afb97123424a960664",
+      "textRange": {
+        "startLine": 96,
+        "endLine": 96,
+        "startOffset": 17,
+        "endOffset": 28
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+              "textRange": {
+                "startLine": 89,
+                "endLine": 89,
+                "startOffset": 50,
+                "endOffset": 53
+              },
+              "msg": "Statement throwing InterruptedException.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "status": "OPEN",
+      "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+      "effort": "15min",
+      "debt": "15min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "multi-threading"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "e9d73781-7b6d-46ee-a49f-fa626bb81784",
+      "rule": "java:S4507",
+      "severity": "MINOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 97,
+      "hash": "2dc1665d31b37f9aa7408939a0365027",
+      "textRange": {
+        "startLine": 97,
+        "endLine": 97,
+        "startOffset": 14,
+        "endOffset": 29
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+      "effort": "1min",
+      "debt": "1min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "error-handling",
+        "spring",
+        "debug",
+        "user-experience",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "e5d35de2-4a12-441c-b1d1-bfa17a30bcf6",
+      "rule": "java:S1168",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "project": "softwarequality-tp3",
+      "line": 98,
+      "hash": "540c13e9e156b687226421b24f2df178",
+      "textRange": {
+        "startLine": 98,
+        "endLine": 98,
+        "startOffset": 19,
+        "endOffset": 23
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Return an empty collection instead of null.",
+      "effort": "30min",
+      "debt": "30min",
+      "author": "",
+      "tags": [
+        "cert"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "13aa2bde-2ada-4f20-b748-87ca2c0ed9bb",
+      "rule": "java:S1186",
+      "severity": "CRITICAL",
+      "component": "softwarequality-tp3:backend/src/test/java/com/backend/backend/BackendApplicationTests.java",
+      "project": "softwarequality-tp3",
+      "line": 10,
+      "hash": "9da319abd9f20a8cf2db6edcaf58d7f1",
+      "textRange": {
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 6,
+        "endOffset": 18
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "suspicious"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "TEST",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "4841f81a-edc5-47e3-9df9-12aec7dc64e7",
+      "rule": "java:S1186",
+      "severity": "CRITICAL",
+      "component": "softwarequality-tp3:backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+      "project": "softwarequality-tp3",
+      "line": 42,
+      "hash": "f393ef38f55be5cee8d154f8bca528bb",
+      "textRange": {
+        "startLine": 42,
+        "endLine": 42,
+        "startOffset": 9,
+        "endOffset": 19
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "suspicious"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "TEST",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "3a54e493-5e2c-45dd-a852-108c65c1c1be",
+      "rule": "java:S1186",
+      "severity": "CRITICAL",
+      "component": "softwarequality-tp3:backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+      "project": "softwarequality-tp3",
+      "line": 47,
+      "hash": "40cfd1ad9616ab38c3a2ef56c73421f1",
+      "textRange": {
+        "startLine": 47,
+        "endLine": 47,
+        "startOffset": 9,
+        "endOffset": 17
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "suspicious"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "TEST",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "COMPLETE",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "335c8d13-462f-499a-9e27-b84b2876719a",
+      "rule": "javascript:S6479",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:frontend/src/components/Cart/Cart.jsx",
+      "project": "softwarequality-tp3",
+      "line": 19,
+      "hash": "0dfd4962214954d675377d11fe111fba",
+      "textRange": {
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 19,
+        "endOffset": 24
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Do not use Array index in keys",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "performance",
+        "react",
+        "jsx"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "5d170370-3045-4d47-aa80-ddb064a6e95b",
+      "rule": "javascript:S6749",
+      "severity": "MINOR",
+      "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+      "project": "softwarequality-tp3",
+      "line": 35,
+      "hash": "38559c871fba28d992ead51549367f83",
+      "textRange": {
+        "startLine": 35,
+        "endLine": 50,
+        "startOffset": 4,
+        "endOffset": 7
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "A fragment with only one child is redundant.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "editable-source",
+        "react"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "DISTINCT",
+      "cleanCodeAttributeCategory": "ADAPTABLE",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "a165f72e-dcec-448d-bdd5-7a4c31322922",
+      "rule": "javascript:S6439",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+      "project": "softwarequality-tp3",
+      "line": 37,
+      "hash": "6d9d240e01ff7d38c6b2c5dfa4dc089e",
+      "textRange": {
+        "startLine": 37,
+        "endLine": 37,
+        "startOffset": 9,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Convert the conditional to a boolean to avoid leaked value",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "type-dependent",
+        "react"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": true,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "2d924479-9199-4f41-a098-8e0b9382492d",
+      "rule": "javascript:S6479",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+      "project": "softwarequality-tp3",
+      "line": 41,
+      "hash": "0dfd4962214954d675377d11fe111fba",
+      "textRange": {
+        "startLine": 41,
+        "endLine": 41,
+        "startOffset": 21,
+        "endOffset": 26
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Do not use Array index in keys",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "performance",
+        "react",
+        "jsx"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "cd07d4ef-d24b-446c-a4be-6888a4d4cd6f",
+      "rule": "javascript:S2201",
+      "severity": "MAJOR",
+      "component": "softwarequality-tp3:frontend/src/context/context.jsx",
+      "project": "softwarequality-tp3",
+      "line": 15,
+      "hash": "f301a43359dd4248a9b826d00b189aaa",
+      "textRange": {
+        "startLine": 15,
+        "endLine": 20,
+        "startOffset": 6,
+        "endOffset": 8
+      },
+      "flows": [],
+      "status": "OPEN",
+      "message": "Consider using \"forEach\" instead of \"map\" as its return value is not being used here.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "type-dependent"
+      ],
+      "creationDate": "2026-10-01T07:32:32-03:00",
+      "updateDate": "2026-10-01T07:32:32-03:00",
+      "type": "BUG",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "LOGICAL",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "OPEN",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    }
+  ],
+  "removedCount": 30,
+  "newCount": 0,
+  "initialAnalysis": "818dc356-2156-4d13-a455-de4bae85a975"
+}

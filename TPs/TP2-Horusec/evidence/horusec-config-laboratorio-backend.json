@@ -1,0 +1,231 @@
+{
+  "version": "v2.9.0-beta.3",
+  "id": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+  "repositoryID": "00000000-0000-0000-0000-000000000000",
+  "repositoryName": "",
+  "workspaceID": "00000000-0000-0000-0000-000000000000",
+  "workspaceName": "",
+  "status": "success",
+  "errors": "",
+  "createdAt": "2026-10-01T04:34:34.082677251Z",
+  "finishedAt": "2026-10-01T04:34:37.71169042Z",
+  "analysisVulnerabilities": [
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.71169655Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "11c1e26f-5823-483a-88eb-7e34eb37dd44",
+        "line": "39",
+        "column": "10",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "code": "} catch (Exception e) {",
+        "details": "(1/1) * Possible vulnerability detected: Information Exposure Through An Error Message\nThe sensitive information may be valuable information on its own (such as a password), or it may be useful for launching other, more deadly attacks. For more information checkout the CWE-209 (https://cwe.mitre.org/data/definitions/209.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "HIGH",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVA-63",
+        "vulnHash": "fdf34450978ddc151e9bd046d2cc30921d1bb9cbd62a28133a77b9406b60efd5",
+        "deprecatedHashes": [
+          "bcced34b47f15f6dce04cd45c9a52bca48ec4e3359c0b55faaa3eebca09e0d20",
+          "573ef910bb4a118e094311db6e766c7601e6dd88670a253f5308ef38e57346d8"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.711697622Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "f8d81de6-cf46-40ff-8d29-3fbd7179b0d5",
+        "line": "43",
+        "column": "10",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "code": "} catch (Exception e) {",
+        "details": "(1/1) * Possible vulnerability detected: Information Exposure Through An Error Message\nThe sensitive information may be valuable information on its own (such as a password), or it may be useful for launching other, more deadly attacks. For more information checkout the CWE-209 (https://cwe.mitre.org/data/definitions/209.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "HIGH",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVA-63",
+        "vulnHash": "3cc5e13ffa9b23e1430fdc99ed7760b67b41aad2d6a0a03c0b0f2a2c718457c4",
+        "deprecatedHashes": [
+          "a5da37a8146ef8a8e375b7fabb90c763c602e29a32b1d0804d98ae82023041a7",
+          "7d2b1a356c8c03e71c62323e2b3d2f2faf7b509a65c95c09cada041be09c7b78"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.71169245Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "4bc13018-d8cc-4338-9709-8f1d6bb0af51",
+        "line": "21",
+        "column": "8",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/BackendApplication.java",
+        "code": "System.err.println(\"Backend iniciado!\");",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JVM-1",
+        "vulnHash": "b12589973ed162fa87d6ee378770a5d4b8b5223c4979ee4a4318c05bfbabdcd4",
+        "deprecatedHashes": [
+          "dc3f42a117c0794c221871c8a9f9d59e85804d596954605a42796e00846a43bf",
+          "3f8a71be54af8693f19b8d00b7d16fc589f9120e3e5536617ceaaa947ce29e6b"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.711696125Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "3fa4d0c6-26a3-4de5-9524-9560d3e5e79e",
+        "line": "68",
+        "column": "12",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "code": "System.err.println(e);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JVM-1",
+        "vulnHash": "798fbe30a38d2674e102c9b5296d9db112db1db5ab9759253e8ad1306a5b61e8",
+        "deprecatedHashes": [
+          "baf0f7efc4568f07adcf4709b05de70058824affed031b5237e22037cfe367b7",
+          "0079421993cb87bbe23af138071de43658b6ea0910b1d3b22961bd42ced16256"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.711696891Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "0a6e35e7-f4f4-4ebb-9f02-28e8cfd3cd68",
+        "line": "73",
+        "column": "20",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "code": "System.err.println(\"Una subCategoria vino null\");",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JVM-1",
+        "vulnHash": "3b38a2006c51e70d781730949c060086d9311110bbbe6a3d8ada5608c17235b3",
+        "deprecatedHashes": [
+          "a9de389927b55d4e813e460508a43b1051bb282c502c4a95aa15aee8bc067bde",
+          "86c06ac0ef629680363eb3e036f4073b0fd34fc99c735e5dde2e651f43e532bb"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.711697191Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "23945108-32b3-4262-b5dc-2d8cfaef1e36",
+        "line": "75",
+        "column": "16",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "code": "System.out.println(\"Error al insertar la subcategoria\");",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JVM-1",
+        "vulnHash": "402a93062be82bc9f0a17b11fae8f8689c8cfce2a7e03f548dbc76c74a700c32",
+        "deprecatedHashes": [
+          "82d6378aeff325d818bc7687cbd5af9f063c989fedbc472bb47990e2c96593f4",
+          "b7fd5f8df85d0994fe36959497bf9e3a1d4f3c31fbf86f1ff38b65c0c76b3383"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "createdAt": "2026-10-01T04:34:37.711697957Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "eb3f751d-97fe-4e9e-90aa-e34475c226c1",
+        "line": "97",
+        "column": "16",
+        "confidence": "LOW",
+        "file": "src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+        "code": "System.out.println(\"Failed to insert sub-category: \" + producto);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "Java",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JVM-1",
+        "vulnHash": "ff61d4e8a855a673cc4c70973af2cd51ec5eedf65d138983374c4087da00076a",
+        "deprecatedHashes": [
+          "129cd7b59509dc566de675008189230d817022aca77cc3afd5f5f36c81592cbb",
+          "fb1b25dbea50530ef1349ac5174c5219f938383de3ad5f2c4c88ad07a084c2a2"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+BACKEND: salida de Gradle (tareas y resultado)
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
+> Task :bootJar UP-TO-DATE
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :test
+> Task :jacocoTestReport
+> Task :checkstyleMain UP-TO-DATE
+> Task :sonarLibraries UP-TO-DATE
+BUILD SUCCESSFUL in 19s
+PRUEBAS JAVA: resultados JUnit XML
+[
+  {
+    "suite": "com.backend.backend.BackendApplicationTests",
+    "tests": 1,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.controllers.ProductoControllerTest",
+    "tests": 4,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.repositories.impl.CategoriaRepositoryImplTest",
+    "tests": 3,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.repositories.impl.ProductoFilterTest",
+    "tests": 8,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.repositories.impl.RepositoryFailureTest",
+    "tests": 22,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.services.ApiKeyValidationServiceTest",
+    "tests": 7,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.services.CategoriaServiceTest",
+    "tests": 5,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.services.ProductoServiceTest",
+    "tests": 8,
+    "failures": 0,
+    "skipped": 0
+  },
+  {
+    "suite": "com.backend.backend.services.SubCategoriaServiceTest",
+    "tests": 4,
+    "failures": 0,
+    "skipped": 0
+  }
+]
+FRONTEND: salida de Vitest, ESLint y Vite
+
+> frontend@1.1.0 test:coverage
+> vitest run --coverage
+
+
+ RUN  v3.2.7 /app
+      Coverage enabled with v8
+
+ ✓ tests/cart.test.jsx (4 tests) 19ms
+ ✓ tests/catalog.test.jsx (5 tests) 108ms
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  10:51:58
+   Duration  16.29s (transform 190ms, setup 0ms, collect 4.27s, tests 126ms, environment 23.32s, prepare 2.36s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   16.94 |    52.27 |      25 |   16.94 |                   
+ src               |       0 |        0 |       0 |       0 |                   
+  App.jsx          |       0 |        0 |       0 |       0 | 1-24              
+  main.jsx         |       0 |        0 |       0 |       0 | 1-10              
+ src/api           |       0 |        0 |       0 |       0 |                   
+  categoriaApi.js  |       0 |        0 |       0 |       0 | 1-13              
+  index.js         |       0 |        0 |       0 |       0 | 1-10              
+  productoApi.js   |       0 |        0 |       0 |       0 | 1-18              
+  ...tegoriaApi.js |       0 |        0 |       0 |       0 | 1-13              
+ ...omponents/Cart |       0 |        0 |       0 |       0 |                   
+  Cart.jsx         |       0 |        0 |       0 |       0 | 1-42              
+ .../Cart/CartItem |       0 |        0 |       0 |       0 |                   
+  CartItem.jsx     |       0 |        0 |       0 |       0 | 1-25              
+ ...ponents/Footer |       0 |        0 |       0 |       0 |                   
+  Footer.jsx       |       0 |        0 |       0 |       0 | 1-20              
+ ...s/GlobalLayout |       0 |        0 |       0 |       0 |                   
+  GlobalLayout.jsx |       0 |        0 |       0 |       0 | 1-16              
+ ...omponents/Home |       0 |        0 |       0 |       0 |                   
+  Home.jsx         |       0 |        0 |       0 |       0 | 1-39              
+ .../Home/Carousel |       0 |        0 |       0 |       0 |                   
+  Carousel.jsx     |       0 |        0 |       0 |       0 | 1-34              
+ ...Home/FilterBar |       0 |        0 |       0 |       0 |                   
+  FilterBar.jsx    |       0 |        0 |       0 |       0 | 1-124             
+ ...mListContainer |   65.27 |       90 |      50 |   65.27 |                   
+  ItemList.jsx     |     100 |      100 |     100 |     100 |                   
+  ...Container.jsx |       0 |        0 |       0 |       0 | 1-34              
+ ...Container/Card |     100 |      100 |     100 |     100 |                   
+  Card.jsx         |     100 |      100 |     100 |     100 |                   
+ ...er/Card/Button |       0 |        0 |       0 |       0 |                   
+  Button.jsx       |       0 |        0 |       0 |       0 | 1-7               
+ ...nts/ItemDetail |       0 |        0 |       0 |       0 |                   
+  ItemDetail.jsx   |       0 |        0 |       0 |       0 | 1-18              
+  ...Container.jsx |       0 |        0 |       0 |       0 | 1-43              
+ ...ponents/NavBar |       0 |        0 |       0 |       0 |                   
+  NavBar.jsx       |       0 |        0 |       0 |       0 | 1-31              
+ ...Bar/CartWidget |       0 |        0 |       0 |       0 |                   
+  CartWidget.jsx   |       0 |        0 |       0 |       0 | 1-25              
+ ...vBar/SearchBar |       0 |        0 |       0 |       0 |                   
+  SearchBar.jsx    |       0 |        0 |       0 |       0 | 1-32              
+ src/context       |   74.46 |    92.85 |   83.33 |   74.46 |                   
+  ...osContext.jsx |   21.42 |      100 |       0 |   21.42 | 6-19              
+  context.jsx      |   96.96 |    92.85 |     100 |   96.96 | 16                
+-------------------|---------|----------|---------|---------|-------------------
+npm notice
+npm notice New major version of npm available! 10.9.9 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> frontend@1.1.0 lint
+> eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+
+> frontend@1.1.0 build
+> vite build
+
+vite v5.2.11 building for production...
+transforming...
+✓ 125 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                         0.47 kB │ gzip:  0.31 kB
+dist/assets/mvcLogo-BOIImeRS.png        8.29 kB
+dist/assets/carousel5-HZLk14ee.png    943.65 kB
+dist/assets/carousel1-CstMxnU-.png    959.17 kB
+dist/assets/carousel3-BV31CFWU.png    970.37 kB
+dist/assets/carousel4-B_7Ir0sE.png  1,347.81 kB
+dist/assets/carousel2-S8KRcdji.png  1,366.15 kB
+dist/assets/index-CD07_rnZ.css          6.07 kB │ gzip:  1.97 kB
+dist/assets/index-DMZFSTwm.js         205.68 kB │ gzip: 69.06 kB
+✓ built in 1.85s
+SONARSCANNER: fin del análisis
+07:57:44.941 INFO  CPD Executor Calculating CPD for 32 files
+07:57:44.978 INFO  CPD Executor CPD calculation finished (done) | time=37ms
+07:57:45.164 INFO  Analysis report generated in 156ms, dir size=522.2 kB
+07:57:46.357 INFO  Analysis report compressed in 1192ms, zip size=203.9 kB
+07:57:46.409 INFO  Analysis report uploaded in 53ms
+07:57:46.412 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://localhost:9001/dashboard?id=softwarequality-tp3
+07:57:46.412 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+07:57:46.412 INFO  More about the report processing at http://localhost:9001/api/ce/task?id=7eda9007-46f6-46e3-8e55-501cb7173796
+07:57:46.621 INFO  Analysis total time: 19.773 s
+07:57:46.646 INFO  SonarScanner Engine completed successfully
+07:57:46.675 INFO  EXECUTION SUCCESS
+07:57:46.676 INFO  Total time: 24.528s

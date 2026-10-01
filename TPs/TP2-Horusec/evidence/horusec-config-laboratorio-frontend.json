@@ -1,0 +1,200 @@
+{
+  "version": "v2.9.0-beta.3",
+  "id": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+  "repositoryID": "00000000-0000-0000-0000-000000000000",
+  "repositoryName": "",
+  "workspaceID": "00000000-0000-0000-0000-000000000000",
+  "workspaceName": "",
+  "status": "success",
+  "errors": "",
+  "createdAt": "2026-10-01T04:34:58.896948165Z",
+  "finishedAt": "2026-10-01T04:34:59.894188075Z",
+  "analysisVulnerabilities": [
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "createdAt": "2026-10-01T04:34:59.894190319Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "b678a64a-a4f2-41fb-a354-2133bfd6a4dc",
+        "line": "18",
+        "column": "24",
+        "confidence": "LOW",
+        "file": "src/components/ItemDetail/ItemDetailContainer.jsx",
+        "code": ".catch((error) =\u003e console.error(error));",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information in console\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-1",
+        "vulnHash": "0eeed857a457c2f162653a52ab19f49ebf088b0b3d1dfdca91f2c87a894f1d1b",
+        "deprecatedHashes": [
+          "57c0fdfb438191a9bd3057dc2ec82e01814bd9a454afe2aa92767d181f59b818",
+          "7794cdc3b126d1a6c832f996b924a6345fb33f1b68b287aeb78f83e8c4b46571"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "createdAt": "2026-10-01T04:34:59.89419421Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "fe9b275e-1ad2-43fa-b829-3c8a36f95c33",
+        "line": "18",
+        "column": "9",
+        "confidence": "LOW",
+        "file": "src/components/Home/ItemListContainer/ItemList.jsx",
+        "code": "//   //console.log(filtroProductos);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information in console\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-1",
+        "vulnHash": "39e3ce3f8d4a88c4ea47e7551478a808bafa68579a1f2425a64bdcb89b07e593",
+        "deprecatedHashes": [
+          "904341059f02f09da1b591772ba019399932e6238524051b2c6ea34ed1eccbb8",
+          "b2365d571ee23148931989ead851b95a2621ab2a726b59001b56113daa842bba"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "createdAt": "2026-10-01T04:34:59.894194671Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "31ce37f4-a3be-46d4-8c8e-9464e00bb8a1",
+        "line": "23",
+        "column": "8",
+        "confidence": "LOW",
+        "file": "src/components/Home/ItemListContainer/ItemList.jsx",
+        "code": "console.log(\"Filtros actualizados:\", filtroProductos);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information in console\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-1",
+        "vulnHash": "f637dd5dd282549eb3666870b1702217f63016b8841d85b861ea0bdc0f23235e",
+        "deprecatedHashes": [
+          "30144dfb760dadbb9c27e704d2f28f83ccfca36ae4027d462e86797f8f523548",
+          "d8516eab321abf5f04d7473351fb48c66a7f842d2bea98984414b58f8799b283"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "createdAt": "2026-10-01T04:34:59.894194992Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "f610cc98-4a27-4c92-be9b-749cc812a07f",
+        "line": "25",
+        "column": "12",
+        "confidence": "LOW",
+        "file": "src/components/Home/ItemListContainer/ItemList.jsx",
+        "code": "console.log(res);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information in console\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-1",
+        "vulnHash": "14bce3553716dfeadc3a4c02a9b592c32735810c3b64d7931540e9df530e9d3e",
+        "deprecatedHashes": [
+          "7a5e5e68afacc7b44a2d2f1d37f615589f72889a3744ca02b3a9fb1511bf8e52",
+          "1e6c7dd9bff669207db211d777a5e835a6f23cdb0dde03c0ee2ae620986ad69f"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "createdAt": "2026-10-01T04:34:59.894195325Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "3a30e699-7a55-4161-9d60-468e17386e10",
+        "line": "24",
+        "column": "8",
+        "confidence": "LOW",
+        "file": "src/components/Home/FilterBar/FilterBar.jsx",
+        "code": "console.error(error);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information in console\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-1",
+        "vulnHash": "1d34fdb7b07d4343d3b5906c22f4940215d63a614ca2574b2b03e96567b697a7",
+        "deprecatedHashes": [
+          "42a92fadaf61550d28547278ed680de1cd84f2c64facc8afcfeaa2ca8e1a5274",
+          "5f3dd71421159fea9b7b7ae15a42cd026bacaa04826b3dde38e25a4efc97edff"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    },
+    {
+      "vulnerabilityID": "00000000-0000-0000-0000-000000000000",
+      "analysisID": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "createdAt": "2026-10-01T04:34:59.894195628Z",
+      "vulnerabilities": {
+        "vulnerabilityID": "de0894a8-908d-4745-ba17-745d4888d01a",
+        "line": "34",
+        "column": "8",
+        "confidence": "LOW",
+        "file": "src/components/Home/FilterBar/FilterBar.jsx",
+        "code": "console.error(err);",
+        "details": "(1/1) * Possible vulnerability detected: No Log Sensitive Information in console\nThe App logs information. Sensitive information should never be logged. For more information checkout the CWE-532 (https://cwe.mitre.org/data/definitions/532.html) advisory.",
+        "securityTool": "HorusecEngine",
+        "language": "JavaScript",
+        "severity": "INFO",
+        "type": "Vulnerability",
+        "commitAuthor": "-",
+        "commitEmail": "-",
+        "commitHash": "-",
+        "commitMessage": "-",
+        "commitDate": "-",
+        "rule_id": "HS-JAVASCRIPT-1",
+        "vulnHash": "a6030ec3a819fe187ca73f19e938611d98ddad86c4ad94039086292f33204167",
+        "deprecatedHashes": [
+          "4034e21b5419aba4e61a1d916d7096bf5c9cc95cb8bff5a7b691bf696663fb48",
+          "202fa6d9b7ba8518e9ba5ca8f3ea5ef964561b9c2cff4aab91042d76cfb45489"
+        ],
+        "securityToolVersion": "",
+        "securityToolInfoUri": ""
+      }
+    }
+  ]
+}

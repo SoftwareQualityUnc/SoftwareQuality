@@ -1,0 +1,47 @@
+{
+  "method": "Direct Docker commands using the unchanged laboratory configuration; no TP script",
+  "image": "horuszup/horusec-cli:v2.9.0-beta.3@sha256:d39f8c9558ac50e7109e73d90b60af9dc593bfde2a068efae0f0391d9eb24e25",
+  "commit": "ffa3b2a0a87bbbe2d0cc1be84f54251a918c8901",
+  "configuration": "material/Horusec/horusec-config.json",
+  "configSha256": "B409506A6B866FF5E1C131529A473F52FB6C7D05F32EB18B29EED2B23F0E0463",
+  "scope": [
+    "backend",
+    "frontend"
+  ],
+  "materialSourceAnalyzed": false,
+  "cliOverrides": [
+    "project-path",
+    "output-format",
+    "json-output-file",
+    "log-level",
+    "log-file-path"
+  ],
+  "additionalExclusions": [],
+  "runs": [
+    {
+      "scope": "backend",
+      "report": "horusec-config-laboratorio-backend.json",
+      "analysisId": "3a3f3a3f-af55-413e-962d-0907d561bbd4",
+      "startedAt": "2026-10-01T04:34:34.082677251Z",
+      "finishedAt": "2026-10-01T04:34:37.71169042Z",
+      "status": "success",
+      "errors": "",
+      "findings": 7
+    },
+    {
+      "scope": "frontend",
+      "report": "horusec-config-laboratorio-frontend.json",
+      "analysisId": "dd7097bb-4714-426c-bd71-99b9fe8485f2",
+      "startedAt": "2026-10-01T04:34:58.896948165Z",
+      "finishedAt": "2026-10-01T04:34:59.894188075Z",
+      "status": "success",
+      "errors": "",
+      "findings": 6
+    }
+  ],
+  "comparisonToManualRun": "Same 13 findings by file, line, rule_id and severity",
+  "limitations": [
+    "Configuration disables Docker-based analyzers; Docker hosts the CLI only.",
+    "No dependency audit in this run."
+  ]
+}
