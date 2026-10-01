@@ -2,8 +2,11 @@ package com.backend.backend.repositories.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.backend.backend.dto.FiltroProductosDTO;
@@ -20,6 +23,8 @@ import com.google.cloud.firestore.WriteResult;
 
 @Repository
 public class ProductoRepositoryImpl implements ProductoRepository {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductoRepositoryImpl.class);
 
     private final CollectionReference productosReference; // Para que se cree solo una instancia
 
@@ -40,8 +45,11 @@ public class ProductoRepositoryImpl implements ProductoRepository {
                 res.add(producto);
             }
             return res;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
         } catch (Exception e) {
-            return null;
+            return List.of();
         }
     }
 
@@ -56,6 +64,9 @@ public class ProductoRepositoryImpl implements ProductoRepository {
                 return prod;
             }
             return null;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
         } catch (Exception e) {
             // TODO: handle exception
             return null;
@@ -69,6 +80,9 @@ public class ProductoRepositoryImpl implements ProductoRepository {
             if (null != wrApi.get()) {
                 return get(docRef.getId());
             }
+            return null;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             return null;
         } catch (Exception e) {
             return null;
@@ -86,8 +100,7 @@ public class ProductoRepositoryImpl implements ProductoRepository {
         if (filtro.getIdSubCategoria() != null) {
             query = query.whereEqualTo("idSubCategoria", filtro.getIdSubCategoria());
         }
-        if (filtro.getIdSubCategoria() == null && filtro.getIdCategoria() == null && (filtro.getDescrip() == null
-                || filtro.getDescrip().length() == 0)) {
+        if (sinFiltros(filtro)) {
             query = query.whereEqualTo("destacado", Boolean.TRUE);
         }
 
@@ -96,19 +109,29 @@ public class ProductoRepositoryImpl implements ProductoRepository {
             for (DocumentSnapshot doc : querySnap) {
                 tmp = doc.toObject(ProductoDTO.class);
                 tmp.setIdProducto(doc.getId());
-                if (filtro.getDescrip() != null && filtro.getDescrip().length() != 0) {
-                    if (tmp.getDescrip().toLowerCase().contains(filtro.getDescrip().toLowerCase())) {
-                        ret.add(tmp);
-                    }
-                } else {
+                if (coincideDescripcion(tmp, filtro.getDescrip())) {
                     ret.add(tmp);
                 }
             }
             return ret;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            LOGGER.warn("No se pudo completar la operación de Firestore.");
+            return List.of();
         }
 
+    }
+
+    private boolean sinFiltros(FiltroProductosDTO filtro) {
+        return filtro.getIdSubCategoria() == null && filtro.getIdCategoria() == null
+                && (filtro.getDescrip() == null || filtro.getDescrip().isEmpty());
+    }
+
+    private boolean coincideDescripcion(ProductoDTO producto, String descripcion) {
+        return descripcion == null || descripcion.isEmpty()
+                || (producto.getDescrip() != null
+                && producto.getDescrip().toLowerCase(Locale.ROOT).contains(descripcion.toLowerCase(Locale.ROOT)));
     }
 }

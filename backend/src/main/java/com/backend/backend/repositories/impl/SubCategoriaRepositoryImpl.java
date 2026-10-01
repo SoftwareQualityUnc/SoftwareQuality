@@ -3,6 +3,8 @@ package com.backend.backend.repositories.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.backend.backend.dto.SubCategoriaDTO;
@@ -18,6 +20,8 @@ import com.google.cloud.firestore.WriteResult;
 
 @Repository
 public class SubCategoriaRepositoryImpl implements SubCategoriaRepository {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SubCategoriaRepositoryImpl.class);
 
     private CollectionReference subCategoriasReference;
 
@@ -36,8 +40,11 @@ public class SubCategoriaRepositoryImpl implements SubCategoriaRepository {
             } else {
                 return null;
             }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.warn("No se pudo completar la operación de Firestore.");
             return null;
         }
     }
@@ -51,8 +58,11 @@ public class SubCategoriaRepositoryImpl implements SubCategoriaRepository {
                 return docRef.getId(); // Devuelvo el id insertado
             }
             return null;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.warn("No se pudo completar la operación de Firestore.");
             return null;
         }
     }
@@ -74,9 +84,12 @@ public class SubCategoriaRepositoryImpl implements SubCategoriaRepository {
                 }
             }
             return res;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            LOGGER.warn("No se pudo completar la operación de Firestore.");
+            return List.of();
         }
     }
 
@@ -93,9 +106,12 @@ public class SubCategoriaRepositoryImpl implements SubCategoriaRepository {
                 res.add(tmp);
             }
             return res;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            LOGGER.warn("No se pudo completar la operación de Firestore.");
+            return List.of();
         }
     }
 

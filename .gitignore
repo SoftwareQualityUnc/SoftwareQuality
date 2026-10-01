@@ -16,6 +16,8 @@ out/
 .eslintcache
 *.tsbuildinfo
 *.tgz
+**/coverage/
+.scannerwork/
 
 # Environment files and local secrets
 .env

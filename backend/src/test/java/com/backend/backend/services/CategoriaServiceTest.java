@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.backend.backend.dto.CategoriaDTO;
@@ -23,7 +22,7 @@ import com.backend.backend.repositories.CategoriaRepository;
 import com.backend.backend.services.impl.CategoriaServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class CategoriaServiceTest {
+class CategoriaServiceTest {
 
     @Mock
     private CategoriaRepository categoriaRepository;
@@ -35,7 +34,6 @@ public class CategoriaServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
 
         categoria = new CategoriaDTO();
         categoria.setIdCategoria("12345678910234567892");

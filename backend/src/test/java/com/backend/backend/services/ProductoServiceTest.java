@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.backend.backend.dto.FiltroProductosDTO;
@@ -23,7 +22,7 @@ import com.backend.backend.repositories.ProductoRepository;
 import com.backend.backend.services.impl.ProductoServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductoServiceTest {
+class ProductoServiceTest {
 
     @Mock
     private ProductoRepository productoRepository;
@@ -35,7 +34,6 @@ public class ProductoServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
 
         producto = new ProductoDTO();
         producto.setIdProducto("12345678910123456789");
@@ -52,7 +50,7 @@ public class ProductoServiceTest {
     }
 
     @Test
-    void testGetThrowBadRequest() throws Exception {
+    void testGetThrowBadRequest() {
         assertThrows(BadReqException.class, () -> {
             productoService.get("shortId");
         });

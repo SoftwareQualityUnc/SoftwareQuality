@@ -14,9 +14,9 @@ const Cart = () => {
     <GlobalLayout>
       <div className="containerGrande">
         <div className="container">
-          {cart.map((item, index) => (
+          {cart.map((item) => (
             <CartItem
-              key={index}
+              key={item.id}
               title={item.title}
               id={item.id}
               count={item.count}
