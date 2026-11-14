@@ -6,8 +6,8 @@ export default function CartContextProvider(props) {
   const [cart, setCart] = useState([]);
 
   function addItemCount(item) {
-    let newItem = [...cart];
-    let producto = newItem.some((element) => {
+    const newItem = [...cart];
+    const producto = newItem.some((element) => {
       return element.id === item.id;
     });
 

@@ -6,9 +6,13 @@ const getProductosPorFiltro = async (filtroProductos) => {
     return apiClient.get('/producto/getProductosPorFiltro', {params: filtroProductos})
 }
 
+const getProducto = async (idProducto) => {
+    return apiClient.get(`/producto/${idProducto}`)
+}
 
 
 
 export default {
     getProductosPorFiltro: getProductosPorFiltro,
+    getProducto: getProducto,
 }

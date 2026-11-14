@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import "./Carousel.css";
 
 const Carousel = ({ images }) => {
-
-  useEffect(() => {
-    setInterval(() => {
-      goToNextSlide();
-    }, 4000);
-  }, []);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToNextSlide = () => {
+  const goToNextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);
+
+  useEffect(() => {
+    const intervalId = setInterval(goToNextSlide, 4000);
+    return () => clearInterval(intervalId);
+  }, [goToNextSlide]);
 
   const goToPrevSlide = () => {
     setCurrentIndex((prevIndex) =>

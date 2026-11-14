@@ -10,9 +10,7 @@ const FilterBar = () => {
   const [categorias, setCategorias] = useState([]);
   const [idCategoriaSeleccionada, setIdCategoriaSeleccionada] = useState(0);
   const [subCategorias, setSubCategorias] = useState([]);
-  const [idSubCategoriaseleccionada, setIdSubCategoriaseleccionada] =
-    useState(0);
-  const { filtroProductos, setFiltroProductos } = useContext(
+  const { setFiltroProductos } = useContext(
     FiltroProductosContext
   );
 
@@ -40,22 +38,32 @@ const FilterBar = () => {
   const seleccionaCategoria = (idCategoria) => {
     setIdCategoriaSeleccionada(idCategoria);
     const tmp = subCategoriasOriginal.filter(
-      (s) => s.idCategoria === idCategoria || idCategoria == 0 || !idCategoria
+      (s) =>
+        s.idCategoria === idCategoria ||
+        idCategoria === 0 ||
+        idCategoria === "0" ||
+        !idCategoria
     );
     setSubCategorias(tmp);
     setFiltroProductos((prevVal) => ({
       ...prevVal,
-      idCategoria: idCategoria,
+      idCategoria: idCategoria === "0" || !idCategoria ? null : idCategoria,
     }));
   };
 
   const seleccionaSubCategoria = (idSubCategoria) => {
-    setIdSubCategoriaseleccionada(idSubCategoria);
-
-    if (idCategoriaSeleccionada == 0 || !idCategoriaSeleccionada) {
-      let idCategoria = subCategoriasOriginal.find(
+    if (
+      idCategoriaSeleccionada === 0 ||
+      idCategoriaSeleccionada === "0" ||
+      !idCategoriaSeleccionada
+    ) {
+      const categoria = subCategoriasOriginal.find(
         (x) => x.idSubCategoria === idSubCategoria
-      ).idCategoria;
+      );
+      if (!categoria) {
+        return;
+      }
+      const idCategoria = categoria.idCategoria;
       setIdCategoriaSeleccionada(idCategoria);
       seleccionaCategoria(idCategoria);
       setFiltroProductos((prevVal) => ({
@@ -65,7 +73,7 @@ const FilterBar = () => {
     }
     setFiltroProductos((prevVal) => ({
       ...prevVal,
-      idSubCategoria: idSubCategoria,
+      idSubCategoria: idSubCategoria === "0" || !idSubCategoria ? null : idSubCategoria,
     }));
   };
 
