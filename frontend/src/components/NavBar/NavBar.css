@@ -1,41 +1,103 @@
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(9, 13, 18, 0.86);
+  box-shadow: var(--shadow-header);
+  backdrop-filter: blur(18px);
+}
 
-.navContainer {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-evenly;
+.site-nav {
+  display: grid;
+  grid-template-columns: minmax(12rem, 17rem) minmax(14rem, 1fr) auto;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  width: min(100%, var(--content-width));
+  min-height: 5.5rem;
+  margin-inline: auto;
+  padding: 0.75rem clamp(1rem, 2.5vw, 2rem);
+}
+
+.site-nav__brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  width: fit-content;
+  border-radius: var(--radius-sm);
+}
+
+.site-nav__logo {
+  width: min(100%, 13.5rem);
+  height: auto;
+  border-radius: 0.35rem;
+}
+
+.site-nav__tagline {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-nav__search {
+  width: 100%;
+}
+
+.site-nav__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.site-nav__cart {
+  display: inline-flex;
+  min-height: 3rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.site-nav__cart:hover {
+  border-color: rgba(89, 214, 230, 0.5);
+  background: rgba(89, 214, 230, 0.1);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 48rem) {
+  .site-nav {
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem 1rem;
+    padding-block: 0.7rem 0.85rem;
+  }
+
+  .site-nav__brand {
+    flex-direction: row;
     align-items: center;
-    width: 100%;
-    padding: 10px;
-    margin: 0;  
-    height: 140px;
-    top: 0;
-    background-image: url("https://th.bing.com/th/id/R.52ee2dd388b546e3af355782c5fe3e3a?rik=ryDggF%2f%2b8tHtpg&riu=http%3a%2f%2fblog.facialix.com%2fwp-content%2fuploads%2f2020%2f03%2fAWS_Apple_Microchip_Bloomberg_sm.jpg&ehk=jtO2xsCkEwThjdEqUvzk86SOVDt3BIU9DCplDHfkwCw%3d&risl=&pid=ImgRaw&r=0");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    gap: 0.75rem;
+  }
+
+  .site-nav__logo {
+    width: 10.5rem;
+  }
+
+  .site-nav__tagline {
+    display: none;
+  }
+
+  .site-nav__search {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 }
 
-.navLogo {
-    width: auto;
-    height: auto;
-}
-
-.cartStyles {
-    display: flex;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-}
-
-.searchBarStyles {
-    width: 450px;
-    height: 30px;
-    background-color: whitesmoke;
-    border-radius: 5px;
-    margin: 0 10px;
-}
-
-.searchBar {
-    width: 100px;
+@media (max-width: 25rem) {
+  .site-nav__logo {
+    width: 8.5rem;
+  }
 }

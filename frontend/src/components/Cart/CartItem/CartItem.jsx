@@ -9,7 +9,7 @@ const CartItem = ({ title, img, detail, price, ml, id }) => {
   return (
     <div className="container">
       <div>
-        <img src={img} alt="imagen" />
+        <img src={img} alt={`Imagen de ${title || "producto"}`} />
       </div>
       <div>
         <h1>{title}</h1>
@@ -17,7 +17,12 @@ const CartItem = ({ title, img, detail, price, ml, id }) => {
         <p>{ml}</p>
         <div>{price}</div>
       </div>
-      <button onClick={() => eliminarItem(id)}>🗑</button>
+      <button
+        aria-label={`Eliminar ${title || "producto"} del carrito`}
+        onClick={() => eliminarItem(id)}
+      >
+        <span aria-hidden="true">🗑</span>
+      </button>
     </div>
   );
 };

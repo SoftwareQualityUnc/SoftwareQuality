@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import GlobalLayout from "../GlobalLayout/GlobalLayout";
 import CartItem from "./CartItem/CartItem";
+import { formatPrice } from "../../utils/formatPrice";
 
 import "./Cart.css";
 
@@ -26,12 +27,12 @@ const Cart = () => {
         </div>
         <div className="precio">
           <h3>Total a pagar:</h3>
-          <h2>$ {precioTotal()}</h2>
+          <h2>{formatPrice(precioTotal())}</h2>
         </div>
         <div className="container">
           <button onClick={deleteCart}>Vaciar carrito</button>
           <Link to="/checkout">
-            <button>Finalizar Compra</button>
+            <button>Finalizar compra</button>
           </Link>
         </div>
       </div>

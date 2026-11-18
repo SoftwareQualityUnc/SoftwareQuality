@@ -1,10 +1,91 @@
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: clamp(1rem, 2vw, 1.4rem);
+}
 
-.itemListStyle {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 900px;
-    background-color: transparent;
+.catalog-state {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  min-height: 20rem;
+  padding: clamp(2rem, 7vw, 5rem) 1.5rem;
+  border: 1px dashed rgba(177, 205, 227, 0.25);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  background: rgba(16, 23, 32, 0.54);
+  text-align: center;
+}
+
+.catalog-state strong {
+  color: var(--color-text);
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+}
+
+.catalog-state p {
+  max-width: 30rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.catalog-state__eyebrow {
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.catalog-state--error {
+  border-color: rgba(255, 106, 61, 0.36);
+}
+
+.catalog-state--error .catalog-state__eyebrow {
+  color: #ff9b7d;
+}
+
+.catalog-skeletons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(100%, 42rem);
+  margin-top: 1.25rem;
+}
+
+.catalog-skeletons span {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.04) 20%,
+    rgba(89, 214, 230, 0.11) 45%,
+    rgba(255, 255, 255, 0.04) 70%
+  );
+  background-size: 220% 100%;
+  animation: catalog-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes catalog-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: 36rem) {
+  .catalog-skeletons span:last-child {
+    display: none;
+  }
+
+  .catalog-skeletons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-skeletons span {
+    animation: none;
+  }
 }

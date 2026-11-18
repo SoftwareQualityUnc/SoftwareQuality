@@ -1,8 +1,35 @@
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600&family=Montserrat:wght@100;200;400&family=Nanum+Gothic:wght@400;700&family=Water+Brush&display=swap");
+.site-shell {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
 
-.globalLayout {
-    font-family: "Montserrat", sans-serif;
-    color: antiquewhite;
+.site-shell__content {
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  color: #061216;
+  background: var(--color-primary);
+  font-weight: 800;
+  transform: translateY(-160%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (max-width: 40rem) {
+  .site-shell__content {
+    padding: 0.875rem;
   }
-  
-  
+}

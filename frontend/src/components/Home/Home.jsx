@@ -9,30 +9,56 @@ import img3 from "../../assets/carouselImg/carousel3.png";
 import img4 from "../../assets/carouselImg/carousel4.png";
 import img5 from "../../assets/carouselImg/carousel5.png";
 
-import { FiltroProductosProvider } from "../../context/FiltroProductosContext";
 import "./Home.css";
 
-const Home = () => {
-  const images = [img1, img2, img3, img4, img5];
+const slides = [
+  { src: img1, alt: "Oferta del mouse inalámbrico ASUS TUF Gaming M4" },
+  { src: img2, alt: "Oferta destacada de hardware gamer" },
+  { src: img3, alt: "Oferta de componentes de alto rendimiento" },
+  { src: img4, alt: "Oferta de accesorios para equipos gamer" },
+  { src: img5, alt: "Oferta de periféricos y componentes" },
+];
 
+const Home = () => {
   return (
-    <FiltroProductosProvider>
-      <GlobalLayout className="globalLayout">
-        <div className="homeFlex">
-          <div className="carousel">
-            <Carousel images={images} />
+    <GlobalLayout>
+      <div className="storefront">
+        <section className="storefront__intro">
+          <div className="storefront__copy">
+            <p className="storefront__eyebrow">Todo para tu próximo equipo</p>
+            <h1>Potenciá tus ideas con hardware a la altura.</h1>
+            <p>
+              Encontrá componentes confiables, periféricos gamer y mejoras de rendimiento
+              seleccionadas para quienes cuidan cada detalle.
+            </p>
+            <a className="storefront__cta" href="#catalog">
+              Explorar componentes
+            </a>
           </div>
-          <div className="containerFilterAndItems">
-            <div className="filterBar">
-              <FilterBar />
+          <div className="storefront__metrics" aria-label="Ventajas de la tienda">
+            <div>
+              <strong>Selección</strong>
+              <span>Hardware confiable</span>
             </div>
-            <div className="itemListContainer">
-              <ItemListContainer />
+            <div>
+              <strong>Experiencia</strong>
+              <span>Compra simple en cualquier pantalla</span>
             </div>
           </div>
-        </div>
-      </GlobalLayout>
-    </FiltroProductosProvider>
+        </section>
+
+        <Carousel slides={slides} />
+
+        <section className="storefront__catalog" id="catalog">
+          <div className="storefront__filters">
+            <FilterBar />
+          </div>
+          <div className="storefront__products">
+            <ItemListContainer />
+          </div>
+        </section>
+      </div>
+    </GlobalLayout>
   );
 };
 

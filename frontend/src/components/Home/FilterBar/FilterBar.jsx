@@ -1,123 +1,142 @@
-// FilterBar.js
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
 import categoriaApi from "../../../api/categoriaApi";
 import subCategoriaApi from "../../../api/subCategoriaApi";
 import { FiltroProductosContext } from "../../../context/FiltroProductosContext";
 import "./FilterBar.css";
 
+const ALL_FILTERS = "0";
+
 const FilterBar = () => {
-  const [subCategoriasOriginal, setSubCategoriasOriginal] = useState([]);
-  const [categorias, setCategorias] = useState([]);
-  const [idCategoriaSeleccionada, setIdCategoriaSeleccionada] = useState(0);
-  const [subCategorias, setSubCategorias] = useState([]);
-  const { setFiltroProductos } = useContext(
-    FiltroProductosContext
-  );
+  const [categories, setCategories] = useState([]);
+  const [allSubcategories, setAllSubcategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(ALL_FILTERS);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(ALL_FILTERS);
+  const [loadState, setLoadState] = useState("loading");
+  const { setFiltroProductos } = useContext(FiltroProductosContext);
 
   useEffect(() => {
-    categoriaApi
-      .getAll()
-      .then((res) => {
-        setCategorias(res.data);
+    let active = true;
+
+    Promise.all([categoriaApi.getAll(), subCategoriaApi.getAll()])
+      .then(([categoryResponse, subcategoryResponse]) => {
+        if (!active) {
+          return;
+        }
+        setCategories(categoryResponse.data ?? []);
+        setAllSubcategories(subcategoryResponse.data ?? []);
+        setLoadState("ready");
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        if (active) {
+          setLoadState("error");
+        }
       });
 
-    subCategoriaApi
-      .getAll()
-      .then((res) => {
-        setSubCategoriasOriginal(res.data);
-        setSubCategorias(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const seleccionaCategoria = (idCategoria) => {
-    setIdCategoriaSeleccionada(idCategoria);
-    const tmp = subCategoriasOriginal.filter(
-      (s) =>
-        s.idCategoria === idCategoria ||
-        idCategoria === 0 ||
-        idCategoria === "0" ||
-        !idCategoria
-    );
-    setSubCategorias(tmp);
-    setFiltroProductos((prevVal) => ({
-      ...prevVal,
-      idCategoria: idCategoria === "0" || !idCategoria ? null : idCategoria,
+  const subcategories = allSubcategories.filter(
+    (subcategory) =>
+      selectedCategory === ALL_FILTERS || subcategory.idCategoria === selectedCategory
+  );
+
+  const selectCategory = (categoryId) => {
+    setSelectedCategory(categoryId);
+    setSelectedSubcategory(ALL_FILTERS);
+    setFiltroProductos((previous) => ({
+      ...previous,
+      idCategoria: categoryId === ALL_FILTERS ? null : categoryId,
+      idSubCategoria: null,
     }));
   };
 
-  const seleccionaSubCategoria = (idSubCategoria) => {
-    if (
-      idCategoriaSeleccionada === 0 ||
-      idCategoriaSeleccionada === "0" ||
-      !idCategoriaSeleccionada
-    ) {
-      const categoria = subCategoriasOriginal.find(
-        (x) => x.idSubCategoria === idSubCategoria
-      );
-      if (!categoria) {
-        return;
-      }
-      const idCategoria = categoria.idCategoria;
-      setIdCategoriaSeleccionada(idCategoria);
-      seleccionaCategoria(idCategoria);
-      setFiltroProductos((prevVal) => ({
-        ...prevVal,
-        idCategoria: idCategoria,
-      }));
+  const selectSubcategory = (subcategoryId) => {
+    const matchingSubcategory = allSubcategories.find(
+      (subcategory) => subcategory.idSubCategoria === subcategoryId
+    );
+    const categoryId =
+      selectedCategory === ALL_FILTERS && matchingSubcategory
+        ? matchingSubcategory.idCategoria
+        : selectedCategory;
+
+    if (matchingSubcategory && selectedCategory === ALL_FILTERS) {
+      setSelectedCategory(matchingSubcategory.idCategoria);
     }
-    setFiltroProductos((prevVal) => ({
-      ...prevVal,
-      idSubCategoria: idSubCategoria === "0" || !idSubCategoria ? null : idSubCategoria,
+    setSelectedSubcategory(subcategoryId);
+    setFiltroProductos((previous) => ({
+      ...previous,
+      idCategoria: categoryId === ALL_FILTERS ? null : categoryId,
+      idSubCategoria: subcategoryId === ALL_FILTERS ? null : subcategoryId,
+    }));
+  };
+
+  const resetFilters = () => {
+    setSelectedCategory(ALL_FILTERS);
+    setSelectedSubcategory(ALL_FILTERS);
+    setFiltroProductos((previous) => ({
+      ...previous,
+      idCategoria: null,
+      idSubCategoria: null,
     }));
   };
 
   return (
-    <div className="filterBar">
-      <p className="filtersTitle">Seleccione sus preferencias</p>
-      <select
-        name="Categorías"
-        className="selectorFiltro"
-        id=""
-        value={idCategoriaSeleccionada}
-        onChange={(e) => seleccionaCategoria(e.target.value)}
-      >
-        <option value="" disabled>
-          Selecciona una categoría
-        </option>
-        <option key={0} value={0} defaultValue={0}>
-          Todas
-        </option>
-        {categorias.map((cat) => (
-          <option key={cat.idCategoria} value={cat.idCategoria}>
-            {cat.descrip}
-          </option>
-        ))}
-      </select>
-      <select
-        name="SubCategorías"
-        className="selectorFiltro"
-        id=""
-        onChange={(e) => seleccionaSubCategoria(e.target.value)}
-      >
-        <option value="" disabled>
-          Selecciona una subcategoría
-        </option>
-        <option value={0} defaultValue={0}>
-          Todas
-        </option>
-        {subCategorias.map((s) => (
-          <option value={s.idSubCategoria} key={s.idSubCategoria}>
-            {s.descrip}
-          </option>
-        ))}
-      </select>
-    </div>
+    <aside aria-label="Filtros de productos" className="catalog-filters">
+      <div className="catalog-filters__heading">
+        <div>
+          <p className="catalog-filters__eyebrow">Refiná tu búsqueda</p>
+          <h2>Comprá por componente</h2>
+        </div>
+        <button className="catalog-filters__reset" onClick={resetFilters} type="button">
+          Restablecer
+        </button>
+      </div>
+
+      <div className="catalog-filters__fields">
+        <label className="catalog-filters__field" htmlFor="category-filter">
+          <span>Categoría</span>
+          <select
+            disabled={loadState !== "ready"}
+            id="category-filter"
+            onChange={(event) => selectCategory(event.target.value)}
+            value={selectedCategory}
+          >
+            <option value={ALL_FILTERS}>Todas las categorías</option>
+            {categories.map((category) => (
+              <option key={category.idCategoria} value={category.idCategoria}>
+                {category.descrip}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="catalog-filters__field" htmlFor="subcategory-filter">
+          <span>Subcategoría</span>
+          <select
+            disabled={loadState !== "ready"}
+            id="subcategory-filter"
+            onChange={(event) => selectSubcategory(event.target.value)}
+            value={selectedSubcategory}
+          >
+            <option value={ALL_FILTERS}>Todas las subcategorías</option>
+            {subcategories.map((subcategory) => (
+              <option key={subcategory.idSubCategoria} value={subcategory.idSubCategoria}>
+                {subcategory.descrip}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      {loadState === "error" && (
+        <p className="catalog-filters__error" role="alert">
+          Los filtros no están disponibles temporalmente.
+        </p>
+      )}
+    </aside>
   );
 };
 
