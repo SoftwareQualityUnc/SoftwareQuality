@@ -3,6 +3,9 @@ package com.backend.backend.repositories.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import com.backend.backend.dto.CategoriaDTO;
@@ -16,7 +19,10 @@ import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 
 @Repository
+@Profile("!k8s")
 public class CategoriaRepositoryImpl implements CategoriaRepository {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoriaRepositoryImpl.class);
 
     private CollectionReference categoriasReference;
 
@@ -37,8 +43,11 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
                 res.add(categoria);
             }
             return res;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
         } catch (Exception e) {
-            return null;
+            return List.of();
         }
     }
 
@@ -50,6 +59,9 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
             if (null != wrApi.get()) {
                 return get(docRef.getId());
             }
+            return null;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             return null;
         } catch (Exception e) {
             return null;
@@ -64,8 +76,11 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
             ret.setIdCategoria(categoriaRef.getId());
             return ret;
 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
         } catch (Exception e) {
-            System.err.println(e);
+            LOGGER.warn("No se pudo consultar la categoría.");
             return null;
         }
     }

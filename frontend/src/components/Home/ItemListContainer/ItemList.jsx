@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
 
-//import filtroProductosContext from "../../../context/FiltroProductosContext";
 import productoApi from "../../../api/productoApi";
 import { FiltroProductosContext } from "../../../context/FiltroProductosContext";
 import Card from "./Card/Card";
@@ -9,36 +8,39 @@ import "./ItemList.css";
 
 function ItemList() {
   const [productos, setProductos] = useState([]);
+  const [error, setError] = useState(false);
   const { filtroProductos } = useContext(FiltroProductosContext);
-  // useEffect(() => {
-  //   if (data?.productList) {
-  //     setDrinkList(data?.productList);
-  //   }
-
-  //   //console.log(filtroProductos);
-  // }, [data]);
-
   useEffect(() => {
+    let active = true;
+    setError(false);
     const delayDebounceFn = setTimeout(() => {
-        console.log("Filtros actualizados:", filtroProductos);
-        productoApi.getProductosPorFiltro(filtroProductos).then(res => {
-            console.log(res);
+      productoApi.getProductosPorFiltro(filtroProductos)
+        .then((res) => {
+          if (active) {
             setProductos(res.data);
+          }
+        })
+        .catch(() => {
+          if (active) {
+            setProductos([]);
+            setError(true);
+          }
         });
     }, 500);
 
-    // Limpia el timeout si filtroProductos cambia antes de que pase el retraso
-    return () => clearTimeout(delayDebounceFn);
-}, [filtroProductos]);
+    return () => {
+      active = false;
+      clearTimeout(delayDebounceFn);
+    };
+  }, [filtroProductos]);
 
   return (
-    <>
       <div className="itemListStyle">
-        {productos?.length &&
-          productos?.map((product, index) => {
+        {error && <p role="alert">No se pudieron cargar los productos.</p>}
+        {productos?.map((product) => {
             return (
               <Card
-                key={index}
+                key={product.idProducto}
                 id={product?.idProducto}
                 img={product?.linkImagen}
                 title={product?.descrip}
@@ -47,7 +49,6 @@ function ItemList() {
             );
           })}
       </div>
-    </>
   );
 }
 

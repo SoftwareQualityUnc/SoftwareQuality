@@ -6,26 +6,20 @@ export default function CartContextProvider(props) {
   const [cart, setCart] = useState([]);
 
   function addItemCount(item) {
-    const newItem = [...cart];
-    const producto = newItem.some((element) => {
-      return element.id === item.id;
+    setCart((previous) => {
+      if (!previous.some((element) => element.id === item.id)) {
+        return [...previous, { ...item }];
+      }
+      return previous.map((element) =>
+        element.id === item.id
+          ? { ...element, count: element.count + item.count }
+          : element
+      );
     });
-
-    if (producto === true) {
-      newItem.map((element) => {
-        if (element.id === item.id) {
-          element.count = element.count + item.count;
-        }
-        return element;
-      });
-    } else {
-      newItem.push(item);
-    }
-    setCart(newItem);
   }
 
   const eliminarItem = (id) => {
-    setCart(cart.filter((element) => element.id !== id));
+    setCart((previous) => previous.filter((element) => element.id !== id));
   };
 
   const deleteCart = () => {

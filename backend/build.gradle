@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.2.4'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'checkstyle'
+	id 'jacoco'
 }
 
 group = 'com.backend'
@@ -19,6 +20,9 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'org.postgresql:postgresql'
 	implementation 'com.google.firebase:firebase-admin:9.2.0'
 	implementation 'org.projectlombok:lombok:1.18.30'
 	implementation 'io.github.cdimascio:dotenv-java:3.0.0'
@@ -35,10 +39,29 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy tasks.named('jacocoTestReport')
 	 testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true
     }
+}
+
+jacoco {
+	toolVersion = '0.8.12'
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+		html.required = true
+	}
+}
+
+tasks.register('sonarLibraries', Copy) {
+	from configurations.compileClasspath
+	from configurations.testCompileClasspath
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	into layout.buildDirectory.dir('sonar-libs')
 }
 
 checkstyle {

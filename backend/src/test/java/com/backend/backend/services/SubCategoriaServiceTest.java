@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.backend.backend.dto.ProductoDTO;
@@ -23,7 +22,7 @@ import com.backend.backend.repositories.SubCategoriaRepository;
 import com.backend.backend.services.impl.SubCategoriaServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class SubCategoriaServiceTest {
+class SubCategoriaServiceTest {
 
     @Mock
     private SubCategoriaRepository subCategoriaRepository;
@@ -35,7 +34,6 @@ public class SubCategoriaServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
 
         subCategoria = new SubCategoriaDTO();
         subCategoria.setIdSubCategoria("abc123456789testidsc");
@@ -46,7 +44,7 @@ public class SubCategoriaServiceTest {
     }
 
     @Test
-    void testGetThrowBadRequest() throws Exception {
+    void testGetThrowBadRequest() {
         assertThrows(BadReqException.class, () -> {
             subCategoriaService.get("shortId");
         });
@@ -67,7 +65,7 @@ public class SubCategoriaServiceTest {
     }
 
     @Test
-    void testGetThrowBadRequestIdCat() throws Exception {
+    void testGetThrowBadRequestIdCat() {
         assertThrows(BadReqException.class, () -> {
             subCategoriaService.getPorIdCategoria("shortIddd");
         });

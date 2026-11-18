@@ -1,0 +1,15 @@
+services:
+  sonarqube:
+    image: sonarqube:community@sha256:58b068af30bdfdccf91222de36e310529033e853dfae221b429cba80d10d5751
+    ports:
+      - "127.0.0.1:9001:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonar_data:/opt/sonarqube/data
+      - sonar_extensions:/opt/sonarqube/extensions
+      - sonar_logs:/opt/sonarqube/logs
+volumes:
+  sonar_data:
+  sonar_extensions:
+  sonar_logs:

@@ -62,30 +62,9 @@ public class ProductoController {
     @PostMapping("/new")
     public ResponseEntity<ProductoDTO> insert(@RequestBody ProductoDTO pr,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader)
-            throws BadReqException, NotFoundException, UnauthorizedException {
+            throws BadReqException, UnauthorizedException {
         if (!apiKey.isValidApiKeyInsert(authorizationHeader)) {
             throw new UnauthorizedException();
-        }
-        if ((pr.getDescrip() == null)) {
-            throw new BadReqException("No hay descripción.");
-        }
-        if ((pr.getPrecio() == null)) {
-            throw new BadReqException("No hay precio");
-        }
-        if ((pr.getCantStock() == 0)) {
-            throw new BadReqException("No hay stock");
-        }
-        if ((pr.getIdSubCategoria() == null) || pr.getIdSubCategoria().length() != 20) {
-            throw new BadReqException("No hay subcategoría");
-        }
-        if ((pr.getIdCategoria() == null) || pr.getIdCategoria().length() != 20) {
-            throw new BadReqException("No hay categoría");
-        }
-        if ((pr.getLinkImagen() == null)) {
-            throw new BadReqException("No hay imagen");
-        }
-        if ((pr.getDestacado() == null)) {
-            throw new BadReqException("No se informó el estado de destacado");
         }
         return new ResponseEntity<ProductoDTO>(service.insert(pr), HttpStatus.OK);
     }

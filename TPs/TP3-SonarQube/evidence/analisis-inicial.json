@@ -1,0 +1,4574 @@
+{
+  "project": "softwarequality-tp3",
+  "serverVersion": "26.9.0.129388",
+  "scannerVersion": "8.1.0.6389",
+  "analysis": {
+    "key": "818dc356-2156-4d13-a455-de4bae85a975",
+    "date": "2026-10-01T07:32:32-03:00",
+    "events": [
+      {
+        "key": "66f32de4-6c63-47f3-a148-dae7a6848e30",
+        "category": "SQ_UPGRADE",
+        "name": "26.9.0.129388"
+      }
+    ],
+    "projectVersion": "not provided",
+    "manualNewCodePeriodBaseline": false,
+    "detectedCI": "undetected"
+  },
+  "metrics": {
+    "component": {
+      "key": "softwarequality-tp3",
+      "name": "MVC Ecommerce - TP3",
+      "qualifier": "TRK",
+      "measures": [
+        {
+          "metric": "coverage",
+          "value": "7.9",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "231"
+        },
+        {
+          "metric": "code_smells",
+          "value": "35",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "1.6",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines",
+          "value": "40",
+          "bestValue": false
+        },
+        {
+          "metric": "security_hotspots",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "alert_status",
+          "value": "OK"
+        },
+        {
+          "metric": "bugs",
+          "value": "15",
+          "bestValue": false
+        },
+        {
+          "metric": "test_failures",
+          "value": "6",
+          "bestValue": false
+        },
+        {
+          "metric": "tests",
+          "value": "21"
+        },
+        {
+          "metric": "branch_coverage",
+          "value": "9.8",
+          "bestValue": false
+        },
+        {
+          "metric": "cognitive_complexity",
+          "value": "124",
+          "bestValue": false
+        },
+        {
+          "metric": "ncloc",
+          "value": "1993"
+        },
+        {
+          "metric": "vulnerabilities",
+          "value": "5",
+          "bestValue": false
+        },
+        {
+          "metric": "line_coverage",
+          "value": "7.1",
+          "bestValue": false
+        }
+      ]
+    }
+  },
+  "issues": {
+    "total": 55,
+    "p": 1,
+    "ps": 500,
+    "paging": {
+      "pageIndex": 1,
+      "pageSize": 500,
+      "total": 55
+    },
+    "effortTotal": 490,
+    "issues": [
+      {
+        "key": "5eab71fc-e766-472c-9c3c-a29eb1215ac5",
+        "rule": "java:S1602",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/BackendApplication.java",
+        "project": "softwarequality-tp3",
+        "line": 17,
+        "hash": "4ceec8116aa74998c90a79ecba6502dc",
+        "textRange": {
+          "startLine": 17,
+          "endLine": 17,
+          "startOffset": 42,
+          "endOffset": 43
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Remove useless curly braces around statement",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "java8"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "1e238df3-7ab3-4b67-a36a-2ea9c325fb34",
+        "rule": "java:S106",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/BackendApplication.java",
+        "project": "softwarequality-tp3",
+        "line": 21,
+        "hash": "cc7f505122cfe1be67dd3852cb761253",
+        "textRange": {
+          "startLine": 21,
+          "endLine": 21,
+          "startOffset": 8,
+          "endOffset": 18
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Replace this use of System.err by a logger.",
+        "effort": "10min",
+        "debt": "10min",
+        "author": "",
+        "tags": [
+          "bad-practice",
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "MODULAR",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "c9a6158a-b06f-4d97-8bcc-2cf64ac10d7b",
+        "rule": "java:S6813",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "project": "softwarequality-tp3",
+        "line": 27,
+        "hash": "0132ec8cee01c5dd244e1a60fe6448a1",
+        "textRange": {
+          "startLine": 27,
+          "endLine": 27,
+          "startOffset": 4,
+          "endOffset": 14
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Remove this field injection and use constructor injection instead.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          },
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "7dd9ae0e-46a7-4d9e-a31e-6c5782c61c3a",
+        "rule": "java:S6813",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "project": "softwarequality-tp3",
+        "line": 29,
+        "hash": "0132ec8cee01c5dd244e1a60fe6448a1",
+        "textRange": {
+          "startLine": 29,
+          "endLine": 29,
+          "startOffset": 4,
+          "endOffset": 14
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Remove this field injection and use constructor injection instead.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          },
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "03358692-e0b8-4f36-9a43-78e84e7206f1",
+        "rule": "java:S1130",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "project": "softwarequality-tp3",
+        "line": 51,
+        "hash": "5332d3f2f1cbfca8ca16bb752a0bbd44",
+        "textRange": {
+          "startLine": 51,
+          "endLine": 51,
+          "startOffset": 36,
+          "endOffset": 53
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Remove the declaration of thrown exception 'com.backend.backend.error.NotFoundException', as it cannot be thrown from method's body.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "error-handling",
+          "unused",
+          "redundant",
+          "clumsy"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "69b351b4-c53c-4cb6-b4ed-12221ffb1fa5",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 40,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 40,
+          "endLine": 40,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 34,
+                  "endLine": 34,
+                  "startOffset": 46,
+                  "endOffset": 49
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "8a3ced02-90cc-4fa5-8678-66b971a20639",
+        "rule": "java:S1168",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 41,
+        "hash": "540c13e9e156b687226421b24f2df178",
+        "textRange": {
+          "startLine": 41,
+          "endLine": 41,
+          "startOffset": 19,
+          "endOffset": 23
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Return an empty collection instead of null.",
+        "effort": "30min",
+        "debt": "30min",
+        "author": "",
+        "tags": [
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "523d3d1c-8031-4ec5-a6f0-2fa7aa883f6f",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 54,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 54,
+          "endLine": 54,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 50,
+                  "endLine": 50,
+                  "startOffset": 30,
+                  "endOffset": 33
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "faf6cf43-1c72-4bd4-8934-5d16219bc252",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 67,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 67,
+          "endLine": 67,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 63,
+                  "endLine": 63,
+                  "startOffset": 50,
+                  "endOffset": 53
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "73cf3dab-0f9c-485e-8105-cff01e3e1a2d",
+        "rule": "java:S106",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 68,
+        "hash": "50a907e50b6af78a1e2eb8e25595c109",
+        "textRange": {
+          "startLine": 68,
+          "endLine": 68,
+          "startOffset": 12,
+          "endOffset": 22
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Replace this use of System.err by a logger.",
+        "effort": "10min",
+        "debt": "10min",
+        "author": "",
+        "tags": [
+          "bad-practice",
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "MODULAR",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "c582f612-c470-4ede-b97c-1fd9b9e4ea44",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 43,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 43,
+          "endLine": 43,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 36,
+                  "endLine": 36,
+                  "startOffset": 46,
+                  "endOffset": 49
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "417bbc59-970f-4318-bd3c-f6c06f4a3fc5",
+        "rule": "java:S1168",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 44,
+        "hash": "540c13e9e156b687226421b24f2df178",
+        "textRange": {
+          "startLine": 44,
+          "endLine": 44,
+          "startOffset": 19,
+          "endOffset": 23
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Return an empty collection instead of null.",
+        "effort": "30min",
+        "debt": "30min",
+        "author": "",
+        "tags": [
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "89ba2c2d-6264-4fd7-98ae-cd16720243d3",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 59,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 59,
+          "endLine": 59,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 51,
+                  "endLine": 51,
+                  "startOffset": 54,
+                  "endOffset": 57
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "5adc0b37-2862-459f-bd7b-b8f7fe6a710e",
+        "rule": "java:S1135",
+        "severity": "INFO",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 60,
+        "hash": "daf5e7d8f20e1b2a1944a8664ebc1ab5",
+        "textRange": {
+          "startLine": 60,
+          "endLine": 60,
+          "startOffset": 0,
+          "endOffset": 37
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Complete the task associated to this TODO comment.",
+        "effort": "0min",
+        "debt": "0min",
+        "author": "",
+        "tags": [
+          "cwe"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "INFO"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "1a04191d-b32c-43ba-8293-1cdb41eee568",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 73,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 73,
+          "endLine": 73,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 69,
+                  "endLine": 69,
+                  "startOffset": 30,
+                  "endOffset": 33
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "ea930ad3-fc4f-47d9-b0c6-25dce3c30e06",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 108,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 108,
+          "endLine": 108,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 95,
+                  "endLine": 95,
+                  "startOffset": 50,
+                  "endOffset": 53
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "c68266f6-ed10-45bc-8171-667ba9b11ed4",
+        "rule": "java:S4507",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 109,
+        "hash": "2dc1665d31b37f9aa7408939a0365027",
+        "textRange": {
+          "startLine": 109,
+          "endLine": 109,
+          "startOffset": 14,
+          "endOffset": 29
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "spring",
+          "debug",
+          "user-experience",
+          "former-hotspot"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "VULNERABILITY",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "SECURITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "3de208c1-eb0c-4445-8c80-d2267293cb1a",
+        "rule": "java:S1168",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 110,
+        "hash": "540c13e9e156b687226421b24f2df178",
+        "textRange": {
+          "startLine": 110,
+          "endLine": 110,
+          "startOffset": 19,
+          "endOffset": 23
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Return an empty collection instead of null.",
+        "effort": "30min",
+        "debt": "30min",
+        "author": "",
+        "tags": [
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "011e9f84-f452-40ef-941f-e763e7d55d74",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 39,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 39,
+          "endLine": 39,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 32,
+                  "endLine": 32,
+                  "startOffset": 47,
+                  "endOffset": 50
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "1122abae-7fbe-4a99-9aca-afbec92935b5",
+        "rule": "java:S4507",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 40,
+        "hash": "2dc1665d31b37f9aa7408939a0365027",
+        "textRange": {
+          "startLine": 40,
+          "endLine": 40,
+          "startOffset": 14,
+          "endOffset": 29
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "spring",
+          "debug",
+          "user-experience",
+          "former-hotspot"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "VULNERABILITY",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "SECURITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "a6b1f4bd-ddb7-438b-8708-3ecede5f0026",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 54,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 54,
+          "endLine": 54,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 50,
+                  "endLine": 50,
+                  "startOffset": 30,
+                  "endOffset": 33
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "6dd4764c-4e7f-43c9-a3d4-4747becc8877",
+        "rule": "java:S4507",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 55,
+        "hash": "2dc1665d31b37f9aa7408939a0365027",
+        "textRange": {
+          "startLine": 55,
+          "endLine": 55,
+          "startOffset": 14,
+          "endOffset": 29
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "spring",
+          "debug",
+          "user-experience",
+          "former-hotspot"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "VULNERABILITY",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "SECURITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "03726f62-3b03-4075-b502-004f8df3166f",
+        "rule": "java:S106",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 73,
+        "hash": "9338dd88bd6732b739d666cc46576c67",
+        "textRange": {
+          "startLine": 73,
+          "endLine": 73,
+          "startOffset": 20,
+          "endOffset": 30
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Replace this use of System.err by a logger.",
+        "effort": "10min",
+        "debt": "10min",
+        "author": "",
+        "tags": [
+          "bad-practice",
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "MODULAR",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "d721b072-c33f-4991-87ff-4c6dd900c080",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 77,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 77,
+          "endLine": 77,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 67,
+                  "endLine": 67,
+                  "startOffset": 46,
+                  "endOffset": 49
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "6537361d-fcd9-4e85-aec6-5abc29c11444",
+        "rule": "java:S4507",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 78,
+        "hash": "2dc1665d31b37f9aa7408939a0365027",
+        "textRange": {
+          "startLine": 78,
+          "endLine": 78,
+          "startOffset": 14,
+          "endOffset": 29
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "spring",
+          "debug",
+          "user-experience",
+          "former-hotspot"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "VULNERABILITY",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "SECURITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "3a47c06d-8aed-4f7a-870c-0bef4358b924",
+        "rule": "java:S1168",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 79,
+        "hash": "540c13e9e156b687226421b24f2df178",
+        "textRange": {
+          "startLine": 79,
+          "endLine": 79,
+          "startOffset": 19,
+          "endOffset": 23
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Return an empty collection instead of null.",
+        "effort": "30min",
+        "debt": "30min",
+        "author": "",
+        "tags": [
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "3bc3e854-6a89-40e8-9b1f-9e4c10d7dd5e",
+        "rule": "java:S2142",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 96,
+        "hash": "a50e423de97896afb97123424a960664",
+        "textRange": {
+          "startLine": 96,
+          "endLine": 96,
+          "startOffset": 17,
+          "endOffset": 28
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+                "textRange": {
+                  "startLine": 89,
+                  "endLine": 89,
+                  "startOffset": 50,
+                  "endOffset": 53
+                },
+                "msg": "Statement throwing InterruptedException.",
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Either re-interrupt this method or rethrow the \"InterruptedException\" that can be caught here.",
+        "effort": "15min",
+        "debt": "15min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "multi-threading"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "e9d73781-7b6d-46ee-a49f-fa626bb81784",
+        "rule": "java:S4507",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 97,
+        "hash": "2dc1665d31b37f9aa7408939a0365027",
+        "textRange": {
+          "startLine": 97,
+          "endLine": 97,
+          "startOffset": 14,
+          "endOffset": 29
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Make sure this debug feature is deactivated before delivering the code in production.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "cwe",
+          "error-handling",
+          "spring",
+          "debug",
+          "user-experience",
+          "former-hotspot"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "VULNERABILITY",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "SECURITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "e5d35de2-4a12-441c-b1d1-bfa17a30bcf6",
+        "rule": "java:S1168",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 98,
+        "hash": "540c13e9e156b687226421b24f2df178",
+        "textRange": {
+          "startLine": 98,
+          "endLine": 98,
+          "startOffset": 19,
+          "endOffset": 23
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Return an empty collection instead of null.",
+        "effort": "30min",
+        "debt": "30min",
+        "author": "",
+        "tags": [
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "5e491ece-69e0-4726-a450-1b0e2b32bb33",
+        "rule": "java:S6813",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 23,
+        "hash": "0132ec8cee01c5dd244e1a60fe6448a1",
+        "textRange": {
+          "startLine": 23,
+          "endLine": 23,
+          "startOffset": 4,
+          "endOffset": 14
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Remove this field injection and use constructor injection instead.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          },
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "92fe6bf3-dd5f-4fea-9f5b-6b52354bbf2b",
+        "rule": "java:S106",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 97,
+        "hash": "744654538175c0e1d8486e327073badf",
+        "textRange": {
+          "startLine": 97,
+          "endLine": 97,
+          "startOffset": 16,
+          "endOffset": 26
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Replace this use of System.out by a logger.",
+        "effort": "10min",
+        "debt": "10min",
+        "author": "",
+        "tags": [
+          "bad-practice",
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "MODULAR",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "c33504ea-f953-4605-9de4-b4036bdbf688",
+        "rule": "java:S6813",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 23,
+        "hash": "0132ec8cee01c5dd244e1a60fe6448a1",
+        "textRange": {
+          "startLine": 23,
+          "endLine": 23,
+          "startOffset": 4,
+          "endOffset": 14
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Remove this field injection and use constructor injection instead.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          },
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "434cfeca-b13a-4f83-a066-ff55e3f33bc1",
+        "rule": "java:S106",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "project": "softwarequality-tp3",
+        "line": 75,
+        "hash": "f8246b0681f26e5c31bb56ec917ebb7b",
+        "textRange": {
+          "startLine": 75,
+          "endLine": 75,
+          "startOffset": 16,
+          "endOffset": 26
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Replace this use of System.out by a logger.",
+        "effort": "10min",
+        "debt": "10min",
+        "author": "",
+        "tags": [
+          "bad-practice",
+          "cert"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "MODULAR",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "13aa2bde-2ada-4f20-b748-87ca2c0ed9bb",
+        "rule": "java:S1186",
+        "severity": "CRITICAL",
+        "component": "softwarequality-tp3:backend/src/test/java/com/backend/backend/BackendApplicationTests.java",
+        "project": "softwarequality-tp3",
+        "line": 10,
+        "hash": "9da319abd9f20a8cf2db6edcaf58d7f1",
+        "textRange": {
+          "startLine": 10,
+          "endLine": 10,
+          "startOffset": 6,
+          "endOffset": 18
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "suspicious"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "TEST",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "HIGH"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "4841f81a-edc5-47e3-9df9-12aec7dc64e7",
+        "rule": "java:S1186",
+        "severity": "CRITICAL",
+        "component": "softwarequality-tp3:backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+        "project": "softwarequality-tp3",
+        "line": 42,
+        "hash": "f393ef38f55be5cee8d154f8bca528bb",
+        "textRange": {
+          "startLine": 42,
+          "endLine": 42,
+          "startOffset": 9,
+          "endOffset": 19
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "suspicious"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "TEST",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "HIGH"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "3a54e493-5e2c-45dd-a852-108c65c1c1be",
+        "rule": "java:S1186",
+        "severity": "CRITICAL",
+        "component": "softwarequality-tp3:backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+        "project": "softwarequality-tp3",
+        "line": 47,
+        "hash": "40cfd1ad9616ab38c3a2ef56c73421f1",
+        "textRange": {
+          "startLine": 47,
+          "endLine": 47,
+          "startOffset": 9,
+          "endOffset": 17
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "suspicious"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "TEST",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "COMPLETE",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "HIGH"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "335c8d13-462f-499a-9e27-b84b2876719a",
+        "rule": "javascript:S6479",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Cart/Cart.jsx",
+        "project": "softwarequality-tp3",
+        "line": 19,
+        "hash": "0dfd4962214954d675377d11fe111fba",
+        "textRange": {
+          "startLine": 19,
+          "endLine": 19,
+          "startOffset": 19,
+          "endOffset": 24
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Do not use Array index in keys",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "performance",
+          "react",
+          "jsx"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "c568943c-ae52-47b2-8528-ee671f6f2b0b",
+        "rule": "javascript:S3863",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/Cart/CartItem/CartItem.jsx",
+        "project": "softwarequality-tp3",
+        "line": 1,
+        "hash": "bd723908600a9f9e8c158625a2285eb3",
+        "textRange": {
+          "startLine": 1,
+          "endLine": 1,
+          "startOffset": 18,
+          "endOffset": 25
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "'C:\\Users\\pablo\\Documents\\facu\\SoftwareQuality\\frontend\\node_modules\\react\\index.js' imported multiple times.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "es2015",
+          "editable-source"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "92188f33-5b4d-4b75-8dae-42846aad6b6d",
+        "rule": "javascript:S3863",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/Cart/CartItem/CartItem.jsx",
+        "project": "softwarequality-tp3",
+        "line": 3,
+        "hash": "fe17f26ecbbaec7c6596863dd6183f96",
+        "textRange": {
+          "startLine": 3,
+          "endLine": 3,
+          "startOffset": 27,
+          "endOffset": 34
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "'C:\\Users\\pablo\\Documents\\facu\\SoftwareQuality\\frontend\\node_modules\\react\\index.js' imported multiple times.",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [
+          "es2015",
+          "editable-source"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "de382c66-f1fb-4741-991a-081e6386ef1a",
+        "rule": "javascript:S6749",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/Footer/Footer.jsx",
+        "project": "softwarequality-tp3",
+        "line": 5,
+        "hash": "38559c871fba28d992ead51549367f83",
+        "textRange": {
+          "startLine": 5,
+          "endLine": 16,
+          "startOffset": 4,
+          "endOffset": 7
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "A fragment with only one child is redundant.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "editable-source",
+          "react"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "DISTINCT",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "fb09ad63-a00b-45ce-a809-b2eb9bbc3ad5",
+        "rule": "css:S4659",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.css",
+        "project": "softwarequality-tp3",
+        "line": 44,
+        "hash": "3255694a87c27d4c9d2f091e1db85f9e",
+        "textRange": {
+          "startLine": 44,
+          "endLine": 44,
+          "startOffset": 8,
+          "endOffset": 17
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Unknown pseudo-class selector \":selected\"",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "2c3d8182-7aa0-4632-9ae5-ca908b3b7b36",
+        "rule": "javascript:S3403",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.jsx",
+        "project": "softwarequality-tp3",
+        "line": 57,
+        "hash": "04cdb67c7afd9eb3985b0329c96c5bef",
+        "textRange": {
+          "startLine": 57,
+          "endLine": 57,
+          "startOffset": 30,
+          "endOffset": 33
+        },
+        "flows": [
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.jsx",
+                "textRange": {
+                  "startLine": 57,
+                  "endLine": 57,
+                  "startOffset": 6,
+                  "endOffset": 29
+                },
+                "msgFormattings": []
+              }
+            ]
+          },
+          {
+            "locations": [
+              {
+                "component": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.jsx",
+                "textRange": {
+                  "startLine": 57,
+                  "endLine": 57,
+                  "startOffset": 34,
+                  "endOffset": 37
+                },
+                "msgFormattings": []
+              }
+            ]
+          }
+        ],
+        "status": "OPEN",
+        "message": "Remove this \"===\" check; it will always be false. Did you mean to use \"==\"?",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "type-dependent"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "68749105-4ad9-43a1-a17f-6673a163329a",
+        "rule": "css:S4658",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Card.css",
+        "project": "softwarequality-tp3",
+        "line": 26,
+        "hash": "882c06f959dc796d206d76218e0f12b3",
+        "textRange": {
+          "startLine": 26,
+          "endLine": 28,
+          "startOffset": 11,
+          "endOffset": 1
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Empty block",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CLEAR",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "f5f86df6-47dc-4fa7-9cba-8f5ed6d3bf4e",
+        "rule": "css:S7924",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Card.css",
+        "project": "softwarequality-tp3",
+        "line": 55,
+        "hash": "b5927153362b2e76607b627440e12d45",
+        "textRange": {
+          "startLine": 55,
+          "endLine": 55,
+          "startOffset": 2,
+          "endOffset": 14
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Text does not meet the minimal contrast requirement with its background.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "css",
+          "accessibility",
+          "wcag",
+          "contrast"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "5d170370-3045-4d47-aa80-ddb064a6e95b",
+        "rule": "javascript:S6749",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "project": "softwarequality-tp3",
+        "line": 35,
+        "hash": "38559c871fba28d992ead51549367f83",
+        "textRange": {
+          "startLine": 35,
+          "endLine": 50,
+          "startOffset": 4,
+          "endOffset": 7
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "A fragment with only one child is redundant.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "editable-source",
+          "react"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "DISTINCT",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "a165f72e-dcec-448d-bdd5-7a4c31322922",
+        "rule": "javascript:S6439",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "project": "softwarequality-tp3",
+        "line": 37,
+        "hash": "6d9d240e01ff7d38c6b2c5dfa4dc089e",
+        "textRange": {
+          "startLine": 37,
+          "endLine": 37,
+          "startOffset": 9,
+          "endOffset": 26
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Convert the conditional to a boolean to avoid leaked value",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "type-dependent",
+          "react"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "2d924479-9199-4f41-a098-8e0b9382492d",
+        "rule": "javascript:S6479",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "project": "softwarequality-tp3",
+        "line": 41,
+        "hash": "0dfd4962214954d675377d11fe111fba",
+        "textRange": {
+          "startLine": 41,
+          "endLine": 41,
+          "startOffset": 21,
+          "endOffset": 26
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Do not use Array index in keys",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "performance",
+          "react",
+          "jsx"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "21bdec22-da8f-4f52-9bb2-b0d143379a87",
+        "rule": "javascript:S6749",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx",
+        "project": "softwarequality-tp3",
+        "line": 26,
+        "hash": "38559c871fba28d992ead51549367f83",
+        "textRange": {
+          "startLine": 26,
+          "endLine": 30,
+          "startOffset": 4,
+          "endOffset": 7
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "A fragment with only one child is redundant.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "editable-source",
+          "react"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "DISTINCT",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "1ea5bf9b-28c0-4337-a7b4-84d343926ed2",
+        "rule": "css:S7924",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/ItemDetail/ItemDetail.css",
+        "project": "softwarequality-tp3",
+        "line": 13,
+        "hash": "58f6105c92b7794a8f180c9dd3e95783",
+        "textRange": {
+          "startLine": 13,
+          "endLine": 13,
+          "startOffset": 4,
+          "endOffset": 41
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Text does not meet the minimal contrast requirement with its background.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "css",
+          "accessibility",
+          "wcag",
+          "contrast"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "CONVENTIONAL",
+        "cleanCodeAttributeCategory": "CONSISTENT",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "97d5e366-4c09-47f8-b0e2-65ee65fd1818",
+        "rule": "css:S4667",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/components/NavBar/CartWidget/CartWidget.css",
+        "project": "softwarequality-tp3",
+        "line": 1,
+        "textRange": {
+          "startLine": 1,
+          "endLine": 1,
+          "startOffset": 0,
+          "endOffset": 0
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Empty source",
+        "effort": "1min",
+        "debt": "1min",
+        "author": "",
+        "tags": [],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "14cb0824-6edd-4f5e-88e6-94477f48e3dc",
+        "rule": "javascript:S6749",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/NavBar/NavBar.jsx",
+        "project": "softwarequality-tp3",
+        "line": 11,
+        "hash": "38559c871fba28d992ead51549367f83",
+        "textRange": {
+          "startLine": 11,
+          "endLine": 29,
+          "startOffset": 4,
+          "endOffset": 7
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "A fragment with only one child is redundant.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "editable-source",
+          "react"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "DISTINCT",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "f5fb9b6d-7f01-45af-97f6-8ac73897618b",
+        "rule": "javascript:S6749",
+        "severity": "MINOR",
+        "component": "softwarequality-tp3:frontend/src/components/NavBar/SearchBar/SearchBar.jsx",
+        "project": "softwarequality-tp3",
+        "line": 19,
+        "hash": "38559c871fba28d992ead51549367f83",
+        "textRange": {
+          "startLine": 19,
+          "endLine": 28,
+          "startOffset": 4,
+          "endOffset": 7
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "A fragment with only one child is redundant.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "editable-source",
+          "react"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": true,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "DISTINCT",
+        "cleanCodeAttributeCategory": "ADAPTABLE",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "LOW"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "6fe96111-581c-4369-b454-15a581596e42",
+        "rule": "javascript:S6481",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/context/FiltroProductosContext.jsx",
+        "project": "softwarequality-tp3",
+        "line": 14,
+        "hash": "390b25ef38ebb4b0afe30e4b1d04a81d",
+        "textRange": {
+          "startLine": 14,
+          "endLine": 14,
+          "startOffset": 13,
+          "endOffset": 52
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "The object passed as the value prop to the Context provider changes every render. To fix this consider wrapping it in a useMemo hook.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "performance",
+          "react",
+          "jsx"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "EFFICIENT",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "cd07d4ef-d24b-446c-a4be-6888a4d4cd6f",
+        "rule": "javascript:S2201",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/context/context.jsx",
+        "project": "softwarequality-tp3",
+        "line": 15,
+        "hash": "f301a43359dd4248a9b826d00b189aaa",
+        "textRange": {
+          "startLine": 15,
+          "endLine": 20,
+          "startOffset": 6,
+          "endOffset": 8
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "Consider using \"forEach\" instead of \"map\" as its return value is not being used here.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "type-dependent"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "BUG",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "LOGICAL",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "RELIABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      },
+      {
+        "key": "755d1509-02a5-439a-8785-6a73e2748509",
+        "rule": "javascript:S6481",
+        "severity": "MAJOR",
+        "component": "softwarequality-tp3:frontend/src/context/context.jsx",
+        "project": "softwarequality-tp3",
+        "line": 43,
+        "hash": "c6aa245b116dc9c2adb2f8bffd57fbe9",
+        "textRange": {
+          "startLine": 43,
+          "endLine": 43,
+          "startOffset": 13,
+          "endOffset": 74
+        },
+        "flows": [],
+        "status": "OPEN",
+        "message": "The object passed as the value prop to the Context provider changes every render. To fix this consider wrapping it in a useMemo hook.",
+        "effort": "5min",
+        "debt": "5min",
+        "author": "",
+        "tags": [
+          "performance",
+          "react",
+          "jsx"
+        ],
+        "creationDate": "2026-10-01T07:32:32-03:00",
+        "updateDate": "2026-10-01T07:32:32-03:00",
+        "type": "CODE_SMELL",
+        "scope": "MAIN",
+        "quickFixAvailable": false,
+        "messageFormattings": [],
+        "codeVariants": [],
+        "cleanCodeAttribute": "EFFICIENT",
+        "cleanCodeAttributeCategory": "INTENTIONAL",
+        "impacts": [
+          {
+            "softwareQuality": "MAINTAINABILITY",
+            "severity": "MEDIUM"
+          }
+        ],
+        "issueStatus": "OPEN",
+        "prioritizedRule": false,
+        "fromSonarQubeUpdate": false,
+        "internalTags": [],
+        "linkedTicketStatus": "NOT_LINKED"
+      }
+    ],
+    "components": [
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Card.css",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "Card.css",
+        "longName": "frontend/src/components/Home/ItemListContainer/Card/Card.css",
+        "path": "frontend/src/components/Home/ItemListContainer/Card/Card.css"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/test/java/com/backend/backend/BackendApplicationTests.java",
+        "enabled": true,
+        "qualifier": "UTS",
+        "name": "BackendApplicationTests.java",
+        "longName": "backend/src/test/java/com/backend/backend/BackendApplicationTests.java",
+        "path": "backend/src/test/java/com/backend/backend/BackendApplicationTests.java"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "SubCategoriaServiceImpl.java",
+        "longName": "backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/BackendApplication.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "BackendApplication.java",
+        "longName": "backend/src/main/java/com/backend/backend/BackendApplication.java",
+        "path": "backend/src/main/java/com/backend/backend/BackendApplication.java"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "CategoriaServiceImpl.java",
+        "longName": "backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "CategoriaRepositoryImpl.java",
+        "longName": "backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "path": "backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+        "enabled": true,
+        "qualifier": "UTS",
+        "name": "CategoriaRepositoryImplTest.java",
+        "longName": "backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+        "path": "backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java"
+      },
+      {
+        "key": "softwarequality-tp3",
+        "enabled": true,
+        "qualifier": "TRK",
+        "name": "MVC Ecommerce - TP3",
+        "longName": "MVC Ecommerce - TP3"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "ProductoServiceImpl.java",
+        "longName": "backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "SubCategoriaRepositoryImpl.java",
+        "longName": "backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "path": "backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/NavBar.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "NavBar.jsx",
+        "longName": "frontend/src/components/NavBar/NavBar.jsx",
+        "path": "frontend/src/components/NavBar/NavBar.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/SearchBar/SearchBar.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "SearchBar.jsx",
+        "longName": "frontend/src/components/NavBar/SearchBar/SearchBar.jsx",
+        "path": "frontend/src/components/NavBar/SearchBar/SearchBar.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "ItemList.jsx",
+        "longName": "frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "path": "frontend/src/components/Home/ItemListContainer/ItemList.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/CartWidget/CartWidget.css",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "CartWidget.css",
+        "longName": "frontend/src/components/NavBar/CartWidget/CartWidget.css",
+        "path": "frontend/src/components/NavBar/CartWidget/CartWidget.css"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "FilterBar.jsx",
+        "longName": "frontend/src/components/Home/FilterBar/FilterBar.jsx",
+        "path": "frontend/src/components/Home/FilterBar/FilterBar.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "ProductoRepositoryImpl.java",
+        "longName": "backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "path": "backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/context/FiltroProductosContext.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "FiltroProductosContext.jsx",
+        "longName": "frontend/src/context/FiltroProductosContext.jsx",
+        "path": "frontend/src/context/FiltroProductosContext.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.css",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "FilterBar.css",
+        "longName": "frontend/src/components/Home/FilterBar/FilterBar.css",
+        "path": "frontend/src/components/Home/FilterBar/FilterBar.css"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Cart/Cart.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "Cart.jsx",
+        "longName": "frontend/src/components/Cart/Cart.jsx",
+        "path": "frontend/src/components/Cart/Cart.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Footer/Footer.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "Footer.jsx",
+        "longName": "frontend/src/components/Footer/Footer.jsx",
+        "path": "frontend/src/components/Footer/Footer.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/ItemDetail/ItemDetail.css",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "ItemDetail.css",
+        "longName": "frontend/src/components/ItemDetail/ItemDetail.css",
+        "path": "frontend/src/components/ItemDetail/ItemDetail.css"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "ItemListContainer.jsx",
+        "longName": "frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx",
+        "path": "frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/context/context.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "context.jsx",
+        "longName": "frontend/src/context/context.jsx",
+        "path": "frontend/src/context/context.jsx"
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "CategoriasController.java",
+        "longName": "backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "path": "backend/src/main/java/com/backend/backend/controllers/CategoriasController.java"
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Cart/CartItem/CartItem.jsx",
+        "enabled": true,
+        "qualifier": "FIL",
+        "name": "CartItem.jsx",
+        "longName": "frontend/src/components/Cart/CartItem/CartItem.jsx",
+        "path": "frontend/src/components/Cart/CartItem/CartItem.jsx"
+      }
+    ],
+    "facets": []
+  },
+  "hotspots": {
+    "paging": {
+      "pageIndex": 1,
+      "pageSize": 500,
+      "total": 0
+    },
+    "hotspots": [],
+    "components": []
+  },
+  "files": {
+    "paging": {
+      "pageIndex": 1,
+      "pageSize": 500,
+      "total": 71
+    },
+    "baseComponent": {
+      "key": "softwarequality-tp3",
+      "name": "MVC Ecommerce - TP3",
+      "qualifier": "TRK",
+      "measures": []
+    },
+    "components": [
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/ApiKeyValidationService.java",
+        "name": "ApiKeyValidationService.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/ApiKeyValidationService.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/ApiKeyValidationServiceImpl.java",
+        "name": "ApiKeyValidationServiceImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/ApiKeyValidationServiceImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "1",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "3"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/App.css",
+        "name": "App.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/App.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/App.jsx",
+        "name": "App.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/App.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/BackendApplication.java",
+        "name": "BackendApplication.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/BackendApplication.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "4"
+          },
+          {
+            "metric": "coverage",
+            "value": "6.7",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/error/BadReqException.java",
+        "name": "BadReqException.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/error/BadReqException.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "100.0",
+            "bestValue": true
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Button/Button.css",
+        "name": "Button.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/Card/Button/Button.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Button/Button.jsx",
+        "name": "Button.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/Card/Button/Button.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Card.css",
+        "name": "Card.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/Card/Card.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/Card/Card.jsx",
+        "name": "Card.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/Card/Card.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/Carousel/Carousel.css",
+        "name": "Carousel.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/Carousel/Carousel.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/Carousel/Carousel.jsx",
+        "name": "Carousel.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/Carousel/Carousel.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "4",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "9"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Cart/Cart.css",
+        "name": "Cart.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Cart/Cart.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Cart/Cart.jsx",
+        "name": "Cart.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Cart/Cart.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "2"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Cart/CartItem/CartItem.css",
+        "name": "CartItem.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Cart/CartItem/CartItem.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Cart/CartItem/CartItem.jsx",
+        "name": "CartItem.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Cart/CartItem/CartItem.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "2"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/CartWidget/CartWidget.css",
+        "name": "CartWidget.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/NavBar/CartWidget/CartWidget.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/CartWidget/CartWidget.jsx",
+        "name": "CartWidget.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/NavBar/CartWidget/CartWidget.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "3"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/api/categoriaApi.js",
+        "name": "categoriaApi.js",
+        "qualifier": "FIL",
+        "path": "frontend/src/api/categoriaApi.js",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/dto/CategoriaDTO.java",
+        "name": "CategoriaDTO.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/dto/CategoriaDTO.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          },
+          {
+            "metric": "coverage",
+            "value": "14.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/CategoriaRepository.java",
+        "name": "CategoriaRepository.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/repositories/CategoriaRepository.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "name": "CategoriaRepositoryImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "5",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "6"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/dto/CategoriasConSubCategoriasDTO.java",
+        "name": "CategoriasConSubCategoriasDTO.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/dto/CategoriasConSubCategoriasDTO.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "name": "CategoriasController.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "1",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "5"
+          },
+          {
+            "metric": "coverage",
+            "value": "11.1",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/CategoriaService.java",
+        "name": "CategoriaService.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/CategoriaService.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java",
+        "name": "CategoriaServiceImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "8",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "12"
+          },
+          {
+            "metric": "coverage",
+            "value": "76.9",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/context/context.jsx",
+        "name": "context.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/context/context.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "5",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "11"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/error/dto/ErrorMessage.java",
+        "name": "ErrorMessage.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/error/dto/ErrorMessage.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.css",
+        "name": "FilterBar.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/FilterBar/FilterBar.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/FilterBar/FilterBar.jsx",
+        "name": "FilterBar.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/FilterBar/FilterBar.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "7",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "28"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/context/FiltroProductosContext.jsx",
+        "name": "FiltroProductosContext.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/context/FiltroProductosContext.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/dto/FiltroProductosDTO.java",
+        "name": "FiltroProductosDTO.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/dto/FiltroProductosDTO.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          },
+          {
+            "metric": "coverage",
+            "value": "8.8",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/firebase/FirebaseInitializer.java",
+        "name": "FirebaseInitializer.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/firebase/FirebaseInitializer.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "3",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "5"
+          },
+          {
+            "metric": "coverage",
+            "value": "5.6",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Footer/Footer.css",
+        "name": "Footer.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Footer/Footer.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Footer/Footer.jsx",
+        "name": "Footer.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Footer/Footer.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/GlobalLayout/GlobalLayout.css",
+        "name": "GlobalLayout.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/GlobalLayout/GlobalLayout.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/GlobalLayout/GlobalLayout.jsx",
+        "name": "GlobalLayout.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/GlobalLayout/GlobalLayout.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/Home.css",
+        "name": "Home.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/Home.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/Home.jsx",
+        "name": "Home.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/Home.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/index.css",
+        "name": "index.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/index.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/api/index.js",
+        "name": "index.js",
+        "qualifier": "FIL",
+        "path": "frontend/src/api/index.js",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/ItemDetail/ItemDetail.css",
+        "name": "ItemDetail.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/ItemDetail/ItemDetail.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/ItemDetail/ItemDetail.jsx",
+        "name": "ItemDetail.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/ItemDetail/ItemDetail.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/ItemDetail/ItemDetailContainer.css",
+        "name": "ItemDetailContainer.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/ItemDetail/ItemDetailContainer.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/ItemDetail/ItemDetailContainer.jsx",
+        "name": "ItemDetailContainer.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/ItemDetail/ItemDetailContainer.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "1",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "5"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.css",
+        "name": "ItemList.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/ItemList.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "name": "ItemList.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "7"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemListContainer.css",
+        "name": "ItemListContainer.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/ItemListContainer.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx",
+        "name": "ItemListContainer.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/main.jsx",
+        "name": "main.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/main.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/NavBar.css",
+        "name": "NavBar.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/NavBar/NavBar.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/NavBar.jsx",
+        "name": "NavBar.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/NavBar/NavBar.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/error/NotFoundException.java",
+        "name": "NotFoundException.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/error/NotFoundException.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "100.0",
+            "bestValue": true
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/api/productoApi.js",
+        "name": "productoApi.js",
+        "qualifier": "FIL",
+        "path": "frontend/src/api/productoApi.js",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "2"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/ProductoController.java",
+        "name": "ProductoController.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/controllers/ProductoController.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "15",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "21"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          },
+          {
+            "metric": "duplicated_lines",
+            "value": "20",
+            "bestValue": false
+          },
+          {
+            "metric": "duplicated_lines_density",
+            "value": "19.2",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/dto/ProductoDTO.java",
+        "name": "ProductoDTO.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/dto/ProductoDTO.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          },
+          {
+            "metric": "coverage",
+            "value": "3.6",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/ProductoRepository.java",
+        "name": "ProductoRepository.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/repositories/ProductoRepository.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "name": "ProductoRepositoryImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "20",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "18"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/ProductoService.java",
+        "name": "ProductoService.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/ProductoService.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+        "name": "ProductoServiceImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "25",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "28"
+          },
+          {
+            "metric": "coverage",
+            "value": "36.7",
+            "bestValue": false
+          },
+          {
+            "metric": "duplicated_lines",
+            "value": "20",
+            "bestValue": false
+          },
+          {
+            "metric": "duplicated_lines_density",
+            "value": "16.8",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/error/RestResponseEntityExceptionHandler.java",
+        "name": "RestResponseEntityExceptionHandler.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/error/RestResponseEntityExceptionHandler.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "3"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/SearchBar/SearchBar.css",
+        "name": "SearchBar.css",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/NavBar/SearchBar/SearchBar.css",
+        "language": "css",
+        "measures": []
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/components/NavBar/SearchBar/SearchBar.jsx",
+        "name": "SearchBar.jsx",
+        "qualifier": "FIL",
+        "path": "frontend/src/components/NavBar/SearchBar/SearchBar.jsx",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "4"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:frontend/src/api/subCategoriaApi.js",
+        "name": "subCategoriaApi.js",
+        "qualifier": "FIL",
+        "path": "frontend/src/api/subCategoriaApi.js",
+        "language": "js",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "1"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/dto/SubCategoriaDTO.java",
+        "name": "SubCategoriaDTO.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/dto/SubCategoriaDTO.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          },
+          {
+            "metric": "coverage",
+            "value": "5.8",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/SubCategoriaRepository.java",
+        "name": "SubCategoriaRepository.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/repositories/SubCategoriaRepository.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "name": "SubCategoriaRepositoryImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "12",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "10"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/controllers/SubCategoriasController.java",
+        "name": "SubCategoriasController.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/controllers/SubCategoriasController.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "2",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "8"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/SubCategoriaService.java",
+        "name": "SubCategoriaService.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/SubCategoriaService.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "name": "SubCategoriaServiceImpl.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "cognitive_complexity",
+            "value": "15",
+            "bestValue": false
+          },
+          {
+            "metric": "complexity",
+            "value": "17"
+          },
+          {
+            "metric": "coverage",
+            "value": "36.2",
+            "bestValue": false
+          }
+        ]
+      },
+      {
+        "key": "softwarequality-tp3:backend/src/main/java/com/backend/backend/error/UnauthorizedException.java",
+        "name": "UnauthorizedException.java",
+        "qualifier": "FIL",
+        "path": "backend/src/main/java/com/backend/backend/error/UnauthorizedException.java",
+        "language": "java",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "2"
+          },
+          {
+            "metric": "coverage",
+            "value": "0.0",
+            "bestValue": false
+          }
+        ]
+      }
+    ]
+  },
+  "javaTests": [
+    {
+      "suite": "com.backend.backend.BackendApplicationTests",
+      "tests": 1,
+      "failures": 1,
+      "skipped": 0
+    },
+    {
+      "suite": "com.backend.backend.repositories.impl.CategoriaRepositoryImplTest",
+      "tests": 3,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.backend.backend.services.CategoriaServiceTest",
+      "tests": 5,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.backend.backend.services.ProductoServiceTest",
+      "tests": 8,
+      "failures": 5,
+      "skipped": 0
+    },
+    {
+      "suite": "com.backend.backend.services.SubCategoriaServiceTest",
+      "tests": 4,
+      "failures": 0,
+      "skipped": 0
+    }
+  ],
+  "frontendTests": 0,
+  "sourceHashes": [
+    {
+      "file": "backend/src/main/java/com/backend/backend/BackendApplication.java",
+      "sha256": "AC322306DE94C0366FB4FE0977265FA8DE67F75F5950B1BC108965B6F726408F"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/controllers/CategoriasController.java",
+      "sha256": "7963EFDA48CCA09DC01AE335435976158EFD593AB9E69DA3929898E604A93ED0"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/controllers/ProductoController.java",
+      "sha256": "30AE83A7460648298AE2FBB83117A92542377873843482B0FB1E8F6BE0679561"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/controllers/SubCategoriasController.java",
+      "sha256": "34C72471BB955E8F16BD795FC16EE17E57ED778CFAAA6F75BFA11B217177FB3D"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/dto/CategoriaDTO.java",
+      "sha256": "17168ABC6D2A2D568AB537D796A2329C6177FF0F4E2B10E88C644C3A72A4AB91"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/dto/CategoriasConSubCategoriasDTO.java",
+      "sha256": "14F7BFB3268571445081404BCE8944CB16D35B0663B31DCDA7B9A5EBF1A30DF5"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/dto/FiltroProductosDTO.java",
+      "sha256": "6E754B166E77FA1EB9C0CB50432EE1378D44DD597683E115D10AA8EB389E58A9"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/dto/ProductoDTO.java",
+      "sha256": "794D1DF1985CB1E58ECCA226FB70771666FDC8112EA3F09A7074EC92B4097E97"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/dto/SubCategoriaDTO.java",
+      "sha256": "A3B542A2B4EB5EC147ED228A7CBCB1BF87EA648D341B02559B24505C1D284C56"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/error/BadReqException.java",
+      "sha256": "373F5D9F541EBD89F6FE1AF22CACFE97B56EBAF5DCA51E6380D217A53326DFF6"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/error/NotFoundException.java",
+      "sha256": "A71B1449479D428BC5CD64E3D8E481F22CF72BEAFE50CB8C67B743AE7D12A53B"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/error/RestResponseEntityExceptionHandler.java",
+      "sha256": "AD8B3C22861FCCF0C8D84318927358BAD817DB7039ADDB4A4D53767728E11E53"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/error/UnauthorizedException.java",
+      "sha256": "0AF9A9E4F3E5EF46CE4A617135081C632109B58B2BBC70C8F8AC583CCF7D8712"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/error/dto/ErrorMessage.java",
+      "sha256": "782F97F4339F5523A274A853674ACE5C848024423BDD93ADFF1E4693F96D657F"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/firebase/FirebaseInitializer.java",
+      "sha256": "85833CAE7BC0ADC01B9B774DB61831E02D5FAFA45C4CFC507BBD2FF84A8517AA"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/repositories/CategoriaRepository.java",
+      "sha256": "869651ECF92923F88222D7E2501CE050B40ED66E3285A9CE79898CF040ADC34E"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/repositories/ProductoRepository.java",
+      "sha256": "B1E61E8A5FF07EAF1734EEE39AFD5B384D1DBA2C0C603D7D7A62198D887EE9F8"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/repositories/SubCategoriaRepository.java",
+      "sha256": "1128E3134D1B48259F50B6B0B2A603E0FF475BF4768EBBFA1FCB202EDDD0E8CB"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/repositories/impl/CategoriaRepositoryImpl.java",
+      "sha256": "A4661CE2BC9315A9F0C0C6F1F973251BDFE432F9E7600C79EF56106711914E31"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/repositories/impl/ProductoRepositoryImpl.java",
+      "sha256": "4CD7FA57B6DE8755BA7A9B7095F6D190E06C95A3C52B5441F29A7207969898FC"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/repositories/impl/SubCategoriaRepositoryImpl.java",
+      "sha256": "9C85345203C5CA0E7DAFAA304D3D466399EB716FDDF34BC22D017CBD05A40DED"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/ApiKeyValidationService.java",
+      "sha256": "82B2CACB787F8282392577E7C2A81AD40D693341A6ACDF4EC1D61A33938FF86E"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/CategoriaService.java",
+      "sha256": "AE02F51694E12F7223D8780F5985093E2DE9E5E653387D4327C744280B1A464E"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/ProductoService.java",
+      "sha256": "71043A56B341546FB54D310ABC8BB8D68CDB7C90854D4D6E415C6236BA111FD9"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/SubCategoriaService.java",
+      "sha256": "0096C25531E865B263D3DC4EF668E9F8B0D0C2F29E6BAEB031F88E0DD74A656E"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/impl/ApiKeyValidationServiceImpl.java",
+      "sha256": "24E19E3CAAB83571CCB61EB89EE93150D837B9EA5A6497DAF4A802A5F8DA9A71"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/impl/CategoriaServiceImpl.java",
+      "sha256": "5008876229E3DA5499A7EFC791ACF6283CA68D2B9DB683BE709B4A33AA6EA005"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/impl/ProductoServiceImpl.java",
+      "sha256": "56D8C5BB524989F74B005D5437B1059DC4D5794D0CF0EE39D358B7D80632700A"
+    },
+    {
+      "file": "backend/src/main/java/com/backend/backend/services/impl/SubCategoriaServiceImpl.java",
+      "sha256": "E742ABA90CE245D9810DB1C76FE008BE4FE8CC42BEF73CBC65281184E136A47F"
+    },
+    {
+      "file": "backend/src/main/resources/application.properties",
+      "sha256": "0737770537F1B82412ACFBE058A8573B4A84061F480DACA15B339003AB541AE6"
+    },
+    {
+      "file": "backend/src/main/resources/template.env",
+      "sha256": "5B1EA3A91638C349CCDB2B9F99EC77872E50046571E6FFC339F265CD7C8B76D8"
+    },
+    {
+      "file": "backend/src/test/java/com/backend/backend/BackendApplicationTests.java",
+      "sha256": "1467975B7D3CD943BDFEBAD4C46D13045F2B0ED13DBBABD1BD0F9102F4A645EF"
+    },
+    {
+      "file": "backend/src/test/java/com/backend/backend/repositories/impl/CategoriaRepositoryImplTest.java",
+      "sha256": "1407850202CC8510FBF44F8E172631A9CAFF4C28DF158FDF0C10C6C92805F45B"
+    },
+    {
+      "file": "backend/src/test/java/com/backend/backend/services/CategoriaServiceTest.java",
+      "sha256": "466F2E471C5D07651AE130FAD56B5E92939AC1771A391E9FD9D25CCFED1F4C60"
+    },
+    {
+      "file": "backend/src/test/java/com/backend/backend/services/ProductoServiceTest.java",
+      "sha256": "BFF4CD22D22EFFF8D83188ED33DE88B6CD8593CAF527A660F914B912A5CE550C"
+    },
+    {
+      "file": "backend/src/test/java/com/backend/backend/services/SubCategoriaServiceTest.java",
+      "sha256": "E09F45FD5E3564943546A620F9220AA200C21E43946DD9DD66DC569261D00DC0"
+    },
+    {
+      "file": "frontend/src/App.css",
+      "sha256": "A0715E0A09EDBD0FBDE65816A75E0FA0FC8B314C5260C0768C19BF3AAC22621A"
+    },
+    {
+      "file": "frontend/src/App.jsx",
+      "sha256": "68CF01F61393865002039824B384B6A4B6621EF296858D6BB6C985579084E624"
+    },
+    {
+      "file": "frontend/src/api/categoriaApi.js",
+      "sha256": "FCD17DA5D6D70AE8BE1E0B03B7D557CA7B253853D863F67CE92A6492572B0D42"
+    },
+    {
+      "file": "frontend/src/api/index.js",
+      "sha256": "7AFA7FB486DC17D13C832BCBD36773E35FD6EF6F60999D7850EA23D22A9B6E2F"
+    },
+    {
+      "file": "frontend/src/api/productoApi.js",
+      "sha256": "07982C52559B42835ADEFD8141BCB8798B2D2892C3C840C7EAA8FCDBA02C38E7"
+    },
+    {
+      "file": "frontend/src/api/subCategoriaApi.js",
+      "sha256": "AD9081BD4DD7B44A61E010C69D1EE495E7149CC8219BC8AC25B6B31A4A829AB7"
+    },
+    {
+      "file": "frontend/src/assets/carouselImg/carousel1.png",
+      "sha256": "20B7C0D22645E7C747ACD4CEB2C73F3155E6DB3C2862FE290C7A28C206ABE775"
+    },
+    {
+      "file": "frontend/src/assets/carouselImg/carousel2.png",
+      "sha256": "87836A87B4C755B8888D3C079DBFEEC257DC0DD93F5957000AFEE595CF071A57"
+    },
+    {
+      "file": "frontend/src/assets/carouselImg/carousel3.png",
+      "sha256": "D0F6E0891BA22950C877BB741722206873973CEBCF9B8ACD27CBAD006C414C76"
+    },
+    {
+      "file": "frontend/src/assets/carouselImg/carousel4.png",
+      "sha256": "8DCCFBAECB29566B2B967533D94C847A092FF6E0F39AF3BA0EB7D0AE5A4AE340"
+    },
+    {
+      "file": "frontend/src/assets/carouselImg/carousel5.png",
+      "sha256": "23E986D455B8E7926A8FBA45EF5CCE90F98068F95170633664A26643BB5E952B"
+    },
+    {
+      "file": "frontend/src/assets/mvcLogo.png",
+      "sha256": "A2ADE2465BFA34CD06CB7E618A0C4DB1B47A3DE86FC7B2ADBAE161DEB15EE082"
+    },
+    {
+      "file": "frontend/src/assets/mvcLogo2.png",
+      "sha256": "A02A63FFC70539A1E018B1B276291EABEAC0557DB4C14C559CD462D4993D0080"
+    },
+    {
+      "file": "frontend/src/components/Cart/Cart.css",
+      "sha256": "2F3EF3BE03C82618C839355A2CCBEEAD4E30E821CBB9C3102781FED22251F64F"
+    },
+    {
+      "file": "frontend/src/components/Cart/Cart.jsx",
+      "sha256": "9DBC581655B3941BDDC9B7631F1569A26F7F1CF27F143AF9F00516331AA2BCF8"
+    },
+    {
+      "file": "frontend/src/components/Cart/CartItem/CartItem.css",
+      "sha256": "76C9FDD2C29D8F49621B471D7381CACAB933A1C3CA8E40C6D321F53CC3F1D6A0"
+    },
+    {
+      "file": "frontend/src/components/Cart/CartItem/CartItem.jsx",
+      "sha256": "82A686188E5FF8A801598057198DAC60EEFB71E1E5E3CAEFA8E4D696F6C21F1A"
+    },
+    {
+      "file": "frontend/src/components/Footer/Footer.css",
+      "sha256": "78E932F55896742FE4BA396D2AF9B64FA86649AD90E07CEBE4211FA849F70F1C"
+    },
+    {
+      "file": "frontend/src/components/Footer/Footer.jsx",
+      "sha256": "5E910ADDD09FE360E908E2FEEE4B9A5612518BA12A4322B74E3D90A4DC1ECC5C"
+    },
+    {
+      "file": "frontend/src/components/GlobalLayout/GlobalLayout.css",
+      "sha256": "35EB0885055E96497DFD0E3ECA344E05A50288E0E07C7E26A1EE63A15F51784B"
+    },
+    {
+      "file": "frontend/src/components/GlobalLayout/GlobalLayout.jsx",
+      "sha256": "C75EC898433785060F81144AA420103E26093B4B87D7254F3C4BF6A5C9879D56"
+    },
+    {
+      "file": "frontend/src/components/Home/Carousel/Carousel.css",
+      "sha256": "9C3F536FA20456521EA26C0CF12B169E04D40C49FA68ACF23826FC627E0AF561"
+    },
+    {
+      "file": "frontend/src/components/Home/Carousel/Carousel.jsx",
+      "sha256": "BF60A6C9BC9C7B39DEB40CEBA5163D8A5B84CBCFC7819E9866884958890BCF75"
+    },
+    {
+      "file": "frontend/src/components/Home/FilterBar/FilterBar.css",
+      "sha256": "DB57E719F5624CFDFC19BF6C7DD64E3F3D7D0C5B0542670B93F81687F884E48D"
+    },
+    {
+      "file": "frontend/src/components/Home/FilterBar/FilterBar.jsx",
+      "sha256": "03896A42369D321919C675988EA268B467573A54503140AD909B5C7C614E0C9D"
+    },
+    {
+      "file": "frontend/src/components/Home/Home.css",
+      "sha256": "098785A006A60E4162F6BABD3C1F8C4A65D903DA4CA53B3B175F2F771A71D217"
+    },
+    {
+      "file": "frontend/src/components/Home/Home.jsx",
+      "sha256": "23BE16ED6EC1540F0EC59EE45ABFEEFE2DAC3D157228C778EE5438519AC103DB"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/Card/Button/Button.css",
+      "sha256": "2D6C2EE419C9F55BDBCEDB1260A33ADD6CC2E4AB46D2FBEFF76966119B94E267"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/Card/Button/Button.jsx",
+      "sha256": "4174DA73016D6374520A46AD7B2A3A8858109C2A40367E6BC03EDA99917C2BEB"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/Card/Card.css",
+      "sha256": "D2612FF73C499E97EC7C7BF19FC446865CB694B1F1C6D7FAEFCF6FAAC0277824"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/Card/Card.jsx",
+      "sha256": "CBBC440D9C3E8C3689E7F977ECEC8BB3ED23076D2094FE37C10B7F3132D601B1"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/ItemList.css",
+      "sha256": "898C7EAC93C44A5AE6DDEA1F698EB9CDE4CBEBCC47D4F06208BD827C4A7FFF21"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/ItemList.jsx",
+      "sha256": "8DD0456F83D897A061F0D31BBEA27A4EF6E5BEB56D4ED475E5AD76DE1FAC7E23"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/ItemListContainer.css",
+      "sha256": "03AE42E4E9FB82B0E554680082FF6ABDDCF4BB486BEC8874120864DD9BD00AF4"
+    },
+    {
+      "file": "frontend/src/components/Home/ItemListContainer/ItemListContainer.jsx",
+      "sha256": "988641B422B95938A886D4FBB5D9424A41A954B2861ED861B09AAC23C533E1F3"
+    },
+    {
+      "file": "frontend/src/components/ItemDetail/ItemDetail.css",
+      "sha256": "5E4941214786D10B8D71DAED539560E9002E8EA2B723051B4E5031B8909EAC29"
+    },
+    {
+      "file": "frontend/src/components/ItemDetail/ItemDetail.jsx",
+      "sha256": "42F0E52DCD02EB0926BB274BAE9ABA3C82883E153C1E98C080E68165AE9917A5"
+    },
+    {
+      "file": "frontend/src/components/ItemDetail/ItemDetailContainer.css",
+      "sha256": "DCA559216B9C6FEFB6E85252BDA8FA4BC8B54B24254AD23CE21E139709C823D4"
+    },
+    {
+      "file": "frontend/src/components/ItemDetail/ItemDetailContainer.jsx",
+      "sha256": "CE27CE0DFECDD4B765ED09B24EEE8F0935AC789F1D3B7C3DB6AAE3A9EE34EAE4"
+    },
+    {
+      "file": "frontend/src/components/NavBar/CartWidget/CartWidget.css",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "file": "frontend/src/components/NavBar/CartWidget/CartWidget.jsx",
+      "sha256": "A6868964AE2C9062061C440A633A23DB8A1DF5BB7B20F5603D456B5ECEE7E068"
+    },
+    {
+      "file": "frontend/src/components/NavBar/NavBar.css",
+      "sha256": "64B8655FE944B29C0B53DF64C8794F5AAF32723FBBC915A74E8B1FC8D53421D6"
+    },
+    {
+      "file": "frontend/src/components/NavBar/NavBar.jsx",
+      "sha256": "27DEF180E95F7B1E7EE478125EFA3EE115370E3FFFC2E7A56272BCE53D14A45B"
+    },
+    {
+      "file": "frontend/src/components/NavBar/SearchBar/SearchBar.css",
+      "sha256": "FCB74F2FA4A001432C20B1B74C444DC8730C6B4A8F738D470D8A55A4001076B4"
+    },
+    {
+      "file": "frontend/src/components/NavBar/SearchBar/SearchBar.jsx",
+      "sha256": "5783FAEB1E78A03D79273948E9A4FDD92359AFC1C4E03E94A6DF2E333F04004D"
+    },
+    {
+      "file": "frontend/src/context/FiltroProductosContext.jsx",
+      "sha256": "25FACD4CC1657F939B8E20901B8FF99E0557331DB82325B6E8F8265DACA4F877"
+    },
+    {
+      "file": "frontend/src/context/context.jsx",
+      "sha256": "191093458E75D205B85E2B123458F811215E63DCCF1F3B498DBEDCF4AAB21C08"
+    },
+    {
+      "file": "frontend/src/index.css",
+      "sha256": "874F55F3019AD951ED6B4C05EF67F5FF31B0D8C16DD025CD72EF7DF5E2D2ADA4"
+    },
+    {
+      "file": "frontend/src/main.jsx",
+      "sha256": "ACB24FEB3540B5EE687F5A65BDBB81FE3644AA19DA89256BC24B18D8EE010410"
+    }
+  ]
+}
