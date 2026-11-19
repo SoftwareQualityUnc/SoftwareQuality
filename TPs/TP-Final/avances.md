@@ -45,7 +45,7 @@
 - [x] Registrar el alcance y las decisiones iniciales.
 - [x] Adaptar el build del frontend para versionado observable (implementado y validado con Docker).
 - [x] Construir y validar las imágenes `terrasense-front:1.0.0` y `terrasense-front:1.1.0`.
-- [ ] Ejecutar y validar Horusec sobre el frontend; es el único pendiente de TPF-03.
+- [x] Ejecutar y validar Horusec sobre el frontend (`v1.1.0`); cierre de TPF-03 con 0 hallazgos HIGH/CRITICAL y 1 INFO preexistente (`horusec-frontend-canary.json`).
 - [x] Implementar Deployments, Services e Ingress stable/canary.
 - [x] Validar ruteo, headers y forzado de canary.
 - [x] Entregar comandos y evidencia reproducible a Integrante 2.
@@ -66,21 +66,20 @@
 
 La variante visual canary se activará por la versión de build (`VITE_APP_VERSION === "1.1.0"`) y no por el orden en que se editen los archivos. De esta forma, un tercero puede construir ambas imágenes desde el mismo checkout: `1.0.0` no muestra el banner canary y `1.1.0` sí.
 
-## Progreso TPF-03 — Imágenes y validación parcial
+## Registro TPF-03 — Imágenes y validación Canary (Completado)
 
-- **Estado:** parcial; TPF-03 no se marca como completado porque Horusec todavía no está instalado ni validado.
+- **Estado:** completado (ESLint + Horusec SAST validados sobre `frontend/`).
 - Se construyeron correctamente las imágenes `terrasense-front:1.0.0` y `terrasense-front:1.1.0`.
 - `npm run lint` pasó ejecutándose en Node 20 Alpine.
 - En runtime, `/version.txt` y `X-App-Version` devolvieron `1.0.0` para stable y `1.1.0` para canary.
 - La validación visual confirmó que stable no muestra el banner y que canary muestra `ESTÁS VIENDO LA VERSIÓN CANARY 1.1.0`.
-- Horusec queda pendiente: no está instalado y no se considera validado.
-- Reporte reproducible: `evidencias/reportes/tpf-03-canary.md`.
+- Horusec CLI `v2.8.0` ejecutado con `-D` y `material/Horusec/horusec-config.json` devolvió **0 `CRITICAL` / 0 `HIGH` / 0 `MEDIUM` / 0 `LOW`** y 1 solo `INFO` preexistente (`H13` en `ItemDetailContainer.jsx:18`, falso positivo ya auditado en TP2).
+- Reporte reproducible: `evidencias/reportes/tpf-03-canary.md` y `evidencias/reportes/horusec-frontend-canary.json`.
 
-### Próximos pasos
+### Próximos pasos (Integrante 2 e Integrante 3)
 
-1. Instalar o habilitar Horusec y ejecutar la validación sobre `frontend/`.
-2. Registrar el resultado de Horusec y, si corresponde, cerrar TPF-03.
-3. Mantener disponible la evidencia de TPF-05 para que Integrante 2 continúe con rollout progresivo y pruebas de carga.
+1. Integrante 2: ejecutar rollout progresivo con `k6`, prueba de estrés con hipótesis y grabación de videos cortos.
+2. Integrante 3: completar carpeta `ci/`, Mapa ISO/IEC 25000, veredicto Go/No-Go y presentación PDF.
 
 ## Registro TPF-04 — Manifiestos Kubernetes stable/canary
 
@@ -105,7 +104,7 @@ La variante visual canary se activará por la versión de build (`VITE_APP_VERSI
 - `kubectl get deploy,svc,ingress,pods,hpa -n terrasense` mostró los recursos saludables.
 - Con `kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 18080:80`, el tráfico normal con `Host: terrasense.local` devolvió body/header `1.0.0`; `X-Canary: always` y `Cookie: canary=always` devolvieron `1.1.0`.
 - El Deployment/Service `front` legado del TP4 permanece presente como recurso no utilizado; su limpieza es opcional.
-- TPF-03 continúa pendiente únicamente por la instalación/validación de Horusec.
+- TPF-03 fue completado con la validación de Horusec sobre `frontend/` (`horusec-frontend-canary.json`), quedando 0 hallazgos HIGH/CRITICAL.
 - No se declara cierre del rollout progresivo ni de las pruebas de carga del Integrante 2.
 
 ## README final de entrega
