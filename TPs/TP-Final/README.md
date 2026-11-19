@@ -252,6 +252,7 @@ La entrega queda organizada de la siguiente manera:
 - **Integrante 1** dejó validado el build reproducible (`1.0.0` y `1.1.0`), carga de imágenes, manifiestos `base/stable/canary`, salud inicial de Pods y ruteo por port-forward ([`tpf-04`](evidencias/reportes/tpf-04-k8s-manifiestos.md), [`tpf-05`](evidencias/reportes/tpf-05-minikube-routing.md)).
 - **Integrante 2** completó los scripts [`k6/`](./k6/), ejecutó todas las etapas del rollout (`0 → 10 → 25 [rollback + fix de afinidad] → 25 → 50 → 100 → promoción`), ejecutó la prueba de estrés A/B con hipótesis (`50/50` hasta `500 VUs`), generó los reportes JSON/HTML, las 20 capturas + grilla y grabó los 2 videos cortos en `evidencias/videos/`.
 - **Integrante 3** completó el cierre SAST de Horusec (`v2.8.0`) sobre `v1.1.0` ([`tpf-03-canary.md`](evidencias/reportes/tpf-03-canary.md), [`horusec-frontend-canary.json`](evidencias/reportes/horusec-frontend-canary.json)), la carpeta `ci/`, el Mapa ISO/IEC 25000, el Veredicto Go/No-Go y Aprendizaje.
+- **Presentación final (Actividad 4):** [`presentacion/exposicion.html`](presentacion/exposicion.html) (24 diapositivas, ~20 min, videos embebidos y notas del orador con `N`) y su exportación [`presentacion/presentacion-tp-final.pdf`](presentacion/presentacion-tp-final.pdf). Para presentar offline, abrir el HTML desde el checkout completo: los videos se cargan desde `evidencias/` por ruta relativa.
 
 ---
 

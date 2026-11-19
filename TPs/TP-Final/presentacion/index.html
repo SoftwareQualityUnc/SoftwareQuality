@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Presentación y material de estudio del trabajo de calidad de software: TP1 a TP Final Canary.">
+  <title>SoftwareQuality · Guía de estudio</title>
+  <style>
+    :root {
+      --bg: #07101f;
+      --panel: #0d1a2e;
+      --panel-2: #11233c;
+      --panel-3: #162c49;
+      --text: #eef5ff;
+      --muted: #a5b8d0;
+      --line: rgba(178, 207, 238, .16);
+      --cyan: #68ddff;
+      --blue: #75a7ff;
+      --green: #68e0ae;
+      --yellow: #ffd166;
+      --red: #ff8d9b;
+      --purple: #c5a7ff;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .28);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 78% -12%, rgba(104, 221, 255, .16), transparent 30rem),
+        radial-gradient(circle at 5% 18%, rgba(117, 167, 255, .12), transparent 25rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font: inherit; }
+    .app { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 18px;
+      border-right: 1px solid var(--line);
+      background: rgba(7, 16, 31, .8);
+      backdrop-filter: blur(18px);
+      overflow-y: auto;
+    }
+    .brand { padding: 6px 12px 24px; }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 12px;
+      border-radius: 13px;
+      color: #04111e;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      font-weight: 900;
+      box-shadow: 0 10px 30px rgba(104, 221, 255, .22);
+    }
+    .brand h1 { margin: 0; font-size: 1.08rem; letter-spacing: -.02em; }
+    .brand p { margin: 5px 0 0; color: var(--muted); font-size: .82rem; }
+    .nav-title { padding: 0 12px 8px; color: #6882a1; text-transform: uppercase; font-size: .68rem; font-weight: 800; letter-spacing: .14em; }
+    nav a {
+      display: block;
+      padding: 9px 12px;
+      margin: 3px 0;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: .86rem;
+      transition: .2s ease;
+    }
+    nav a:hover, nav a.active { color: var(--text); background: rgba(104, 221, 255, .11); text-decoration: none; }
+    nav a.active { box-shadow: inset 3px 0 var(--cyan); }
+    .side-actions { display: flex; gap: 8px; padding: 20px 12px 0; }
+    .icon-btn, .small-btn {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 10px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+    }
+    .icon-btn:hover, .small-btn:hover { border-color: rgba(104, 221, 255, .55); background: rgba(104, 221, 255, .1); }
+    main { min-width: 0; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .hero { padding: 74px 0 46px; }
+    .eyebrow { color: var(--cyan); font-size: .78rem; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+    .hero h2 { max-width: 840px; margin: 14px 0 18px; font-size: clamp(2.5rem, 6vw, 5.3rem); line-height: .98; letter-spacing: -.065em; }
+    .gradient { background: linear-gradient(110deg, var(--text), var(--cyan) 45%, var(--purple)); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .hero .lead { max-width: 770px; margin: 0; color: var(--muted); font-size: 1.12rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .cta { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 12px; padding: 11px 15px; color: #06111d; background: var(--cyan); font-weight: 800; cursor: pointer; }
+    .cta.secondary { color: var(--text); border: 1px solid var(--line); background: rgba(255,255,255,.06); }
+    .notice { display: flex; gap: 14px; align-items: flex-start; margin: 24px 0 0; padding: 17px 18px; border: 1px solid rgba(255, 209, 102, .32); border-radius: 15px; color: #ffe6a3; background: rgba(255, 209, 102, .08); }
+    .notice strong { color: var(--yellow); }
+    .metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; padding: 12px 0 52px; }
+    .metric { min-height: 126px; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(150deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: var(--shadow); }
+    .metric .value { display: block; margin-bottom: 7px; color: var(--cyan); font-size: 1.55rem; font-weight: 900; letter-spacing: -.04em; }
+    .metric:nth-child(2) .value { color: var(--yellow); }
+    .metric:nth-child(3) .value { color: var(--green); }
+    .metric:nth-child(4) .value { color: var(--red); }
+    .metric:nth-child(5) .value { color: var(--purple); }
+    .metric small { color: var(--muted); font-size: .8rem; }
+    section { scroll-margin-top: 24px; padding: 42px 0; }
+    .section-heading { display: flex; gap: 18px; align-items: end; justify-content: space-between; margin-bottom: 22px; }
+    .kicker { color: var(--cyan); font-size: .76rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    h3 { margin: 5px 0 0; font-size: clamp(1.7rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -.045em; }
+    h4 { margin: 0 0 9px; font-size: 1.05rem; }
+    p { color: var(--muted); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { padding: 21px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(150deg, rgba(17, 35, 60, .92), rgba(13, 26, 46, .85)); box-shadow: var(--shadow); }
+    .card h4 { color: var(--text); }
+    .card p:last-child { margin-bottom: 0; }
+    .card ul, .card ol { margin: 10px 0 0; padding-left: 21px; color: var(--muted); }
+    .card li { margin: 6px 0; }
+    .timeline { position: relative; display: grid; gap: 12px; }
+    .timeline::before { content: ""; position: absolute; left: 19px; top: 24px; bottom: 24px; width: 2px; background: linear-gradient(var(--cyan), var(--purple)); opacity: .45; }
+    .time-item { position: relative; display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
+    .time-dot { z-index: 1; display: grid; place-items: center; width: 40px; height: 40px; border: 4px solid var(--bg); border-radius: 50%; color: #05111d; background: var(--cyan); font-size: .75rem; font-weight: 900; }
+    .time-item:nth-child(2) .time-dot { background: var(--yellow); }
+    .time-item:nth-child(3) .time-dot { background: var(--green); }
+    .time-item:nth-child(4) .time-dot { background: var(--red); }
+    .time-item:nth-child(5) .time-dot { background: var(--purple); }
+    .time-content { padding: 16px 18px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.035); }
+    .time-content strong { display: block; color: var(--text); }
+    .time-content span { color: var(--muted); font-size: .9rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .pill { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; color: var(--muted); background: rgba(255,255,255,.04); font-size: .76rem; }
+    .pill.good { color: var(--green); border-color: rgba(104,224,174,.3); background: rgba(104,224,174,.08); }
+    .pill.warn { color: var(--yellow); border-color: rgba(255,209,102,.3); background: rgba(255,209,102,.08); }
+    .pill.bad { color: var(--red); border-color: rgba(255,141,155,.3); background: rgba(255,141,155,.08); }
+    .pill.info { color: var(--cyan); border-color: rgba(104,221,255,.3); background: rgba(104,221,255,.08); }
+    .arch { display: grid; gap: 12px; max-width: 850px; margin: 0 auto; }
+    .arch-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .arch-box { position: relative; padding: 16px; border: 1px solid rgba(104, 221, 255, .25); border-radius: 14px; text-align: center; background: rgba(104, 221, 255, .07); }
+    .arch-box strong { display: block; margin-bottom: 4px; color: var(--text); }
+    .arch-box span { color: var(--muted); font-size: .8rem; }
+    .arch-arrow { color: var(--cyan); font-size: 1.4rem; text-align: center; }
+    .code-wrap { position: relative; margin: 12px 0 0; }
+    pre { overflow: auto; margin: 0; padding: 17px; border: 1px solid var(--line); border-radius: 14px; color: #d9ecff; background: #06101d; font: .8rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .copy { position: absolute; top: 9px; right: 9px; border: 1px solid var(--line); border-radius: 8px; padding: 5px 8px; color: var(--muted); background: rgba(255,255,255,.07); cursor: pointer; font-size: .72rem; }
+    .copy:hover { color: var(--text); border-color: var(--cyan); }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; color: var(--muted); font-size: .86rem; }
+    th { color: var(--text); background: rgba(104,221,255,.08); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+    tr:last-child td { border-bottom: 0; }
+    td strong { color: var(--text); }
+    .evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #07111f; }
+    figure img, figure video { display: block; width: 100%; max-height: 410px; object-fit: contain; background: #050b14; }
+    figcaption { padding: 12px 14px 14px; color: var(--muted); font-size: .8rem; }
+    figcaption strong { display: block; margin-bottom: 3px; color: var(--text); }
+    .evidence-links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+    .evidence-links a { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; color: var(--muted); background: rgba(255,255,255,.04); font-size: .78rem; }
+    .evidence-links a:hover { color: var(--text); border-color: var(--cyan); text-decoration: none; }
+    .quote { margin: 14px 0 0; padding: 15px 17px; border-left: 3px solid var(--cyan); color: #d8e9fb; background: rgba(104,221,255,.07); }
+    .quote strong { color: var(--cyan); }
+    .big-callout { padding: 25px; border: 1px solid rgba(197,167,255,.35); border-radius: 19px; background: linear-gradient(135deg, rgba(197,167,255,.13), rgba(104,221,255,.05)); }
+    .big-callout h4 { color: var(--purple); font-size: 1.25rem; }
+    .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .status { padding: 17px; border-radius: 15px; border: 1px solid var(--line); }
+    .status h4 { margin-bottom: 6px; }
+    .status ul { margin-bottom: 0; }
+    .status.confirmed { border-color: rgba(104,224,174,.3); background: rgba(104,224,174,.07); }
+    .status.documented { border-color: rgba(255,209,102,.3); background: rgba(255,209,102,.07); }
+    .status.pending { border-color: rgba(255,141,155,.3); background: rgba(255,141,155,.07); }
+    .status.confirmed h4 { color: var(--green); }
+    .status.documented h4 { color: var(--yellow); }
+    .status.pending h4 { color: var(--red); }
+    .mini-label { color: #7f98b8; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    footer { margin-top: 30px; padding: 34px 0 60px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    .muted-note { color: #7890ad; font-size: .82rem; }
+    @media (max-width: 1050px) { .metrics { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 820px) {
+      .app { display: block; }
+      aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      nav { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; }
+      nav a { flex: 0 0 auto; }
+      .nav-title, .side-actions { display: none; }
+      .wrap { width: min(100% - 28px, 700px); }
+      .hero { padding-top: 45px; }
+      .grid-2, .grid-3, .evidence-grid, .status-grid { grid-template-columns: 1fr; }
+      .arch-row { grid-template-columns: 1fr; }
+      .arch-arrow { transform: rotate(90deg); }
+    }
+    @media (max-width: 520px) { .metrics { grid-template-columns: repeat(2, 1fr); } .metric:last-child { grid-column: span 2; } .hero h2 { font-size: 2.8rem; } }
+    @media print {
+      aside, .hero-actions, .copy, video { display: none !important; }
+      .app { display: block; }
+      body { background: #fff; color: #111; }
+      .wrap { width: 100%; }
+      .card, figure, table, .metric { color: #111; box-shadow: none; break-inside: avoid; }
+      p, td, figcaption, .card li { color: #333; }
+      a { color: #0645ad; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div class="brand">
+        <span class="brand-mark">SQ</span>
+        <h1>SoftwareQuality</h1>
+        <p>Guía de estudio · TP Final</p>
+      </div>
+      <div class="nav-title">Índice</div>
+      <nav id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#recorrido">Recorrido TP1 → Final</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#tp1">TP1 · Linters</a>
+        <a href="#tp2">TP2 · Horusec</a>
+        <a href="#tp3">TP3 · SonarQube</a>
+        <a href="#tp4">TP4 · Kubernetes</a>
+        <a href="#final">TP Final · Canary</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#decisiones">Decisiones</a>
+        <a href="#veredicto">Go / No-Go</a>
+        <a href="#defensa">Preguntas de defensa</a>
+      </nav>
+      <div class="side-actions">
+        <button class="icon-btn" id="printBtn" title="Imprimir o guardar como PDF">Imprimir</button>
+        <button class="icon-btn" id="topBtn" title="Volver arriba">↑</button>
+      </div>
+    </aside>
+
+    <main>
+      <div class="wrap">
+        <section class="hero" id="inicio">
+          <div class="eyebrow">Material de estudio · 19/11/2026</div>
+          <h2>Del <span class="gradient">lint</span> al <span class="gradient">Canary</span>.</h2>
+          <p class="lead">Resumen visual de todo el recorrido de calidad: controles estáticos, seguridad, SonarQube, pruebas, Kubernetes, HPA, carga, resiliencia y despliegue progresivo del frontend.</p>
+          <div class="hero-actions">
+            <a class="cta" href="#final">Ir a la demo Canary ↓</a>
+            <button class="cta secondary" id="printHero">Guardar / imprimir</button>
+          </div>
+          <div class="notice">
+            <span>⚠️</span>
+            <div><strong>Importante:</strong> el repositorio no contiene el PDF del TP Final ni las diapositivas exportadas. Esta guía se basa en la documentación, evidencias y código que sí están dentro del checkout. El rollout final porcentual y la comparativa de estrés del TP Final aparecen planificados, pero no demostrados con resultados guardados.</div>
+          </div>
+        </section>
+
+        <div class="metrics" aria-label="Métricas principales">
+          <div class="metric"><span class="value">0</span><small>errores Checkstyle / warnings ESLint al cierre de TP1</small></div>
+          <div class="metric"><span class="value">13</span><small>findings Horusec auditados en TP2</small></div>
+          <div class="metric"><span class="value">OK</span><small>Quality Gate histórico de SonarQube</small></div>
+          <div class="metric"><span class="value">1 → 5</span><small>Pods alcanzados por el HPA en TP4</small></div>
+          <div class="metric"><span class="value">1.0.0 / 1.1.0</span><small>Stable y Canary desplegados en TP Final</small></div>
+        </div>
+
+        <section id="recorrido">
+          <div class="section-heading"><div><div class="kicker">La historia completa</div><h3>Un pipeline de calidad en cinco etapas</h3></div></div>
+          <div class="timeline">
+            <div class="time-item"><div class="time-dot">01</div><div class="time-content"><strong>TP1 · Mantenibilidad</strong><span>Checkstyle para Java, ESLint para React y primera compuerta de GitHub Actions.</span></div></div>
+            <div class="time-item"><div class="time-dot">02</div><div class="time-content"><strong>TP2 · Seguridad</strong><span>Horusec SAST, revisión contextual y clasificación de falsos positivos.</span></div></div>
+            <div class="time-item"><div class="time-dot">03</div><div class="time-content"><strong>TP3 · Calidad interna</strong><span>SonarQube, cobertura, tests, bugs, vulnerabilidades, duplicación y code smells.</span></div></div>
+            <div class="time-item"><div class="time-dot">04</div><div class="time-content"><strong>TP4 · Operación</strong><span>Docker, Minikube, PostgreSQL, Ingress, HPA, k6 y experimentos de resiliencia.</span></div></div>
+            <div class="time-item"><div class="time-dot">05</div><div class="time-content"><strong>TP Final · Liberación progresiva</strong><span>Dos versiones del frontend, routing Canary, evidencia observable y rollback por peso.</span></div></div>
+          </div>
+        </section>
+
+        <section id="arquitectura">
+          <div class="section-heading"><div><div class="kicker">Cómo queda funcionando</div><h3>Arquitectura del TP Final</h3></div></div>
+          <div class="card">
+            <div class="arch">
+              <div class="arch-row">
+                <div class="arch-box"><strong>Cliente</strong><span>Navegador / curl<br>Host: terrasense.local</span></div>
+                <div class="arch-box"><strong>NGINX Ingress</strong><span>peso Canary<br>header / cookie</span></div>
+                <div class="arch-box"><strong>API</strong><span>api.terrasense.local<br>backend compartido</span></div>
+              </div>
+              <div class="arch-arrow">↓ tráfico frontend</div>
+              <div class="arch-row">
+                <div class="arch-box"><strong>front-stable</strong><span>terrasense-front:1.0.0<br>track: stable</span></div>
+                <div class="arch-box"><strong>front-canary</strong><span>terrasense-front:1.1.0<br>track: canary · weight 0</span></div>
+                <div class="arch-box"><strong>HPA backend</strong><span>1–5 Pods<br>CPU objetivo 50 %</span></div>
+              </div>
+              <div class="arch-arrow">↓ persistencia</div>
+              <div class="arch-row">
+                <div class="arch-box"><strong>PostgreSQL</strong><span>StatefulSet + PVC<br>datos de demo</span></div>
+                <div class="arch-box"><strong>Metrics Server</strong><span>métricas para HPA<br>Minikube</span></div>
+                <div class="arch-box"><strong>Observabilidad</strong><span>version.txt<br>X-App-Version</span></div>
+              </div>
+            </div>
+            <div class="quote"><strong>Decisión clave:</strong> Canary se aplica solamente al frontend. Backend y PostgreSQL permanecen compartidos para reducir complejidad y concentrar el experimento en el cambio visual.</div>
+          </div>
+        </section>
+
+        <section id="tp1">
+          <div class="section-heading"><div><div class="kicker">01 · Mantenibilidad</div><h3>TP1 — Linters y CI</h3></div><span class="pill good">0 errores al cierre</span></div>
+          <div class="grid-2">
+            <div class="card"><h4>Backend · Checkstyle 10.12.5</h4><p>Integrado con Gradle y configurado con política estricta:</p><div class="pill-row"><span class="pill info">ignoreFailures = false</span><span class="pill info">maxWarnings = 0</span><span class="pill">Java 17</span></div><ul><li>Línea base: 10 errores en 6 archivos.</li><li>Reglas de imports, nombres, visibilidad, llaves y formato.</li><li>Resultado final: 0 violaciones.</li></ul></div>
+            <div class="card"><h4>Frontend · ESLint 8.57.0</h4><p>Reglas de React y React Hooks aplicadas al frontend Vite.</p><ul><li>Línea base: 13 errores y 1 warning.</li><li>Se corrigieron efectos, JSX, ciclo de vida del carrusel y claves React.</li><li>Resultado final: 0 errores y 0 warnings.</li></ul></div>
+          </div>
+          <div class="card" style="margin-top:16px"><h4>Workflow de GitHub Actions</h4><p>El workflow ejecutable corre dos jobs independientes en cada push y en Pull Requests hacia <code>main</code> o <code>develop</code>. Publica summaries y artefactos aunque falle el job.</p><div class="grid-2"><ul><li>Backend: Java 17 + Gradle + Checkstyle.</li><li>Frontend: Node 20 + <code>npm ci</code> + ESLint.</li></ul><ul><li>No ejecuta SonarScanner.</li><li>No ejecuta Horusec, tests completos, Docker ni Kubernetes.</li></ul></div><div class="evidence-links"><a href="../../TP1-Linter/README.md" target="_blank">📄 README TP1</a><a href="../../../.github/workflows/quality-gate.yml" target="_blank">⚙️ Workflow activo</a></div></div>
+        </section>
+
+        <section id="tp2">
+          <div class="section-heading"><div><div class="kicker">02 · Seguridad</div><h3>TP2 — Horusec</h3></div><span class="pill warn">Revisión contextual</span></div>
+          <div class="grid-3">
+            <div class="card"><div class="mini-label">Total</div><h4>13 findings</h4><p>7 en backend y 6 en frontend.</p></div>
+            <div class="card"><div class="mini-label">Severidad</div><h4>2 HIGH · 11 INFO</h4><p>Los casos se analizaron individualmente.</p></div>
+            <div class="card"><div class="mini-label">Conclusión</div><h4>13 falsos positivos</h4><p>Para los flujos concretos auditados.</p></div>
+          </div>
+          <div class="grid-2" style="margin-top:16px">
+            <div class="card"><h4>Qué se decidió</h4><ul><li>No contar alertas sin mirar el contexto.</li><li>Revisar qué dato se imprime y quién puede acceder a los logs.</li><li>No afirmar que “sin alertas” significa “sistema seguro”.</li><li>Complementar SAST con dependencias, DAST, revisión y controles de autorización.</li></ul></div>
+            <div class="card"><h4>Canary 1.1.0</h4><p>Horusec v2.8.0 devolvió <code>status: success</code> y un único INFO de confianza LOW:</p><div class="quote"><strong>H13 / CWE-532</strong><br><code>console.error(error)</code> en <code>ItemDetailContainer.jsx:18</code>. Es preexistente y no se afirma que esté corregido.</div><div class="pill-row"><span class="pill good">CRITICAL 0</span><span class="pill good">HIGH 0</span><span class="pill good">MEDIUM 0</span><span class="pill good">LOW 0</span><span class="pill warn">INFO 1</span></div></div>
+          </div>
+          <div class="evidence-links"><a href="../../TP2-Horusec/README.md" target="_blank">📄 README TP2</a><a href="../evidencias/reportes/horusec-frontend-canary.json" target="_blank">🧾 JSON Canary</a><a href="../evidencias/reportes/tpf-03-canary.md" target="_blank">📄 Reporte TPF-03</a></div>
+        </section>
+
+        <section id="tp3">
+          <div class="section-heading"><div><div class="kicker">03 · Calidad interna</div><h3>TP3 — SonarQube y tests</h3></div><span class="pill good">Quality Gate histórico: OK</span></div>
+          <div class="card"><p>SonarQube se configuró con el proyecto <code>softwarequality-tp3</code> para analizar Java y React juntos. Se integraron resultados JUnit, JaCoCo y LCOV.</p><div class="grid-2"><div><div class="mini-label">Inicial → final</div><table><thead><tr><th>Métrica</th><th>Inicial</th><th>Final</th></tr></thead><tbody><tr><td><strong>Issues</strong></td><td>55</td><td>25</td></tr><tr><td><strong>Bugs</strong></td><td>15</td><td>2</td></tr><tr><td><strong>Vulnerabilidades</strong></td><td>5</td><td>0</td></tr><tr><td><strong>Code smells</strong></td><td>35</td><td>23</td></tr><tr><td><strong>Cobertura global</strong></td><td>7,9 %</td><td>33,1 %</td></tr><tr><td><strong>Duplicación</strong></td><td>1,6 %</td><td>1,1 %</td></tr></tbody></table></div></div><div><div class="mini-label">Pruebas</div><div class="status confirmed"><h4>62 tests Java</h4><p>Todos correctos en el snapshot histórico.</p><h4>9 tests frontend</h4><p>Suite Vitest agregada para componentes y lógica.</p><h4>0 fallos reportados</h4><p>La cobertura nueva alcanzó 94,9 %.</p></div></div></div></div>
+          <div class="grid-2" style="margin-top:16px"><div class="card"><h4>Correcciones importantes</h4><ul><li>Restauración correcta de interrupciones.</li><li>Eliminación de <code>printStackTrace</code>.</li><li>Listas vacías en lugar de <code>null</code>.</li><li>Validaciones duplicadas movidas al servicio.</li><li>Estado inmutable del carrito y claves estables React.</li><li>Tests vacíos y mocks duplicados corregidos.</li></ul></div><div class="card"><h4>Cómo explicar el Gate</h4><p>El Gate se evalúa sobre código nuevo. Por eso puede quedar verde aunque la cobertura global sea 33,1 %.</p><div class="quote"><strong>Condiciones históricas:</strong> cobertura nueva 94,9 % ≥ 80 %, duplicación nueva 1,02389 % ≤ 3 % y 0 nuevos problemas.</div><p class="muted-note">El JSON no demuestra un Quality Gate personalizado ni un análisis ejecutado hoy sobre la rama actual.</p></div></div>
+          <div class="evidence-links"><a href="../../TP3-SonarQube/README.md" target="_blank">📄 README TP3</a><a href="../../TP3-SonarQube/sonar-project.properties" target="_blank">⚙️ Configuración scanner</a><a href="../../TP3-SonarQube/evidence/analisis-final.json" target="_blank">🧾 Snapshot Sonar</a><a href="../../TP3-SonarQube/evidence/validacion.txt" target="_blank">✅ Validación histórica</a></div>
+        </section>
+
+        <section id="tp4">
+          <div class="section-heading"><div><div class="kicker">04 · Operación y resiliencia</div><h3>TP4 — Kubernetes, HPA y k6</h3></div><span class="pill bad">Cuellos de botella medidos</span></div>
+          <div class="grid-2"><div class="card"><h4>Lift & Shift</h4><ul><li>React/NGINX.</li><li>Spring Boot.</li><li>PostgreSQL.</li><li>Ingress NGINX.</li><li>Metrics Server.</li><li>HPA entre 1 y 5 réplicas.</li></ul></div><div class="card"><h4>Decisión de backend</h4><p>Se agregó el perfil Spring <code>k8s</code> para usar PostgreSQL y JDBC sin romper el modo original con Firebase.</p><p>El backend publica probes de Actuator y usa variables de entorno inyectadas por Kubernetes.</p></div></div>
+          <div class="card" style="margin-top:16px"><h4>Resultados k6</h4><table><thead><tr><th>Escenario</th><th>Carga</th><th>Resultado</th><th>Lectura</th></tr></thead><tbody><tr><td><strong>Smoke</strong></td><td>2 VUs</td><td>0 % errores · p95 2,01 s</td><td>Disponible, pero lento por cold start y datos acumulados.</td></tr><tr><td><strong>Load</strong></td><td>2.000 VUs</td><td>98,10 % errores · p95 12,32 s</td><td>HPA 1 → 5, pero PostgreSQL se saturó.</td></tr><tr><td><strong>Stress</strong></td><td>200–1.000 VUs</td><td>99,80 % errores · p95 5 s</td><td>Breaking point desde el primer escalón.</td></tr><tr><td><strong>Failover</strong></td><td>Eliminar un Pod</td><td>574/574 correctas · LCP 476 ms</td><td>Resiliencia correcta con réplicas activas.</td></tr><tr><td><strong>Spike</strong></td><td>1.500 VUs en 5 s</td><td>100 % errores</td><td>CPU throttling, liveness y Exit 143.</td></tr></tbody></table></div>
+          <div class="big-callout" style="margin-top:16px"><h4>Lección de TP4</h4><p>Escalar el backend no alcanza si la dependencia compartida está saturada. El diagnóstico principal fue el uso de <code>DriverManagerDataSource</code> sin pool, junto con la base PostgreSQL compartida y la inercia del HPA.</p></div>
+          <div class="evidence-links"><a href="../../TP4-HPA-y-K6/README.md" target="_blank">📄 README TP4</a><a href="../../TP4-HPA-y-K6/evidence/image-12.png" target="_blank">📈 HPA 1 → 5</a><a href="../../TP4-HPA-y-K6/evidence/falla-ux.png" target="_blank">🧪 Failover UX</a><a href="../../TP4-HPA-y-K6/evidence/image-15.png" target="_blank">⚡ Spike test</a></div>
+        </section>
+
+        <section id="final">
+          <div class="section-heading"><div><div class="kicker">05 · Release progresivo</div><h3>TP Final — Stable vs. Canary</h3></div><span class="pill info">Peso inicial: 0</span></div>
+          <div class="grid-3"><div class="card"><div class="mini-label">Stable</div><h4>1.0.0</h4><p>Versión de referencia para tráfico normal.</p><span class="pill good">front-stable</span></div><div class="card"><div class="mini-label">Canary</div><h4>1.1.0</h4><p>Nueva versión visual, observable y forzable.</p><span class="pill info">front-canary</span></div><div class="card"><div class="mini-label">Promoción</div><h4>0 → 10 → 25 → 50 → 100</h4><p>La secuencia está definida, pero las métricas finales no aparecen guardadas.</p><span class="pill warn">Pendiente de evidencia</span></div></div>
+          <div class="grid-2" style="margin-top:16px"><div class="card"><h4>Cómo se identifica la versión</h4><ul><li><code>/version.txt</code>.</li><li>Header <code>X-App-Version</code>.</li><li>Meta <code>app-version</code>.</li><li>Banner visual: <code>ESTÁS VIENDO LA VERSIÓN CANARY 1.1.0</code>.</li></ul></div><div class="card"><h4>Cómo se fuerza Canary</h4><div class="code-wrap"><button class="copy" data-copy="curl -H 'Host: terrasense.local' -H 'X-Canary: always' http://127.0.0.1:18080/version.txt">Copiar</button><pre>curl -H 'Host: terrasense.local' \
+  -H 'X-Canary: always' \
+  http://127.0.0.1:18080/version.txt</pre></div><div class="code-wrap"><button class="copy" data-copy="curl -H 'Host: terrasense.local' -H 'Cookie: canary=always' http://127.0.0.1:18080/version.txt">Copiar</button><pre>curl -H 'Host: terrasense.local' \
+  -H 'Cookie: canary=always' \
+  http://127.0.0.1:18080/version.txt</pre></div></div></div>
+          <div class="card" style="margin-top:16px"><h4>Orden reproducible de despliegue</h4><div class="code-wrap"><button class="copy" data-copy="minikube start --driver=docker\nminikube addons enable ingress\nminikube addons enable metrics-server\nkubectl delete ingress terrasense-ingress -n terrasense --ignore-not-found\nkubectl apply -f TPs/TP-Final/k8s/base/\nkubectl apply -f TPs/TP-Final/k8s/stable/\nkubectl apply -f TPs/TP-Final/k8s/canary/">Copiar</button><pre>minikube start --driver=docker
+minikube addons enable ingress
+minikube addons enable metrics-server
+
+# Si existe el Ingress legado del TP4:
+kubectl delete ingress terrasense-ingress -n terrasense --ignore-not-found
+
+kubectl apply -f TPs/TP-Final/k8s/base/
+kubectl apply -f TPs/TP-Final/k8s/stable/
+kubectl apply -f TPs/TP-Final/k8s/canary/</pre></div></div>
+          <div class="quote"><strong>Rollback:</strong> cambiar <code>nginx.ingress.kubernetes.io/canary-weight</code> a <code>"0"</code> y reaplicar el manifiesto Canary.</div>
+          <div class="evidence-links"><a href="../README.md" target="_blank">📄 README TP Final</a><a href="../k8s/README.md" target="_blank">⚙️ Guía Kubernetes</a><a href="../avances.md" target="_blank">📝 Bitácora</a><a href="../handoff-integrante-1.md" target="_blank">🤝 Handoff</a></div>
+        </section>
+
+        <section id="evidencias">
+          <div class="section-heading"><div><div class="kicker">Pruebas visuales</div><h3>Evidencias disponibles en el repositorio</h3></div></div>
+          <div class="evidence-grid">
+            <figure><img src="../../TP1-Linter/assets/checkstyle-fail.png" alt="Captura del Checkstyle fallando en la línea base"><figcaption><strong>TP1 · Línea base</strong>Checkstyle detectaba errores antes de la corrección.</figcaption></figure>
+            <figure><img src="../../TP1-Linter/assets/checkstyle-pass.png" alt="Captura del Checkstyle correcto"><figcaption><strong>TP1 · Resultado</strong>Checkstyle queda aprobado después de las correcciones.</figcaption></figure>
+            <figure><img src="../evidencias/capturas/01-frontend-stable-1.0.0.png" alt="Comparación visual de frontend estable y canary"><figcaption><strong>TP Final · Comparación visual</strong>Stable 1.0.0 y Canary 1.1.0 con banner visible.</figcaption></figure>
+            <figure><img src="../evidencias/capturas/03-kubernetes-recursos-healthy.png" alt="Recursos de Kubernetes saludables"><figcaption><strong>TP Final · Estado del cluster</strong>Deployments, Services, Ingress, Pods y HPA saludables.</figcaption></figure>
+            <figure><img src="../../TP4-HPA-y-K6/evidence/image-12.png" alt="HPA escalando de uno a cinco pods"><figcaption><strong>TP4 · HPA</strong>La carga eleva el consumo y el HPA escala hasta cinco Pods.</figcaption></figure>
+            <figure><img src="../../TP4-HPA-y-K6/evidence/falla-ux.png" alt="Experimento de falla con navegador"><figcaption><strong>TP4 · Failover</strong>El navegador mantiene la experiencia cuando se elimina un Pod con redundancia.</figcaption></figure>
+          </div>
+          <div class="evidence-grid" style="margin-top:16px">
+            <figure><video controls preload="metadata"><source src="../evidencias/capturas/frontend-canary.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video><figcaption><strong>Video · Frontend Canary</strong>Comparación visual de las dos versiones.</figcaption></figure>
+            <figure><video controls preload="metadata"><source src="../evidencias/capturas/terminal-canary.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video><figcaption><strong>Video · Terminal Canary</strong>Ruteo normal y forzado por header/cookie.</figcaption></figure>
+          </div>
+          <div class="status-grid" style="margin-top:16px"><div class="status confirmed"><h4>Confirmado</h4><ul><li>Versiones Stable/Canary.</li><li>Pods saludables.</li><li>Routing normal y forzado.</li><li>Horusec del frontend.</li><li>Videos y capturas existentes.</li></ul></div><div class="status documented"><h4>Documentado</h4><ul><li>Plan de rollout.</li><li>Criterios de promoción.</li><li>Rollback a peso 0.</li><li>Hipótesis de stress test.</li></ul></div><div class="status pending"><h4>No encontrado</h4><ul><li>Métricas por etapa 10/25/50 %.</li><li>Comparativa k6 del TP Final.</li><li>Grilla de 20 capturas.</li><li>Video específico de rollout.</li><li>PDF final y diapositivas.</li></ul></div></div>
+        </section>
+
+        <section id="decisiones">
+          <div class="section-heading"><div><div class="kicker">Para defender el diseño</div><h3>Decisiones y motivos</h3></div></div>
+          <div class="card"><table><thead><tr><th>Decisión</th><th>Motivo</th><th>Beneficio</th></tr></thead><tbody><tr><td><strong>Canary solo frontend</strong></td><td>El experimento se concentra en el rediseño visual.</td><td>Menos complejidad y menor riesgo.</td></tr><tr><td><strong>Tags 1.0.0 / 1.1.0</strong></td><td>Evitar imágenes ambiguas como <code>latest</code>.</td><td>Reproducibilidad y rollback.</td></tr><tr><td><strong>Versionado observable</strong></td><td>El routing debe poder comprobarse desde máquina y usuario.</td><td>Meta, endpoint, header y banner.</td></tr><tr><td><strong>Peso inicial 0</strong></td><td>No exponer usuarios normales antes del smoke test.</td><td>Prueba segura por header/cookie.</td></tr><tr><td><strong>Selectors track</strong></td><td>Separar Pods Stable y Canary.</td><td>Evita que un Service mezcle versiones.</td></tr><tr><td><strong>Recursos iguales</strong></td><td>Comparar variantes bajo condiciones equivalentes.</td><td>Menos sesgo en las mediciones.</td></tr><tr><td><strong>Perfil Spring k8s</strong></td><td>Ejecutar localmente con PostgreSQL sin romper Firebase.</td><td>Despliegue autónomo en Minikube.</td></tr><tr><td><strong>Rollback a 0</strong></td><td>Fail-safe ante errores o regresión.</td><td>Regreso rápido a Stable.</td></tr></tbody></table></div>
+        </section>
+
+        <section id="veredicto">
+          <div class="section-heading"><div><div class="kicker">Dictamen</div><h3>Go / No-Go</h3></div></div>
+          <div class="grid-2"><div class="big-callout"><h4>Canary 1.1.0 · GO parcial</h4><p>Está listo para iniciar exposición controlada porque:</p><ul><li>ESLint quedó en 0.</li><li>Tests y calidad interna documentados.</li><li>Horusec no encontró HIGH/CRITICAL.</li><li>La versión está desplegada y observable.</li><li>Existe rollback por peso.</li></ul><p><strong>GO final al 100 %:</strong> condicionado a tener métricas del rollout y comparativa bajo carga.</p></div><div class="card" style="border-color:rgba(255,141,155,.35)"><h4 style="color:var(--red)">10.000 sensores · NO-GO</h4><p>La evidencia de TP4 muestra errores graves por debajo del volumen objetivo:</p><ul><li>98,10 % de errores en Load Test.</li><li>99,80 % en Stress Test.</li><li>100 % en Spike Test.</li><li>Sin pool JDBC.</li><li>Base de datos compartida y HPA reactivo.</li></ul><p><strong>Remediación propuesta:</strong> HikariCP, paginación, más Pods mínimos y cola de ingesta.</p></div></div>
+          <div class="quote" style="margin-top:16px"><strong>Cómo decirlo:</strong> “Demostramos que podemos separar, identificar y enrutar dos versiones. La promoción definitiva requiere completar la medición del rollout; con la arquitectura actual no damos GO para 10.000 sensores.”</div>
+        </section>
+
+        <section id="defensa">
+          <div class="section-heading"><div><div class="kicker">Repaso rápido</div><h3>Preguntas probables de la presentación</h3></div></div>
+          <div class="grid-2"><div class="card"><h4>¿Por qué no usar <code>latest</code>?</h4><p>Porque no permite saber exactamente qué build está ejecutándose. Los tags explícitos hacen reproducibles la comparación y el rollback.</p></div><div class="card"><h4>¿Cómo sabemos qué versión respondió?</h4><p>Con <code>/version.txt</code>, el header <code>X-App-Version</code>, la meta HTML y el banner visual del Canary.</p></div><div class="card"><h4>¿El Gate verde significa calidad total?</h4><p>No. El Gate histórico evalúa principalmente código nuevo. La cobertura global sigue siendo 33,1 %.</p></div><div class="card"><h4>¿Por qué el HPA no solucionó la carga?</h4><p>Porque escaló el backend, pero la base y las conexiones JDBC siguieron siendo un cuello de botella compartido.</p></div><div class="card"><h4>¿Horusec dio cero?</h4><p>No exactamente. Quedó un INFO de confianza LOW, preexistente. No hubo CRITICAL, HIGH, MEDIUM ni LOW.</p></div><div class="card"><h4>¿Se completó el rollout 0 → 100?</h4><p>Está definido y documentado, pero no hay métricas por etapa en el checkout. No conviene afirmarlo como terminado.</p></div></div>
+          <div class="card" style="margin-top:16px"><h4>Demo corta en WSL</h4><div class="code-wrap"><button class="copy" data-copy="kubectl get deploy,svc,ingress,pods,hpa -n terrasense\nkubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 18080:80\ncurl -fsS -H 'Host: terrasense.local' http://127.0.0.1:18080/version.txt\ncurl -fsS -H 'Host: terrasense.local' -H 'X-Canary: always' http://127.0.0.1:18080/version.txt\ncurl -fsS -H 'Host: terrasense.local' -H 'Cookie: canary=always' http://127.0.0.1:18080/version.txt">Copiar</button><pre>kubectl get deploy,svc,ingress,pods,hpa -n terrasense
+kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 18080:80
+
+# En otra terminal:
+curl -fsS -H 'Host: terrasense.local' http://127.0.0.1:18080/version.txt
+curl -fsS -H 'Host: terrasense.local' -H 'X-Canary: always' http://127.0.0.1:18080/version.txt
+curl -fsS -H 'Host: terrasense.local' -H 'Cookie: canary=always' http://127.0.0.1:18080/version.txt</pre></div></div>
+        </section>
+
+        <footer>
+          <p><strong>Fuente principal:</strong> documentación y evidencias guardadas en el repositorio SoftwareQuality.</p>
+          <p>Archivos de referencia: <a href="../README.md" target="_blank">TP Final README</a> · <a href="../avances.md" target="_blank">avances</a> · <a href="../../TP3-SonarQube/evidence/analisis-final.json" target="_blank">snapshot Sonar</a> · <a href="../../TP4-HPA-y-K6/README.md" target="_blank">TP4</a>.</p>
+          <p class="muted-note">Esta página no incluye tokens ni credenciales. Para imprimirla como PDF, usar el botón “Imprimir” y seleccionar “Guardar como PDF”.</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const print = () => window.print();
+    document.getElementById('printBtn').addEventListener('click', print);
+    document.getElementById('printHero').addEventListener('click', print);
+    document.getElementById('topBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const original = button.textContent;
+        try {
+          await navigator.clipboard.writeText(button.dataset.copy);
+          button.textContent = 'Copiado';
+        } catch {
+          button.textContent = 'Seleccioná el código';
+        }
+        setTimeout(() => { button.textContent = original; }, 1400);
+      });
+    });
+
+    const links = [...document.querySelectorAll('#nav a')];
+    const sections = links.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+      });
+    }, { rootMargin: '-18% 0px -68% 0px' });
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
