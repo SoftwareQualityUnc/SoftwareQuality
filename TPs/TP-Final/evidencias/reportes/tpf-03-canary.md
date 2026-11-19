@@ -2,7 +2,7 @@
 
 ## Estado
 
-**Parcial.** TPF-03 no se marca como completo porque Horusec no está instalado ni validado.
+**Completo.** TPF-03 queda cerrado: las imágenes stable/canary, ESLint y la validación Horusec fueron ejecutados y documentados.
 
 ## Validaciones realizadas
 
@@ -18,14 +18,31 @@
   - `X-App-Version`: `1.1.0`.
   - Banner visible: `ESTÁS VIENDO LA VERSIÓN CANARY 1.1.0`.
 
+## Validación Horusec
+
+Desde la raíz del repositorio, se ejecutó Horusec en Docker utilizando la imagen oficial fija `horuszup/horusec-cli:v2.8.0`:
+
+```bash
+docker run --rm -v "$PWD:/repo" horuszup/horusec-cli:v2.8.0 horusec start -p /repo/frontend -P /repo --config-file-path /repo/material/Horusec/horusec-config.json -o json -O /repo/TPs/TP-Final/evidencias/reportes/tpf-03-horusec-frontend.json
+```
+
+Resultado observado:
+
+- Exit code: `0`.
+- JSON: `status: "success"`.
+- JSON: `errors: ""`.
+- Evidencia completa: `evidencias/reportes/tpf-03-horusec-frontend.json`.
+- Un finding `INFO` con confidence `LOW` en `src/components/ItemDetail/ItemDetailContainer.jsx:18`, sobre `console.error(error)`.
+- Regla/herramienta: `HorusecEngine/CWE-532`.
+
+El finding se clasifica como **hallazgo informativo registrado para revisión**. No se afirma que haya cero findings ni que el hallazgo esté corregido. En esta ejecución no se observaron findings bloqueantes.
+
 ## Pendiente
 
-- Instalar o habilitar Horusec.
-- Ejecutar Horusec sobre `frontend/` y registrar su resultado.
-- Recién después evaluar el cierre de TPF-03.
+No quedan pendientes dentro del alcance de TPF-03. El rollout progresivo, las pruebas k6, la evidencia del HPA y la evaluación ISO corresponden a los siguientes integrantes.
 
 ## Próximos pasos
 
-1. Completar la validación Horusec.
-2. Implementar los Deployments y Services stable/canary de TPF-04.
-3. Implementar los Ingress y continuar con la validación del ruteo.
+1. Mantener la evidencia Horusec junto con el reporte de TPF-03.
+2. Continuar con el rollout progresivo y las pruebas de carga de los siguientes integrantes.
+3. Completar posteriormente la evidencia ISO/presentación sin reinterpretar el finding informativo como ausencia de hallazgos.

@@ -16,7 +16,7 @@ El alcance de Integrante 1 comprende:
 - validar los rollouts iniciales, el estado de los recursos y el ruteo normal y forzado;
 - organizar las evidencias y dejar un handoff operativo para Integrante 2.
 
-Quedan fuera del alcance de Integrante 1 el cierre de Horusec, la ejecución del rollout progresivo completo, las pruebas de carga con k6, el análisis o exposición según ISO/IEC 25010 y la presentación final. Esas actividades no se presentan como realizadas en esta entrega.
+Quedan fuera del alcance de Integrante 1 la ejecución del rollout progresivo completo, las pruebas de carga con k6, el análisis o exposición según ISO/IEC 25010 y la presentación final. Horusec sí fue ejecutado y documentado para cerrar TPF-03; el resultado incluye un hallazgo informativo `INFO`/`LOW` para revisión.
 
 ## 2. Arquitectura stable/canary
 
@@ -162,6 +162,16 @@ curl -H "Host: terrasense.local" \
 
 Con el peso inicial en `0`, la respuesta esperada y observada es `1.0.0` para el tráfico normal y `1.1.0` para el header o la cookie de forzado. En la misma validación, el header `X-App-Version` acompañó esas versiones.
 
+### 4.8. Validación Horusec
+
+La validación se ejecutó desde la raíz del repositorio con la imagen oficial fija `horuszup/horusec-cli:v2.8.0`:
+
+```bash
+docker run --rm -v "$PWD:/repo" horuszup/horusec-cli:v2.8.0 horusec start -p /repo/frontend -P /repo --config-file-path /repo/material/Horusec/horusec-config.json -o json -O /repo/TPs/TP-Final/evidencias/reportes/tpf-03-horusec-frontend.json
+```
+
+El proceso terminó con exit code `0`; el JSON informó `status: "success"` y `errors: ""`. Se registró un finding `INFO` con confidence `LOW` en `src/components/ItemDetail/ItemDetailContainer.jsx:18`, sobre `console.error(error)`, bajo `HorusecEngine/CWE-532`. El hallazgo queda documentado para revisión: no se afirma cero findings ni que esté corregido. En esta ejecución no se observaron findings bloqueantes. La evidencia completa está en [tpf-03-horusec-frontend.json](evidencias/reportes/tpf-03-horusec-frontend.json).
+
 ## 5. Rollout progresivo y rollback
 
 Este es el procedimiento que recibe Integrante 2; no se declara como rollout ejecutado por Integrante 1. El peso se modifica en `k8s/canary/02-ingress-canary.yaml` y se reaplica el manifiesto en cada etapa:
@@ -217,7 +227,7 @@ La entrega queda organizada de la siguiente manera:
 Los reportes disponibles para esta parte son:
 
 - [TPF-02 — Versionado observable](evidencias/reportes/tpf-02-versionado.md);
-- [TPF-03 — Imágenes y variante canary](evidencias/reportes/tpf-03-canary.md), con estado parcial por Horusec;
+- [TPF-03 — Imágenes y variante canary](evidencias/reportes/tpf-03-canary.md), completado con Horusec validado y un finding informativo `INFO`/`LOW` documentado;
 - [TPF-05 — Minikube, ruteo y handoff](evidencias/reportes/tpf-05-minikube-routing.md).
 
 Las capturas relacionadas están enlazadas desde el reporte TPF-05:
@@ -227,7 +237,7 @@ Las capturas relacionadas están enlazadas desde el reporte TPF-05:
 
 ## 8. Estado final y handoff
 
-Integrante 1 deja validado el camino reproducible de construcción, carga de imágenes, aplicación de `base/stable/canary`, salud inicial y ruteo por port-forward. TPF-05 está completado para ese alcance. TPF-03 continúa pendiente únicamente por la instalación y validación de Horusec.
+Integrante 1 deja validado el camino reproducible de construcción, carga de imágenes, aplicación de `base/stable/canary`, salud inicial, ruteo por port-forward y validación Horusec. TPF-03 y TPF-05 están completados para ese alcance. Horusec no se presenta como cero findings: queda un finding informativo `INFO`/`LOW` documentado para revisión.
 
 Integrante 2 recibe:
 
@@ -236,4 +246,4 @@ Integrante 2 recibe:
 3. la secuencia `0 → 10 → 25 → 50 → 100` y el rollback a `0`;
 4. los comandos de verificación y las rutas de evidencias.
 
-El cierre del rollout progresivo, las pruebas k6, la evaluación ISO/IEC 25010 y la presentación final deben documentarse por separado cuando se ejecuten. Este README no afirma resultados que todavía no están respaldados por los reportes o capturas existentes.
+El cierre del rollout progresivo, las pruebas k6, la evidencia del HPA, la evaluación ISO/IEC 25010 y la presentación final deben documentarse por separado cuando se ejecuten. Este README no afirma ausencia de pendientes de seguridad: el finding Horusec `INFO`/`LOW` permanece registrado para revisión.
