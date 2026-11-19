@@ -91,7 +91,7 @@ jobs:
             --ignore="**/build/**,**/.gradle/**,**/gradle/wrapper/**" \
             --output-format="json" \
             --json-output-file="horusec-report.json" \
-            --return-error=false
+            --return-error=true
 
       - name: Add Horusec summary
         if: always()
