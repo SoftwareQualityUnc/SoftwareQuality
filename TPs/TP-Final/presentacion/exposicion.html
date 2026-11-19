@@ -97,7 +97,7 @@
   .cover .footer { border-color: #2a3b33; color: #7f9488; }
   .tech { margin-top: 64px; display: flex; flex-direction: column; gap: 18px; }
   .tech > div { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .tech .tl { width: 280px; font-size: 20px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8fb8a0; }
+  .tech .tl { width: 340px; white-space: nowrap; font-size: 20px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8fb8a0; }
   .tech .chip { font-size: 24px; font-weight: 600; color: #eef4ef; background: #ffffff14; border: 1px solid #ffffff2e; padding: 7px 18px; border-radius: 999px; }
   .section { background: linear-gradient(160deg, #13241c, #0b1310); color: #eef4ef; justify-content: center; }
   .section .kicker { color: #6fd39d; }
@@ -136,6 +136,8 @@
   tr.ok td { background: #eef8f2; }
   .up { color: var(--green); font-weight: 700; }
   .down { color: var(--red); font-weight: 700; }
+  .overview td { font-size: 24px; padding: 14px 16px; vertical-align: middle; }
+  .overview td.num { font-family: var(--mono); font-weight: 700; color: var(--green); font-size: 26px; }
   .tbl-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 14px 20px; }
 
   /* Distribution bars */
@@ -180,46 +182,50 @@
 <div id="viewport"><div id="stage">
 
 <!-- 1 · PORTADA -->
-<section class="slide cover" data-notes="(0:00 · 40 s) Role play: somos el equipo SRE/QA de TerraSense y presentamos al directorio y a la Cooperativa cómo aseguramos la calidad, desde la primera línea de código hasta producción. Presentar a los integrantes y su rol.">
-  <div class="kicker">Gestión de la Calidad del Software · TP Final · UNC FCEFyN</div>
+<section class="slide cover" data-notes="(0:00 · 40 s) Presentamos lo que implementamos para asegurar la calidad de la aplicación, desde la primera línea de código hasta producción. Mencionar el stack: la app (React, Spring Boot, PostgreSQL) y las herramientas de calidad y plataforma que vamos a recorrer.">
+  <div class="kicker">Gestión de la Calidad del Software · UNC FCEFyN</div>
   <h1>Del pipeline de CI<br>al despliegue Canary</h1>
-  <p class="lead">Informe del equipo SRE/QA de TerraSense: cómo aseguramos la calidad del panel de monitoreo, desde el código hasta producción.</p>
+  <p class="lead">Qué implementamos para asegurar la calidad de la aplicación, desde el código hasta producción: con qué objetivo y qué obtuvimos.</p>
   <div class="tech">
     <div><span class="tl">Aplicación</span><span class="chip">React + Vite</span><span class="chip">Spring Boot · Java 17</span><span class="chip">PostgreSQL</span></div>
     <div><span class="tl">Calidad en CI</span><span class="chip">GitHub Actions</span><span class="chip">Checkstyle</span><span class="chip">ESLint</span><span class="chip">Horusec</span><span class="chip">SonarQube</span><span class="chip">JUnit + Mockito</span><span class="chip">Vitest</span><span class="chip">JaCoCo</span></div>
     <div><span class="tl">Plataforma y pruebas</span><span class="chip">Docker</span><span class="chip">Minikube</span><span class="chip">Kubernetes HPA</span><span class="chip">NGINX Ingress</span><span class="chip">k6</span><span class="chip">k6/browser</span></div>
   </div>
-  <div class="footer"><span>TerraSense S.A. · Cooperativa Agropecuaria del Centro</span><span>Aula 102 · 19/11/2026</span></div>
+  <div class="footer"><span>Segundo cuatrimestre 2026</span><span>Aula 102 · 19/11/2026</span></div>
 </section>
 
-<!-- 2 · PROBLEMA -->
-<section class="slide" data-notes="(0:40 · 50 s) El incidente: un despliegue big bang dejó a los productores 40 minutos con la pantalla en blanco en una madrugada de helada. El directorio pide dos cosas: que ninguna versión llegue al 100% sin demostrarlo con tráfico real, y saber si podemos pasar a 10.000 sensores.">
-  <div class="kicker">El problema</div>
-  <h2>Un release “big bang” dejó a los productores 40 minutos con la pantalla en blanco, en plena helada</h2>
-  <div class="grid g3 fit" style="margin-top:10px">
-    <div class="card"><div class="label">Hoy</div><p><b>2.000 sensores ESP32</b> reportando cada 30 s a una plataforma que ya corre en Kubernetes.</p></div>
-    <div class="card red"><div class="label">El riesgo</div><p>Cada release reemplazaba <b>todos los pods de una vez</b>. Un error llegaba al 100 % de los usuarios.</p></div>
-    <div class="card blue"><div class="label">Lo que viene</div><p>La Cooperativa evalúa ampliar a <b>10.000 sensores</b> y pide evidencia de cómo aseguramos la calidad.</p></div>
+<!-- 2 · RESUMEN -->
+<section class="slide" data-notes="(0:40 · 40 s) El mapa de la presentación: seis etapas que fuimos implementando. Para cada una, el objetivo y el resultado principal. Después entramos en cada una con qué agregamos al repo, cómo estaba antes, cómo quedó y la evidencia.">
+  <div class="kicker">Resumen</div>
+  <h2>Lo que implementamos, para qué y qué obtuvimos</h2>
+  <div class="tbl-card">
+    <table class="overview">
+      <thead><tr><th style="width:70px">#</th><th style="width:330px">Implementamos</th><th>Objetivo</th><th>Qué obtuvimos</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td><b>Linters en CI</b><br><span class="muted">Checkstyle + ESLint en GitHub Actions</span></td><td>Que ningún push con errores de estilo pase el pipeline</td><td><b>24 → 0</b> errores, sin desactivar reglas</td></tr>
+        <tr><td class="num">02</td><td><b>Análisis SAST</b><br><span class="muted">Horusec</span></td><td>Detectar vulnerabilidades y secretos en el código</td><td><b>13</b> alertas auditadas · <b>0 HIGH</b> en la versión nueva</td></tr>
+        <tr><td class="num">03</td><td><b>SonarQube + tests</b><br><span class="muted">JaCoCo, JUnit, Vitest</span></td><td>Medir y corregir bugs, vulnerabilidades y cobertura</td><td>Bugs <b>15 → 2</b> · cobertura <b>7,9 → 33,1 %</b></td></tr>
+        <tr><td class="num">04</td><td><b>Kubernetes + HPA</b><br><span class="muted">Docker, Minikube, probes</span></td><td>Correr en un cluster con autoescalado y autorecuperación</td><td>Pods estables · HPA de <b>1 a 5</b> réplicas</td></tr>
+        <tr><td class="num">05</td><td><b>Pruebas de carga y fallas</b><br><span class="muted">k6 y k6/browser</span></td><td>Medir el sistema contra los SLO: p(95)&nbsp;&lt;&nbsp;300&nbsp;ms y error&nbsp;&lt;&nbsp;1&nbsp;%</td><td>Self-healing OK · cuello de botella en la base de datos</td></tr>
+        <tr class="ok"><td class="num">06</td><td><b>Despliegue Canary</b><br><span class="muted">NGINX Ingress</span></td><td>Liberar versiones nuevas de a poco, con rollback inmediato</td><td>Falla detectada al <b>25 %</b> · v1.1.0 promovida</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="grid g2 fit" style="margin-top:34px">
-    <div class="card green"><div class="label">Pregunta 1</div><p><b>¿Podemos liberar la v1.1.0 del panel sin repetir el incidente?</b></p></div>
-    <div class="card green"><div class="label">Pregunta 2</div><p><b>¿La plataforma soporta 10.000 sensores cumpliendo los SLO?</b></p></div>
-  </div>
-  <div class="footer"><span>Contexto · Apertura</span><span>2</span></div>
+  <div class="footer"><span>Recorrido de la presentación</span><span>2</span></div>
 </section>
 
 <!-- 3 · FLUJO DE CALIDAD -->
-<section class="slide" data-notes="(1:30 · 50 s) Este es el hilo de toda la presentación: cada caja es una compuerta que fuimos agregando al repo durante el cuatrimestre. Lo que no pasa una compuerta no llega a la siguiente. Vamos a recorrerlas en orden y en cada una mostramos qué agregamos, cómo estaba antes y cómo quedó.">
+<section class="slide" data-notes="(1:20 · 40 s) Este es el hilo de toda la presentación: cada caja es una compuerta que fuimos agregando al repo. Lo que no pasa una compuerta no llega a la siguiente. Vamos a recorrerlas en orden y en cada una mostramos qué agregamos, cómo estaba antes y cómo quedó.">
   <div class="kicker">Arquitectura · Vista 1</div>
-  <h2>Cada TP agregó una compuerta de calidad al camino del código</h2>
+  <h2>Cada etapa agrega una compuerta de calidad al camino del código</h2>
   <div class="flow">
     <div class="node"><span class="tp">repo</span><h3>Código</h3><div class="d">React/Vite + Spring Boot</div></div>
-    <div class="node ci"><span class="tp">TP1</span><h3>Linters en CI</h3><div class="d">Checkstyle + ESLint en GitHub Actions</div></div>
-    <div class="node ci"><span class="tp">TP2</span><h3>Horusec</h3><div class="d">SAST: vulnerabilidades y secretos</div></div>
-    <div class="node ci"><span class="tp">TP3</span><h3>SonarQube + tests</h3><div class="d">Bugs, smells, cobertura</div></div>
-    <div class="node k8s"><span class="tp">TP4</span><h3>K8s + HPA</h3><div class="d">Imágenes versionadas, probes, autoescalado</div></div>
-    <div class="node k8s"><span class="tp">TP4</span><h3>k6</h3><div class="d">Carga, estrés y fallas contra SLO</div></div>
-    <div class="node fin"><span class="tp">Final</span><h3>Canary</h3><div class="d">Rollout progresivo + veredicto</div></div>
+    <div class="node ci"><span class="tp">01</span><h3>Linters en CI</h3><div class="d">Checkstyle + ESLint en GitHub Actions</div></div>
+    <div class="node ci"><span class="tp">02</span><h3>Horusec</h3><div class="d">SAST: vulnerabilidades y secretos</div></div>
+    <div class="node ci"><span class="tp">03</span><h3>SonarQube + tests</h3><div class="d">Bugs, smells, cobertura</div></div>
+    <div class="node k8s"><span class="tp">04</span><h3>K8s + HPA</h3><div class="d">Imágenes versionadas, probes, autoescalado</div></div>
+    <div class="node k8s"><span class="tp">05</span><h3>k6</h3><div class="d">Carga, estrés y fallas contra SLO</div></div>
+    <div class="node fin"><span class="tp">06</span><h3>Canary</h3><div class="d">Rollout progresivo + veredicto</div></div>
   </div>
   <div class="grid g3 fit" style="margin-top:40px">
     <div class="card amber"><div class="label">Pipeline de CI</div><p>Bloquea código con errores de estilo, vulnerabilidades o bugs <b>antes</b> de construir la imagen.</p></div>
@@ -230,8 +236,8 @@
 </section>
 
 <!-- 4 · TP1 -->
-<section class="slide" data-notes="(2:20 · 1 min) TP1. Objetivo: que ningún push o PR con errores de estilo pase. Agregamos el workflow quality-gate con dos jobs independientes. Línea base: el pipeline falló con 10 errores Checkstyle y 14 hallazgos ESLint. Los corregimos todos sin desactivar ninguna regla y el pipeline quedó en verde. Mantenibilidad: analizabilidad y modificabilidad.">
-  <div class="kicker"><span class="tag">TP1</span>Linters en CI</div>
+<section class="slide" data-notes="(2:00 · 1 min) Linters. Objetivo: que ningún push o PR con errores de estilo pase. Agregamos el workflow quality-gate con dos jobs independientes. Línea base: el pipeline falló con 10 errores Checkstyle y 14 hallazgos ESLint. Los corregimos todos sin desactivar ninguna regla y el pipeline quedó en verde. Mantenibilidad: analizabilidad y modificabilidad.">
+  <div class="kicker"><span class="tag">01</span>Linters en CI</div>
   <h2>Ningún push pasa con errores de estilo: el pipeline es la primera compuerta</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.25fr">
     <div class="col">
@@ -260,16 +266,16 @@
 </section>
 
 <!-- 5 · TP2 -->
-<section class="slide" data-notes="(3:20 · 1 min) TP2. Objetivo: detectar vulnerabilidades y secretos en el código. Corrimos Horusec con la config del laboratorio en backend y frontend. Ojo: la consola mostraba 2 hallazgos, pero el JSON completo tenía 13. Los auditamos uno por uno y los 13 resultaron falsos positivos justificados. Lo importante es el criterio: sin alertas no significa seguro. Propusimos un gate que bloquee HIGH/CRITICAL.">
-  <div class="kicker"><span class="tag">TP2</span>Horusec · SAST</div>
+<section class="slide" data-notes="(3:00 · 1 min) SAST. Objetivo: detectar vulnerabilidades y secretos en el código. Corrimos Horusec con la config del laboratorio en backend y frontend. Ojo: la consola mostraba 2 hallazgos, pero el JSON completo tenía 13. Los auditamos uno por uno y los 13 resultaron falsos positivos justificados. Lo importante es el criterio: sin alertas no significa seguro. Propusimos un gate que bloquee HIGH/CRITICAL.">
+  <div class="kicker"><span class="tag">02</span>Análisis SAST · Horusec</div>
   <h2>Auditamos cada alerta de seguridad en lugar de confiar en el resumen</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.15fr">
     <div class="col">
       <div class="card"><div class="label">Qué agregamos al repo</div>
         <ul class="files">
           <li>material/Horusec/horusec-config.json <span>· config del laboratorio</span></li>
-          <li>TPs/TP2-Horusec/evidence/*.json <span>· reportes backend y frontend</span></li>
-          <li>TPs/TP-Final/ci/horusec-config.json</li>
+          <li>reportes JSON <span>· backend y frontend</span></li>
+          <li>ci/horusec-config.json</li>
         </ul>
       </div>
       <div class="grid g3 fit" style="gap:18px">
@@ -289,22 +295,22 @@
           <tr><td>H13</td><td>HS-JAVASCRIPT-1 · CWE-532</td><td><code>console.error</code> en el navegador sin datos sensibles.</td></tr>
         </tbody>
       </table>
-      <div class="card green" style="margin-top:18px"><p><b>Gate propuesto:</b> fallar el job con cualquier <b>HIGH/CRITICAL</b> o si Horusec no genera el reporte. Se aplicó en el TP Final a la v1.1.0.</p></div>
+      <div class="card green" style="margin-top:18px"><p><b>Gate propuesto:</b> fallar el job con cualquier <b>HIGH/CRITICAL</b> o si Horusec no genera el reporte. Lo aplicamos después a la v1.1.0.</p></div>
     </div>
   </div>
   <div class="footer"><span>ISO 25010 · Seguridad (confidencialidad, integridad) · 2502n medición + 2504n evaluación</span><span>5</span></div>
 </section>
 
 <!-- 6 · TP3 METRICAS -->
-<section class="slide" data-notes="(4:20 · 1 min 10 s) TP3. Objetivo: medir y corregir confiabilidad, seguridad y mantenibilidad con SonarQube. Agregamos SonarQube local en Docker, JaCoCo, Vitest y nuevos tests. Recorrer la tabla: bugs 15 a 2, vulnerabilidades 5 a 0, cobertura 7,9 a 33,1, tests de 21 con 6 fallos a 62 sin fallos. Ser honestos: la complejidad cognitiva subió un poco, de 124 a 129.">
-  <div class="kicker"><span class="tag">TP3</span>SonarQube + tests</div>
+<section class="slide" data-notes="(4:00 · 1 min 10 s) SonarQube. Objetivo: medir y corregir confiabilidad, seguridad y mantenibilidad con SonarQube. Agregamos SonarQube local en Docker, JaCoCo, Vitest y nuevos tests. Recorrer la tabla: bugs 15 a 2, vulnerabilidades 5 a 0, cobertura 7,9 a 33,1, tests de 21 con 6 fallos a 62 sin fallos. Ser honestos: la complejidad cognitiva subió un poco, de 124 a 129.">
+  <div class="kicker"><span class="tag">03</span>SonarQube + tests</div>
   <h2>Cerramos 30 issues y cuadruplicamos la cobertura sin desactivar reglas</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.35fr">
     <div class="col">
       <div class="card"><div class="label">Qué agregamos al repo</div>
         <ul class="files">
-          <li>TP3-SonarQube/sonar-project.properties</li>
-          <li>TP3-SonarQube/docker-compose.sonar.yml</li>
+          <li>sonar-project.properties</li>
+          <li>docker-compose.sonar.yml <span>· SonarQube local</span></li>
           <li>build.gradle <span>· JaCoCo</span></li>
           <li>frontend/vitest.config.js <span>· Vitest + coverage</span></li>
           <li>frontend/tests/*.test.jsx <span>· 5 suites nuevas</span></li>
@@ -333,8 +339,8 @@
 </section>
 
 <!-- 7 · TP3 CORRECCIONES -->
-<section class="slide" data-notes="(5:30 · 40 s) Algunas correcciones que importan porque eran fallas reales, no solo estilo: hilos interrumpidos que se perdían en 11 repositorios, consultas que devolvían null, y un carrito que perdía productos al agregar dos seguidos. Y un gate propuesto para código nuevo.">
-  <div class="kicker"><span class="tag">TP3</span>Qué corregimos</div>
+<section class="slide" data-notes="(5:10 · 30 s) Algunas correcciones que importan porque eran fallas reales, no solo estilo: hilos interrumpidos que se perdían en 11 repositorios, consultas que devolvían null, y un carrito que perdía productos al agregar dos seguidos. Y un gate propuesto para código nuevo.">
+  <div class="kicker"><span class="tag">03</span>Qué corregimos</div>
   <h2>No eran solo métricas: varias alertas eran fallas reales</h2>
   <div class="grid g2 fit">
     <div class="card"><h3>Backend</h3><ul>
@@ -351,12 +357,12 @@
     </ul></div>
   </div>
   <div class="card blue" style="margin-top:30px"><p><b>Quality Gate propuesto para código nuevo:</b> cobertura ≥ 80 % y duplicación &lt; 3 %. El gate actual daba <code>OK</code> antes y después porque solo evalúa código nuevo: lo leemos como un límite de la herramienta.</p></div>
-  <div class="footer"><span>Evidencia: TPs/TP3-SonarQube/evidence/correcciones.json · validacion.txt</span><span>7</span></div>
+  <div class="footer"><span>Evidencia: correcciones.json · validacion.txt · reportes JaCoCo y LCOV</span><span>7</span></div>
 </section>
 
 <!-- 8 · TP4 MIGRACION -->
-<section class="slide" data-notes="(6:10 · 1 min) TP4, migración. Para correr en Kubernetes sacamos la dependencia de Firebase: con un perfil de Spring k8s el backend usa PostgreSQL en un StatefulSet. Agregamos Dockerfiles multi-stage, manifiestos, probes y el HPA. El primer despliegue falló: el pod se reiniciaba porque Spring tardaba 52,8 s en arrancar y la probe lo mataba a los 40. Subimos el límite de CPU y el delay de la probe y quedó estable.">
-  <div class="kicker"><span class="tag">TP4</span>Migración a Kubernetes</div>
+<section class="slide" data-notes="(5:40 · 1 min) Migración a Kubernetes. Para correr en Kubernetes sacamos la dependencia de Firebase: con un perfil de Spring k8s el backend usa PostgreSQL en un StatefulSet. Agregamos Dockerfiles multi-stage, manifiestos, probes y el HPA. El primer despliegue falló: el pod se reiniciaba porque Spring tardaba 52,8 s en arrancar y la probe lo mataba a los 40. Subimos el límite de CPU y el delay de la probe y quedó estable.">
+  <div class="kicker"><span class="tag">04</span>Migración a Kubernetes</div>
   <h2>Llevamos la app a Minikube con probes, límites y un perfil propio para PostgreSQL</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.3fr">
     <div class="col">
@@ -386,8 +392,8 @@
 </section>
 
 <!-- 9 · TP4 RENDIMIENTO -->
-<section class="slide" data-notes="(7:10 · 1 min) Resultados contra los SLO. El smoke pasa en errores pero ya muestra latencias altas. En load el HPA escaló de 1 a 5 pods, pero los errores llegaron al 98%. En stress se quiebra desde 200 VUs. La causa raíz no era la CPU sino la base: el backend abre una conexión nueva por consulta, sin pool, y agota las 100 conexiones de PostgreSQL. Escalar pods no lo resuelve.">
-  <div class="kicker"><span class="tag">TP4</span>Rendimiento y HPA · k6</div>
+<section class="slide" data-notes="(6:40 · 1 min) Resultados contra los SLO. El smoke pasa en errores pero ya muestra latencias altas. En load el HPA escaló de 1 a 5 pods, pero los errores llegaron al 98%. En stress se quiebra desde 200 VUs. La causa raíz no era la CPU sino la base: el backend abre una conexión nueva por consulta, sin pool, y agota las 100 conexiones de PostgreSQL. Escalar pods no lo resuelve.">
+  <div class="kicker"><span class="tag">05</span>Rendimiento y HPA · k6</div>
   <h2>El HPA escaló de 1 a 5 pods, pero los SLO se rompieron por la base de datos</h2>
   <div class="grid" style="grid-template-columns: 1.5fr 1fr">
     <div class="tbl-card">
@@ -409,8 +415,8 @@
 </section>
 
 <!-- 10 · TP4 FALLAS -->
-<section class="slide" data-notes="(8:10 · 50 s) Pruebas de fallas. E1: con réplicas activas borramos un pod en vivo y el usuario no se enteró: 0% de errores y el navegador real cargó la tienda con LCP de 476 ms. E2: un pico de 0 a 1.500 usuarios en 5 segundos. El HPA no llega a tiempo, la CPU satura y Kubernetes reinicia los 5 pods por la livenessProbe con Exit Code 143.">
-  <div class="kicker"><span class="tag">TP4</span>Pruebas de fallas</div>
+<section class="slide" data-notes="(7:40 · 50 s) Pruebas de fallas. E1: con réplicas activas borramos un pod en vivo y el usuario no se enteró: 0% de errores y el navegador real cargó la tienda con LCP de 476 ms. E2: un pico de 0 a 1.500 usuarios en 5 segundos. El HPA no llega a tiempo, la CPU satura y Kubernetes reinicia los 5 pods por la livenessProbe con Exit Code 143.">
+  <div class="kicker"><span class="tag">05</span>Pruebas de fallas</div>
   <h2>Sobrevive a la caída de un pod, pero no a un pico repentino</h2>
   <div class="grid g2">
     <figure><img src="../../TP4-HPA-y-K6/evidence/falla-ux.png" alt="Tienda renderizada por k6/browser durante la caída de un pod">
@@ -422,7 +428,7 @@
 </section>
 
 <!-- 11 · VIDEO 1 -->
-<section class="slide" data-notes="(9:00 · 50 s) Video acelerado x2. Arriba: el HPA pasando a 4 réplicas bajo carga de k6. Abajo a la derecha: borramos un pod del backend y Kubernetes crea uno nuevo automáticamente. Se puede adelantar con los controles; no hace falta verlo entero.">
+<section class="slide" data-notes="(8:30 · 40 s) Video acelerado x2. Arriba: el HPA pasando a 4 réplicas bajo carga de k6. Abajo a la derecha: borramos un pod del backend y Kubernetes crea uno nuevo automáticamente. Se puede adelantar con los controles; no hace falta verlo entero.">
   <div class="kicker"><span class="tag">VIDEO 1</span>HPA y self-healing</div>
   <h2>El cluster escala y reemplaza un pod eliminado sin intervención</h2>
   <figure style="flex:1">
@@ -436,15 +442,15 @@
 </section>
 
 <!-- 12 · SECCION CANARY -->
-<section class="slide section" data-notes="(9:50 · 15 s) Ahora la respuesta a la primera pregunta: cómo liberamos la v1.1.0 sin repetir la pantalla en blanco.">
-  <div class="kicker">TP Final · Actividad 1</div>
+<section class="slide section" data-notes="(9:10 · 15 s) La última etapa: cómo liberamos una versión nueva sin exponerla de golpe a todos los usuarios.">
+  <div class="kicker">06 · Despliegue progresivo</div>
   <h1>Canary Release<br>de la v1.1.0</h1>
   <p class="lead">Ninguna versión llega al 100 % sin demostrar antes, con tráfico real, que funciona y cumple los SLO.</p>
   <div class="footer"><span>Despliegue progresivo con NGINX Ingress</span><span>12</span></div>
 </section>
 
 <!-- 13 · ARQUITECTURA CANARY -->
-<section class="slide" data-notes="(10:05 · 50 s) Un único Ingress Controller y dos recursos Ingress para el mismo host. El canary empieza en peso 0 y QA lo puede ver forzándolo con el header o la cookie. Backend y base son compartidos. Durante el rollout separamos la API en su propio Ingress y agregamos afinidad por cookie: lo explicamos en el hallazgo.">
+<section class="slide" data-notes="(9:25 · 50 s) Un único Ingress Controller y dos recursos Ingress para el mismo host. El canary empieza en peso 0 y QA lo puede ver forzándolo con el header o la cookie. Backend y base son compartidos. Durante el rollout separamos la API en su propio Ingress y agregamos afinidad por cookie: lo explicamos en el hallazgo.">
   <div class="kicker">Arquitectura · Vista 2</div>
   <h2>Dos versiones del panel detrás del mismo host, con el reparto en el Ingress</h2>
   <div class="grid" style="grid-template-columns: 1.4fr 1fr; align-items:start">
@@ -485,7 +491,7 @@
     <div class="col">
       <div class="card"><div class="label">Qué agregamos al repo</div>
         <ul class="files">
-          <li>k8s/base/ <span>· base del TP4 + 06-ingress-api</span></li>
+          <li>k8s/base/ <span>· DB, backend, HPA, ingress API</span></li>
           <li>k8s/stable/ <span>· Deployment, Service, Ingress</span></li>
           <li>k8s/canary/ <span>· Deployment, Service, Ingress canary</span></li>
         </ul>
@@ -498,7 +504,7 @@
 </section>
 
 <!-- 14 · VERSIONADO + GATE -->
-<section class="slide" data-notes="(10:55 · 50 s) La v1.1.0 tiene un cambio imposible de no notar y además una marca de versión legible por máquina: meta, version.txt y el header X-App-Version. Sin eso k6 no podría contar cuántas visitas atendió cada versión. Antes de recibir tráfico pasó las mismas compuertas: ESLint, 22 tests y Horusec sin hallazgos de severidad.">
+<section class="slide" data-notes="(10:15 · 40 s) La v1.1.0 tiene un cambio imposible de no notar y además una marca de versión legible por máquina: meta, version.txt y el header X-App-Version. Sin eso k6 no podría contar cuántas visitas atendió cada versión. Antes de recibir tráfico pasó las mismas compuertas: ESLint, 22 tests y Horusec sin hallazgos de severidad.">
   <div class="kicker">Versión candidata 1.1.0</div>
   <h2>Un cambio imposible de no notar, y que una máquina también puede leer</h2>
   <div class="grid" style="grid-template-columns: 1.45fr 1fr">
@@ -516,15 +522,15 @@
         <li>ESLint: <b>0</b> errores / warnings</li>
         <li>Vitest: <b>22</b> tests en verde</li>
         <li>Horusec: <b>0</b> Critical/High/Medium/Low</li>
-        <li>INFO: <b>6 → 1</b> (H13, falso positivo del TP2)</li>
+        <li>INFO: <b>6 → 1</b> (H13, falso positivo ya auditado)</li>
       </ul></div>
     </div>
   </div>
-  <div class="footer"><span>TPF-02 · TPF-03 · ci/ · horusec-frontend-canary.json</span><span>14</span></div>
+  <div class="footer"><span>ci/ · horusec-frontend-canary.json</span><span>14</span></div>
 </section>
 
 <!-- 15 · DEMO FORZADO -->
-<section class="slide" data-notes="(11:45 · 45 s) Etapa 0, smoke: con peso 0 nadie ve la v1.1.0 salvo QA. Izquierda: el tráfico normal recibe 1.0.0 y el forzado por header o cookie recibe 1.1.0. Derecha: QA setea la cookie en el navegador, recarga y navega el panel nuevo.">
+<section class="slide" data-notes="(10:55 · 45 s) Etapa 0, smoke: con peso 0 nadie ve la v1.1.0 salvo QA. Izquierda: el tráfico normal recibe 1.0.0 y el forzado por header o cookie recibe 1.1.0. Derecha: QA setea la cookie en el navegador, recarga y navega el panel nuevo.">
   <div class="kicker"><span class="tag">ETAPA 0</span>Smoke con peso 0</div>
   <h2>QA ve el panel nuevo antes que cualquier productor</h2>
   <div class="grid g2">
@@ -547,7 +553,7 @@
 </section>
 
 <!-- 16 · PLAN + BITACORA -->
-<section class="slide" data-notes="(12:30 · 1 min) El plan y los criterios se definieron antes de ejecutar. Recorrer la bitácora: en cada etapa el reparto real coincidió con el peso y el error fue 0%. En 25% la prueba HTTP daba bien, pero el navegador real detectó pantallas en blanco: rollback inmediato. Después de la corrección completamos 50 y 100% y promovimos.">
+<section class="slide" data-notes="(11:40 · 1 min) El plan y los criterios se definieron antes de ejecutar. Recorrer la bitácora: en cada etapa el reparto real coincidió con el peso y el error fue 0%. En 25% la prueba HTTP daba bien, pero el navegador real detectó pantallas en blanco: rollback inmediato. Después de la corrección completamos 50 y 100% y promovimos.">
   <div class="kicker">Plan de rollout y bitácora · 19/11</div>
   <h2>Criterios fijados antes de empezar; cada etapa decidida con datos</h2>
   <div class="weights" style="margin-bottom:22px">
@@ -581,7 +587,7 @@
 </section>
 
 <!-- 17 · DISTRIBUCION -->
-<section class="slide" data-notes="(13:30 · 40 s) Evidencia de la distribución real: el header X-App-Version nos permite contar quién atendió cada request. La barra naranja es lo que midió k6 y la línea negra el peso configurado. Coinciden en todas las etapas. A la derecha, la grilla de 20 visitas de Chromium a 25%: 15 viejas, 5 nuevas, todas completas.">
+<section class="slide" data-notes="(12:40 · 40 s) Evidencia de la distribución real: el header X-App-Version nos permite contar quién atendió cada request. La barra naranja es lo que midió k6 y la línea negra el peso configurado. Coinciden en todas las etapas. A la derecha, la grilla de 20 visitas de Chromium a 25%: 15 viejas, 5 nuevas, todas completas.">
   <div class="kicker">Distribución real del tráfico</div>
   <h2>El reparto medido coincidió con el peso configurado en cada etapa</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.25fr">
@@ -605,9 +611,9 @@
 </section>
 
 <!-- 18 · HALLAZGO -->
-<section class="slide" data-notes="(14:10 · 1 min) El hallazgo más valioso. Al 25% las métricas HTTP estaban perfectas, pero el navegador real mostró 6 de 20 pantallas en blanco: exactamente el incidente de la madrugada. Cada request se reparte por separado: el HTML de una versión pedía un JS que llegaba a la otra, y NGINX devolvía el HTML con 200 OK en lugar del JS. Rollback a 0, afinidad por cookie, la API en su propio Ingress, y 20 de 20 completas.">
+<section class="slide" data-notes="(13:20 · 30 s) El hallazgo más valioso. Al 25% las métricas HTTP estaban perfectas, pero el navegador real mostró 6 de 20 pantallas en blanco: una falla que con un despliegue de golpe habría llegado a todos. Cada request se reparte por separado: el HTML de una versión pedía un JS que llegaba a la otra, y NGINX devolvía el HTML con 200 OK en lugar del JS. Rollback a 0, afinidad por cookie, la API en su propio Ingress, y 20 de 20 completas.">
   <div class="kicker"><span class="tag" style="background:var(--red)">HALLAZGO</span>Assets mezclados al 25 %</div>
-  <h2>El canary atrapó la “pantalla en blanco” antes de que llegara a los productores</h2>
+  <h2>El navegador real detectó pantallas en blanco que las métricas HTTP no veían</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.2fr">
     <figure><img src="../evidencias/capturas/hallazgo-mezcla-assets-1.1.0.png" alt="Pantalla en blanco capturada por k6/browser">
       <figcaption><b>Captura de k6/browser al 25 % sin afinidad:</b> la página carga pero no renderiza nada (<code>rootBytes = 0</code>).<span class="concl bad">6 de 20 visitas (30 %) en blanco, con HTTP 200 y 0 % de error en k6 HTTP.</span></figcaption></figure>
@@ -629,7 +635,7 @@
 </section>
 
 <!-- 19 · VIDEO 2 -->
-<section class="slide" data-notes="(15:10 · 40 s) Video del cambio de peso: a la izquierda el comando que cambia canary-weight, a la derecha Firefox. Pasamos de 0 a 50, a 100 y volvemos a 0 como rollback; al limpiar la cookie sticky el navegador cambia de versión.">
+<section class="slide" data-notes="(13:50 · 40 s) Video del cambio de peso: a la izquierda el comando que cambia canary-weight, a la derecha Firefox. Pasamos de 0 a 50, a 100 y volvemos a 0 como rollback; al limpiar la cookie sticky el navegador cambia de versión.">
   <div class="kicker"><span class="tag">VIDEO 2</span>Cambio de peso en vivo</div>
   <h2>Mover el tráfico y volver atrás es cambiar un solo valor</h2>
   <figure style="flex:1">
@@ -643,8 +649,8 @@
 </section>
 
 <!-- 20 · ESTRES A/B -->
-<section class="slide" data-notes="(15:50 · 1 min 10 s) Actividad 2. Elegimos A/B 50/50 porque la pregunta era si la v1.1.0, con su CSS y logo nuevos, introduce regresión frente a la v1.0.0 bajo la misma carga. Hipótesis escrita antes. Equiparamos réplicas y recursos, porque el peso no sabe cuántos pods hay. Resultado: 0% de errores en ambas y solo +1,12% de diferencia en p95. El p95 combinado de HTML+JS pasó levemente los 300 ms en el pico de 500 VUs, pero en las dos versiones por igual: es saturación del Ingress local, no regresión. Hipótesis de no regresión confirmada.">
-  <div class="kicker">Actividad 2 · Prueba de estrés con hipótesis</div>
+<section class="slide" data-notes="(14:30 · 1 min 10 s) Prueba de estrés. Elegimos A/B 50/50 porque la pregunta era si la v1.1.0, con su CSS y logo nuevos, introduce regresión frente a la v1.0.0 bajo la misma carga. Hipótesis escrita antes. Equiparamos réplicas y recursos, porque el peso no sabe cuántos pods hay. Resultado: 0% de errores en ambas y solo +1,12% de diferencia en p95. El p95 combinado de HTML+JS pasó levemente los 300 ms en el pico de 500 VUs, pero en las dos versiones por igual: es saturación del Ingress local, no regresión. Hipótesis de no regresión confirmada.">
+  <div class="kicker">Prueba de estrés con hipótesis</div>
   <h2>A/B 50/50 hasta 500 VUs: la v1.1.0 no introduce regresión</h2>
   <div class="grid" style="grid-template-columns: 1fr 1.35fr">
     <div class="col">
@@ -673,16 +679,16 @@
 </section>
 
 <!-- 21 · MAPA ISO -->
-<section class="slide" data-notes="(17:00 · 1 min) Actividad 3. Cada etapa cubre características distintas de la 25010 y tiene límites. Recorrer rápido la tabla, remarcando la columna de qué no cubre. Y las divisiones: los umbrales y SLO son requisitos 2503n, las herramientas miden 2502n, y las decisiones como clasificar falsos positivos o hacer rollback son evaluación 2504n.">
-  <div class="kicker">Actividad 3 · Mapa ISO/IEC 25000 (SQuaRE)</div>
+<section class="slide" data-notes="(15:40 · 1 min) Mapa ISO. Cada etapa cubre características distintas de la 25010 y tiene límites. Recorrer rápido la tabla, remarcando la columna de qué no cubre. Y las divisiones: los umbrales y SLO son requisitos 2503n, las herramientas miden 2502n, y las decisiones como clasificar falsos positivos o hacer rollback son evaluación 2504n.">
+  <div class="kicker">Mapa ISO/IEC 25000 (SQuaRE)</div>
   <h2>Qué calidad aseguramos en cada etapa, y qué no</h2>
   <div class="tbl-card" style="padding:8px 18px">
     <table style="font-size:20.5px">
       <thead><tr><th>Etapa</th><th>ISO/IEC 25010</th><th>Evidencia</th><th>Qué no cubre</th><th>SQuaRE</th></tr></thead>
       <tbody>
-        <tr><td>Linters (TP1)</td><td>Mantenibilidad: analizabilidad, modificabilidad</td><td>10 + 14 → 0 errores</td><td>Diseño modular, seguridad, lógica</td><td>2503n · 2502n</td></tr>
-        <tr><td>Horusec (TP2)</td><td>Seguridad: confidencialidad, integridad</td><td>13 alertas, 13 FP; 0 HIGH en v1.1.0</td><td>Fallas en runtime (DAST), dependencias</td><td>2502n · 2504n</td></tr>
-        <tr><td>Sonar + tests (TP3)</td><td>Mantenibilidad · Fiabilidad (ausencia de fallos)</td><td>Bugs 15 → 2 · cobertura 33,1 %</td><td>Integración real con DB y red</td><td>2502n · 2503n</td></tr>
+        <tr><td>Linters en CI</td><td>Mantenibilidad: analizabilidad, modificabilidad</td><td>10 + 14 → 0 errores</td><td>Diseño modular, seguridad, lógica</td><td>2503n · 2502n</td></tr>
+        <tr><td>Horusec (SAST)</td><td>Seguridad: confidencialidad, integridad</td><td>13 alertas, 13 FP; 0 HIGH en v1.1.0</td><td>Fallas en runtime (DAST), dependencias</td><td>2502n · 2504n</td></tr>
+        <tr><td>SonarQube + tests</td><td>Mantenibilidad · Fiabilidad (ausencia de fallos)</td><td>Bugs 15 → 2 · cobertura 33,1 %</td><td>Integración real con DB y red</td><td>2502n · 2503n</td></tr>
         <tr><td>K8s + probes</td><td>Fiabilidad (disponibilidad) · Flexibilidad (instalabilidad)</td><td>1/1 Running tras ajustar probes</td><td>Rendimiento bajo carga</td><td>2504n</td></tr>
         <tr><td>HPA</td><td>Flexibilidad (escalabilidad) · Eficiencia (recursos)</td><td>1 → 5 pods con 500 % CPU</td><td>Escalar la DB; picos repentinos</td><td>2503n · 2502n</td></tr>
         <tr><td>k6 carga/estrés</td><td>Eficiencia: comportamiento temporal, capacidad</td><td>Load 98 % error · A/B +1,12 %</td><td>Lo que ve el usuario en pantalla</td><td>2503n · 2502n</td></tr>
@@ -695,12 +701,12 @@
 </section>
 
 <!-- 22 · 25019 Y BRECHAS -->
-<section class="slide" data-notes="(18:00 · 50 s) Hasta el TP3 medíamos calidad del producto. Empezamos a medir algo que vive el usuario con k6/browser en el E1 del TP4. El canary es el salto a calidad en uso real: el hallazgo de la pantalla en blanco lo prueba, porque HTTP decía 200 OK y el usuario veía nada. Dos características que no cubrimos y cómo las abordaríamos.">
+<section class="slide" data-notes="(16:40 · 40 s) Con el pipeline de CI medíamos calidad del producto. Empezamos a medir algo que vive el usuario con k6/browser en la prueba de falla E1. El canary es el salto a calidad en uso real: el hallazgo de la pantalla en blanco lo prueba, porque HTTP decía 200 OK y el usuario veía nada. Dos características que no cubrimos y cómo las abordaríamos.">
   <div class="kicker">Calidad del producto vs. calidad en uso</div>
   <h2>El canary nos llevó de medir el producto a medir lo que vive el usuario</h2>
   <div class="grid g3 fit">
-    <div class="card"><div class="label">TP1 – TP3 · 25010</div><p>Atributos del artefacto: estilo, vulnerabilidades potenciales, bugs y cobertura.</p></div>
-    <div class="card blue"><div class="label">TP4 E1 · primer contacto con 25019</div><p><code>k6/browser</code> renderiza la tienda mientras cae un pod: <b>LCP 476 ms</b>, CLS 0,09.</p></div>
+    <div class="card"><div class="label">Pipeline de CI · 25010</div><p>Atributos del artefacto: estilo, vulnerabilidades potenciales, bugs y cobertura.</p></div>
+    <div class="card blue"><div class="label">Prueba de falla E1 · primer contacto con 25019</div><p><code>k6/browser</code> renderiza la tienda mientras cae un pod: <b>LCP 476 ms</b>, CLS 0,09.</p></div>
     <div class="card green"><div class="label">Canary · 25019 real</div><p>HTTP decía <b>200 OK</b> y el usuario veía una <b>pantalla en blanco</b>. Solo el uso real lo reveló.</p></div>
   </div>
   <h3 style="margin-top:36px">Características sin cubrir y cómo las abordaríamos</h3>
@@ -711,8 +717,36 @@
   <div class="footer"><span>ISO/IEC 25010 (producto) · ISO/IEC 25019 (en uso)</span><span>22</span></div>
 </section>
 
+<!-- CASO PRACTICO -->
+<section class="slide" data-notes="(17:20 · 1 min) Caso práctico. El escenario: TerraSense reemplazaba todos los pods de una vez y un release dejó a los productores 40 minutos con la pantalla en blanco. Recorrer cómo cada cosa que implementamos actúa sobre la v1.1.0, en orden. El punto clave es el canary: el 30 % de pantallas en blanco que vimos al 25 % habría sido el 100 % sin él. Y la pregunta de escalar a 10.000 sensores la contestan los datos de carga: eso es el veredicto.">
+  <div class="kicker"><span class="tag" style="background:var(--green)">CASO</span>Ejemplo práctico</div>
+  <h2>TerraSense libera la v1.1.0 del panel: qué hace cada cosa que implementamos</h2>
+  <div class="grid" style="grid-template-columns: 1fr 1.9fr">
+    <div class="col">
+      <div class="card red"><div class="label">El escenario</div><p>Cada release reemplazaba <b>todos los pods de una vez</b>. Uno dejó a los productores <b>40 minutos</b> con la pantalla en blanco, en una madrugada de helada.</p></div>
+      <div class="card blue"><div class="label">Lo que piden</div><p>Que ninguna versión llegue al 100 % sin demostrar que funciona, y saber si la plataforma soporta pasar de <b>2.000 a 10.000 sensores</b>.</p></div>
+      <div class="card dark"><p><b>Sin canary</b>, el 30 % de pantallas en blanco que detectamos al 25 % habría sido el <b>100 %</b> de los productores: el mismo incidente.</p></div>
+    </div>
+    <div class="tbl-card">
+      <table class="overview">
+        <thead><tr><th style="width:70px">#</th><th style="width:270px">Etapa</th><th>Qué hizo con la v1.1.0</th></tr></thead>
+        <tbody>
+          <tr><td class="num">01</td><td>Linters en CI</td><td>Push validado: <b>0</b> errores de Checkstyle y ESLint</td></tr>
+          <tr><td class="num">02</td><td>SAST</td><td><b>0</b> vulnerabilidades nuevas antes de construir la imagen</td></tr>
+          <tr><td class="num">03</td><td>Tests</td><td><b>22</b> tests de Vitest en verde sobre el rediseño</td></tr>
+          <tr><td class="num">04</td><td>Kubernetes</td><td>Imagen <code>1.1.0</code> versionada, con probes y recursos iguales a la estable</td></tr>
+          <tr class="hl"><td class="num">06</td><td>Canary al 25 %</td><td><b>6/20</b> pantallas en blanco → <b>rollback en un comando</b> y fix con afinidad</td></tr>
+          <tr><td class="num">05</td><td>Estrés A/B</td><td>Sin regresión: <b>+1,12 %</b> p(95) y 0 % de error → <b>promoción</b></td></tr>
+          <tr><td class="num">05</td><td>Carga a la API</td><td>Con 245 req/s ya falla el 99,8 %: <b>no alcanza</b> para 10.000 sensores</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer"><span>Cómo lo implementado responde al caso</span><span>23</span></div>
+</section>
+
 <!-- 23 · VEREDICTO -->
-<section class="slide" data-notes="(18:50 · 1 min) Las dos respuestas. v1.1.0: GO, ya promovida; pasó todas las compuertas, el rollout detectó y corrigió un problema real, y el A/B no mostró regresión. 10.000 sensores: NO-GO hoy. Con 245 req/s ya fallaba el 99,8%, y 10.000 sensores son 333 req/s. La causa está en el código del backend, y damos un plan concreto para pasar a GO.">
+<section class="slide" data-notes="(18:20 · 1 min) Veredicto. v1.1.0: GO, ya promovida; pasó todas las compuertas, el rollout detectó y corrigió un problema real, y el A/B no mostró regresión. 10.000 sensores: NO-GO hoy. Con 245 req/s ya fallaba el 99,8%, y 10.000 sensores son 333 req/s. La causa está en el código del backend, y damos un plan concreto para pasar a GO.">
   <div class="kicker">Veredicto</div>
   <h2>Go / No-Go</h2>
   <div class="grid g2 fit" style="align-items:start">
@@ -732,18 +766,18 @@
       <h3 style="margin-top:16px; font-size:36px">Ampliar a 10.000 sensores</h3>
       <ul>
         <li>10.000 sensores ≈ <b>333 req/s</b> sostenidos</li>
-        <li>Con 245 req/s ya hubo <b>99,8 %</b> de fallos</li>
+        <li>Con 245 req/s ya hubo <b>99,8 %</b> de fallos en el stress test</li>
         <li>Spike de 1.500 VUs: <b>100 %</b> de fallos</li>
         <li>Causa: sin pool JDBC, <code>COUNT(*)</code> por alta, sin paginación</li>
       </ul>
     </div>
   </div>
   <div class="card blue" style="margin-top:26px"><p><b>Para pasar a GO:</b> HikariCP con pool por pod · secuencias de PostgreSQL · paginación · mínimo 2–3 réplicas · cola de ingesta (RabbitMQ/Kafka) para reconexiones masivas. Después, repetir el stress test a 333 req/s.</p></div>
-  <div class="footer"><span>SLO: p(95) &lt; 300 ms · errores &lt; 1 %</span><span>23</span></div>
+  <div class="footer"><span>SLO: p(95) &lt; 300 ms · errores &lt; 1 %</span><span>24</span></div>
 </section>
 
 <!-- 24 · APRENDIZAJES Y CIERRE -->
-<section class="slide" data-notes="(19:50 · 30 s) Cierre: tres aprendizajes y la idea fuerza. Próximo paso técnico: Ingress NGINX fue retirado en 2026; migraríamos el canary a Gateway API con pesos en HTTPRoute. Abrir a preguntas.">
+<section class="slide" data-notes="(19:20 · 30 s) Cierre: tres aprendizajes y la idea fuerza. Próximo paso técnico: Ingress NGINX fue retirado en 2026; migraríamos el canary a Gateway API con pesos en HTTPRoute. Abrir a preguntas.">
   <div class="kicker">Aprendizajes y próximos pasos</div>
   <h2>Lo que nos llevamos</h2>
   <div class="grid g3 fit">
@@ -753,7 +787,7 @@
   </div>
   <div class="card dark" style="margin-top:30px"><div class="label">Deuda técnica y próximos pasos</div><p>HikariCP y paginación en el backend · gate de cobertura en código nuevo · Lighthouse/Trivy en CI · migrar el canary de Ingress NGINX (retirado en 2026) a <b>Gateway API</b> con pesos en <code>HTTPRoute</code>.</p></div>
   <p class="quote" style="margin-top:40px">La calidad no es una herramienta: es una cadena de compuertas. El Canary es la última, la que mira a los usuarios reales.</p>
-  <div class="footer"><span>¡Gracias! · Preguntas</span><span>24</span></div>
+  <div class="footer"><span>¡Gracias! · Preguntas</span><span>25</span></div>
 </section>
 
 </div></div>
