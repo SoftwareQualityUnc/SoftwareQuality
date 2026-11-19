@@ -65,6 +65,63 @@ jobs:
             backend/build/reports/checkstyle/main.xml
           if-no-files-found: warn
 
+  backend-horusec:
+    name: Backend Horusec (SAST)
+    runs-on: ubuntu-latest
+    env:
+      HORUSEC_VERSION: v2.8.0
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Horusec CLI
+        run: |
+          curl -fsSL -o horusec "https://github.com/ZupIT/horusec/releases/download/${HORUSEC_VERSION}/horusec_linux_amd64"
+          chmod +x horusec
+          sudo mv horusec /usr/local/bin/horusec
+          horusec version
+
+      - name: Run Horusec
+        id: horusec
+        run: |
+          horusec start \
+            --project-path="./backend" \
+            --disable-docker \
+            --information-severity \
+            --ignore="**/build/**,**/.gradle/**,**/gradle/wrapper/**" \
+            --output-format="json" \
+            --json-output-file="horusec-report.json" \
+            --return-error=false
+
+      - name: Add Horusec summary
+        if: always()
+        shell: bash
+        run: |
+          report="horusec-report.json"
+          {
+            echo "## Backend Horusec (SAST)"
+            echo "- Result: \`${{ steps.horusec.outcome }}\`"
+            if [ -f "$report" ]; then
+              total=$(jq '[.analysisVulnerabilities // [] | .[]] | length' "$report")
+              echo "- Vulnerabilities: \`$total\`"
+              for sev in CRITICAL HIGH MEDIUM LOW INFO; do
+                count=$(jq --arg s "$sev" '[.analysisVulnerabilities // [] | .[] | select(.vulnerabilities.severity == $s)] | length' "$report")
+                echo "  - $sev: \`$count\`"
+              done
+              echo "- Detailed JSON report is available in the \`horusec-reports\` artifact."
+            else
+              echo "- The Horusec JSON report was not generated."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Horusec report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horusec-reports
+          path: horusec-report.json
+          if-no-files-found: warn
+
   frontend-eslint:
     name: Frontend ESLint
     runs-on: ubuntu-latest
