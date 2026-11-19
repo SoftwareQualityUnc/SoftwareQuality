@@ -94,6 +94,59 @@ select {
   min-height: 100vh;
 }
 
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-shell--canary {
+  --color-bg: #fff4d6;
+  --color-bg-elevated: #fff9ed;
+  --color-surface: #fffdf7;
+  --color-surface-strong: #ffe6a3;
+  --color-border: rgba(112, 52, 0, 0.24);
+  --color-text: #321700;
+  --color-text-muted: #704b28;
+  --color-primary: #ff7a00;
+  --color-primary-strong: #d94f00;
+  --color-accent: #d90065;
+  --color-focus: #7b1fa2;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 122, 0, 0.32), transparent 24rem),
+    radial-gradient(circle at 88% 18%, rgba(217, 0, 101, 0.24), transparent 26rem),
+    linear-gradient(135deg, #fff4d6 0%, #ffe0a8 48%, #ffd0e6 100%);
+  color: var(--color-text);
+  font-family: Georgia, "Times New Roman", serif;
+  padding-top: 4.25rem;
+}
+
+.canary-banner {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  min-height: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.25rem;
+  color: #fff9ed;
+  background: repeating-linear-gradient(
+    -45deg,
+    #7b1fa2 0,
+    #7b1fa2 1rem,
+    #d90065 1rem,
+    #d90065 2rem
+  );
+  box-shadow: 0 0.35rem 1.25rem rgba(77, 0, 55, 0.4);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

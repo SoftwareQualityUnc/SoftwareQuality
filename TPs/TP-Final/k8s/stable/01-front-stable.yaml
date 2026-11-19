@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-stable
+  namespace: terrasense
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: front
+    track: stable
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-stable
+  namespace: terrasense
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: front
+        track: stable
+        version: "1.0.0"
+    spec:
+      containers:
+        - name: front
+          image: terrasense-front:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "150m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /version.txt
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /version.txt
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
