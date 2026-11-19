@@ -1,6 +1,6 @@
 # TP Final — Despliegue Canary de Terrasense en Minikube
 
-Este documento es la guía final de entrega del TP Final. Describe el estado alcanzado por Integrante 1 y permite reproducir el despliegue del frontend estable y canary en un Minikube local. No es una bitácora: los pendientes y las tareas que quedan para Integrante 2 se separan explícitamente del procedimiento que ya fue validado.
+Este documento es el informe técnico final de entrega del TP Final. Describe la arquitectura stable/canary, permite reproducir el despliegue en un Minikube limpio y consolida la bitácora completa del rollout progresivo, la prueba de estrés con hipótesis, el mapa ISO/IEC 25000, el índice de evidencias y el veredicto Go/No-Go.
 
 Todos los comandos que usan rutas de archivos se ejecutan desde `TPs/TP-Final/`. Por eso, las rutas de este README son relativas a ese directorio.
 
@@ -31,7 +31,7 @@ Stable y canary se distinguen mediante los selectors `track: stable` y `track: c
 
 El Ingress canary comienza con peso `0`. Así, el tráfico normal llega a stable mientras Integrante 2 puede aumentar gradualmente el peso. El header `X-Canary: always` y la cookie `canary=always` permiten probar canary de forma determinista aun con peso `0`.
 
-La API continúa siendo publicada por el Ingress estable bajo `api.terrasense.local` y apunta al Service `back`. El recurso `front` heredado del TP4 puede seguir visible en el namespace, pero no es utilizado por los Ingress finales.
+La API es publicada por su propio Ingress (`terrasense-ingress-api` en `k8s/base/06-ingress-api.yaml`) bajo `api.terrasense.local` y apunta al Service `back`. De esta forma, la afinidad de sesión por cookie (`terrasense-front`) aplicada sobre `terrasense-ingress-stable` y `terrasense-ingress-canary` evita mezcla de assets en el frontend sin afectar el balanceo del backend entre réplicas del HPA. El recurso `front` heredado del TP4 no es utilizado por los Ingress finales.
 
 ## 3. Prerrequisitos
 
@@ -95,6 +95,16 @@ kubectl apply -f k8s/base/02-secret-demo.yaml
 kubectl apply -f k8s/base/03-db.yaml
 kubectl apply -f k8s/base/04-backend.yaml
 kubectl apply -f k8s/base/05-hpa.yaml
+kubectl apply -f k8s/base/06-ingress-api.yaml
+```
+
+> **Nota de reproducibilidad (estado post-promoción):** al cierre del rollout, `k8s/stable/01-front-stable.yaml` quedó promovido a `terrasense-front:1.1.0`, `k8s/canary/02-ingress-canary.yaml` en `canary-weight: "0"` y `k8s/canary/01-front-canary.yaml` en `replicas: 0`. Si un tercero desea reproducir desde cero el experimento dual `1.0.0` vs `1.1.0` en un Minikube limpio, debe fijar `image: terrasense-front:1.0.0` en `k8s/stable/01-front-stable.yaml` y `replicas: 1` en `k8s/canary/01-front-canary.yaml` antes de aplicar.
+
+Para que `k6` y el navegador resuelvan `terrasense.local` y `api.terrasense.local` directamente sin `port-forward`, agregar la IP de Minikube a `/etc/hosts` (Anexo D):
+
+```bash
+MINIKUBE_IP=$(minikube ip)
+echo "$MINIKUBE_IP api.terrasense.local terrasense.local" | sudo tee -a /etc/hosts
 ```
 
 Si el Minikube ya tenía aplicado el TP4, antes de crear stable se elimina el Ingress legado:
@@ -201,17 +211,19 @@ nginx.ingress.kubernetes.io/canary-weight: "0"
 
 y se reaplica el mismo manifiesto. Las pruebas con `X-Canary: always` o `canary=always` siguen siendo útiles para comprobar canary independientemente del peso.
 
-### 5.1. Plan de rollout definido y bitácora de ejecución *(a completar por Integrante 2)*
+### 5.1. Plan de rollout definido y bitácora de ejecución
 
-| Etapa | Peso (`canary-weight`) | Duración | Hora ejecución | Métricas observadas (`visitas_stable` / `visitas_canary`, `p(95)`, error) | Decisión tomada |
+| Etapa | Peso (`canary-weight`) | Duración | Hora ejecución (19/11/2026) | Métricas observadas (`visitas_stable` / `visitas_canary`, `p(95)`, error) | Decisión tomada |
 | :---: | :---: | :---: | :---: | :--- | :--- |
-| **0** | `0` (forzado por cookie/header) | Smoke | `[Pendiente]` | Validación inicial de `v1.1.0` (`X-Canary: always` / `canary=always` -> `1.1.0`). | Avanzar a etapa 1 |
-| **1** | `10` | 3–5 min | `[Pendiente]` | `[Pendiente]` | `[Pendiente]` |
-| **2** | `25` | 3–5 min | `[Pendiente]` | `[Pendiente]` | `[Pendiente]` |
-| **3** | `50` | 5 min | `[Pendiente]` | `[Pendiente]` | `[Pendiente]` |
-| **4** | `100` / Promoción o Rollback | Cierre | `[Pendiente]` | `[Pendiente]` | `[Pendiente]` |
+| **0** | `0` (forzado por cookie/header) | Smoke (`5s` + navegador) | `16:16–16:18` | `visitas_canary: 10/10` (`100%`), `0,00%` error, `lat_canary p(95) = 1,19 ms`. Navegador con `canary=always` mostró banner `1.1.0` sin errores de consola. | **Avanzar a etapa 1** |
+| **1** | `10` | `3m` (`20 VUs`) | `16:21:09` | `3.249` stable (`90,25%`) / `351` canary (`9,75%`). Error `0,00%`. `lat_canary p(95) = 1,67 ms` vs `lat_stable p(95) = 1,89 ms`. | **Avanzar a etapa 2** |
+| **2** | `25` *(sin afinidad)* | `3m` HTTP + `20` visitas `k6/browser` | `16:26:34` | HTTP: `2.714` stable (`75,39%`) / `886` canary (`24,61%`), `0,00%` error, `lat_canary p(95) = 2,17 ms`. **Browser (`20` visitas):** `6/20` (`30%`) pantallas en blanco (`rootBytes=0`) por mezcla de hashes JS (`index-DRF0YwY2.js` vs `index-DWX9FPhn.js`) + `try_files` devolviendo `200 OK` HTML en lugar de JS. | **ROLLBACK inmediato a `0`** (`16:32:52`) y aplicar **afinidad por cookie** (Anexo A.9) |
+| **2 (re-run)** | `25` *(con afinidad)* | `20` visitas `k6/browser` | `16:34:43` | **Browser (`20` visitas):** `15` stable (`75%`) / `5` canary (`25%`). **`20/20` (`100%`) renderizadas completas**, `0` errores HTTP/consola, `LCP p(95) = 470,8 ms`. | **Avanzar a etapa 3** |
+| **3** | `50` | `3m` (`20 VUs`) | `16:36:27` | `1.730` stable (`48,06%`) / `1.870` canary (`51,94%`). Error `0,00%`. `lat_canary p(95) = 1,99 ms` vs `lat_stable p(95) = 2,09 ms`. | **Avanzar a prueba A/B y etapa 4** |
+| **4** | `100` | `1m` (`20 VUs`) | `17:20:29` | `1.200/1.200` (`100%`) canary. Error `0,00%`. `lat_canary p(95) = 2,41 ms`. | **Promover `v1.1.0`** |
+| **Promoción** | `0` (post-corte) | – | `17:22:29` | `front-stable` actualizado a `terrasense-front:1.1.0` (`1/1 Running`); `canary-weight: "0"`; `front-canary` escalado a `0` réplicas. `20/20` requests `curl` devolvieron `1.1.0`. | **Cierre exitoso (GO)** |
 
-> **Criterios objetivos definidos de antemano:** Avanzar solo si `http_req_failed < 1%`, `lat_canary p(95) < 300ms` (o `<= lat_stable p(95) + 10%`), la proporción real de visitas coincide aproximadamente con el peso configurado y las capturas de `k6/browser` renderizan completas sin errores en consola. En caso contrario, ejecutar rollback inmediato (`canary-weight: "0"`).
+> **Criterios objetivos definidos de antemano:** Avanzar solo si `http_req_failed < 1%`, `lat_canary p(95) < 300ms` (o `<= lat_stable p(95) + 10%`), la proporción real de visitas coincide aproximadamente con el peso configurado y las capturas de `k6/browser` renderizan completas sin errores en consola. En caso contrario, ejecutar rollback inmediato (`canary-weight: "0"`). El criterio de `k6/browser` detectó exactamente la falla silenciosa en Etapa 2 y gatilló el rollback antes de continuar.
 
 ## 6. Limpieza opcional del frontend legado
 
@@ -235,21 +247,35 @@ La entrega queda organizada de la siguiente manera:
 - `evidencias/capturas/`, `evidencias/reportes/` y `evidencias/videos/`: capturas, reportes JSON/MD y videos cortos para la presentación;
 - `presentacion/` y [`assets/`](./assets/README.md): diapositivas exportadas a PDF y recursos visuales.
 
-### Handoff operativo de Integrante 1 y cierre de TPF-03 (Integrante 3)
+### Estado de cierre por integrante
 
-- **Integrante 1** dejó validado el build reproducible (`1.0.0` y `1.1.0`), carga de imágenes, aplicación de `base/stable/canary`, salud inicial de Pods y ruteo por port-forward ([`tpf-04`](evidencias/reportes/tpf-04-k8s-manifiestos.md), [`tpf-05`](evidencias/reportes/tpf-05-minikube-routing.md)).
-- **Integrante 3** completó el análisis pendiente de **Horusec SAST (`v2.8.0`)** sobre el frontend Canary ([`tpf-03-canary.md`](evidencias/reportes/tpf-03-canary.md), [`horusec-frontend-canary.json`](evidencias/reportes/horusec-frontend-canary.json)), verificando **0 hallazgos `CRITICAL`/`HIGH`/`MEDIUM`/`LOW`** y un único `INFO` preexistente (`H13` en `ItemDetailContainer.jsx:18`), cerrando así `TPF-03`.
-- **Pendiente de Integrante 2:** ejecutar las etapas del rollout (`0 → 10 → 25 → 50 → 100`/rollback), ejecutar la prueba de estrés con hipótesis sobre las versiones equiparadas (`1` réplica, `50m`/`150m` CPU y `64Mi`/`128Mi` RAM cada una), exportar los reportes a `evidencias/reportes/` y grabar los videos en `evidencias/videos/`.
+- **Integrante 1** dejó validado el build reproducible (`1.0.0` y `1.1.0`), carga de imágenes, manifiestos `base/stable/canary`, salud inicial de Pods y ruteo por port-forward ([`tpf-04`](evidencias/reportes/tpf-04-k8s-manifiestos.md), [`tpf-05`](evidencias/reportes/tpf-05-minikube-routing.md)).
+- **Integrante 2** completó los scripts [`k6/`](./k6/), ejecutó todas las etapas del rollout (`0 → 10 → 25 [rollback + fix de afinidad] → 25 → 50 → 100 → promoción`), ejecutó la prueba de estrés A/B con hipótesis (`50/50` hasta `500 VUs`), generó los reportes JSON/HTML, las 20 capturas + grilla y grabó los 2 videos cortos en `evidencias/videos/`.
+- **Integrante 3** completó el cierre SAST de Horusec (`v2.8.0`) sobre `v1.1.0` ([`tpf-03-canary.md`](evidencias/reportes/tpf-03-canary.md), [`horusec-frontend-canary.json`](evidencias/reportes/horusec-frontend-canary.json)), la carpeta `ci/`, el Mapa ISO/IEC 25000, el Veredicto Go/No-Go y Aprendizaje.
 
 ---
 
-## 8. Fundamentación de la prueba de estrés *(Actividad 2 — a completar por Integrante 2)*
+## 8. Fundamentación de la prueba de estrés *(Actividad 2)*
 
-- **Versión y estrategia elegida:** `[Definir: A/B 50/50 entre front-stable (1.0.0) y front-canary (1.1.0) equiparadas a 1 réplica y mismos requests/limits, o Canary aislado con header X-Canary: always]`
-- **Hipótesis previa a la ejecución:** `[Ejemplo: "La versión canary 1.1.0 (NGINX + bundle con banner/tests) mantiene el p(95) < 300ms y tasa de error < 1%, sin degradar el p(95) más de un 10% respecto de la versión estable 1.0.0 bajo igual carga"]`
-- **Fundamentación del objetivo:** validar si el rediseño visual de la `v1.1.0` (nuevo CSS, banner y logo `mvcLogo-v2.png` de ~619 KB) introduce sobrecarga de ancho de banda o regresión de latencia/errores antes de promoverla al 100 % de los usuarios.
-- **Condiciones comparables garantizadas:** `front-stable` y `front-canary` declarados con idénticos recursos (`requests: 50m/64Mi`, `limits: 150m/128Mi`), idéntica cantidad de réplicas (`replicas: 1`) y sondas sobre `/version.txt:8080`.
-- **Resultados y conclusión:** `[Pendiente de ejecución de k6 y exportación a evidencias/reportes/ por Integrante 2: comparar p(95), req/s, data_received y tasa de error para confirmar o refutar la hipótesis]`
+- **Versión y estrategia elegida:** **Comparación A/B (`50%` vs `50%`) en simultáneo** entre `front-stable` (`v1.0.0`) y `front-canary` (`v1.1.0`) usando [`k6/front-stress-ab.js`](./k6/front-stress-ab.js) con rampa escalonada de estrés (`0 → 50 → 150 → 300 → 500 → 0 VUs` en `2m 10s`), solicitando el HTML `/` y su correspondiente bundle JS `/assets/index-*.js` (manteniendo la afinidad dentro de cada iteración).
+- **Hipótesis previa a la ejecución:** *"Bajo carga de estrés escalonada (`50 → 150 → 300 → 500 VUs`) en A/B `50/50` con recursos y réplicas equiparadas, la versión `v1.1.0` mantiene `http_req_failed < 1%` y `p(95) < 300 ms` hasta cargas altas, sin degradar el `p(95)` más de un `10%` respecto de la versión `v1.0.0`."*
+- **Fundamentación del objetivo:** validar si el rediseño visual de la `v1.1.0` (nuevo CSS, banner y logo `mvcLogo-v2.png` de ~619 KB, además de nuevo hash de bundle JS) introduce sobrecarga de ancho de banda, saturación de CPU/RAM o regresión de latencia/errores frente a `v1.0.0` antes de promoverla al `100%`.
+- **Condiciones comparables garantizadas:** `front-stable` y `front-canary` verificados con `kubectl get deploy` antes de correr la prueba: `1` réplica cada uno, idénticos `requests` (`50m` CPU / `64Mi` RAM), idénticos `limits` (`150m` CPU / `128Mi` RAM) e idénticas sondas sobre `/version.txt:8080`.
+- **Resultados cuantitativos observados (`19/11/2026 16:42:12`, `120.431` iteraciones / `240.862` requests HTTP / `1.851,5 req/s` / `26 GB` transferidos):**
+
+| Métrica | `front-stable` (`v1.0.0`) | `front-canary` (`v1.1.0`) | Criterio / Comparación |
+| :--- | :---: | :---: | :--- |
+| **Cargas completas (HTML + JS)** | `60.398` (`50,15%`) | `60.033` (`49,85%`) | Reparto A/B equilibrado |
+| **Tasa de error (`err_*`)** | **`0,00%`** (`0` fallos) | **`0,00%`** (`0` fallos) | `< 1%` $\rightarrow$ **CUMPLE** |
+| **Checks (sin mezcla de assets)** | `100,00%` | `100,00%` | `361.293 / 361.293` checks OK |
+| **Latencia `p(95)` combinada (HTML+JS)** | **`315,88 ms`** | **`319,41 ms`** | Diferencia: **`+1,12%`** ($\ll 10\%$ tolerado) |
+| **Latencia `avg` / `med` combinada** | `109,66 ms` / `78,90 ms` | `110,44 ms` / `79,23 ms` | Prácticamente idénticas |
+| **Consumo en pico (`kubectl top`)** | `81m` CPU / `6Mi` RAM | `69m` CPU / `5Mi` RAM | Por debajo de límites (`150m` / `128Mi`) |
+
+- **Conclusión (verificación de hipótesis e implicación para la promoción):**
+  - El `p(95)` individual de `http_req_duration` fue **`180,50 ms`** (`< 300 ms`), mientras que la suma combinada de dos requests (`HTML + bundle JS`) en el pico extremo de `500 VUs` (`~198 MB/s`) alcanzó `315,88 ms` (`v1.0.0`) y `319,41 ms` (`v1.1.0`), cruzando levemente el umbral absoluto de `300 ms` por saturación de red/Ingress local en ambas versiones por igual.
+  - **En la comparación A/B queda confirmada la ausencia de regresión:** la `v1.1.0` difiere en apenas **`+1,12%`** en `p(95)` frente a la `v1.0.0` (muy por debajo del `10%`), mantiene **`0,00%`** de fallos en `60.033` cargas y consume menos CPU en el pico (`69m` vs `81m`).
+  - **Implicación para la promoción:** **GO** para promover `v1.1.0` al `100%` ([`stress-ab-50-50.json`](./evidencias/reportes/stress-ab-50-50.json), [`stress-ab-50-50.html`](./evidencias/reportes/stress-ab-50-50.html)).
 
 ---
 
@@ -313,26 +339,27 @@ Para alinear el recorrido técnico del cuatrimestre con la familia de normas **I
 | [`evidencias/capturas/01-frontend-stable-1.0.0.png`](evidencias/capturas/01-frontend-stable-1.0.0.png) | TPF-05 | Comparación visual lado a lado entre `front-stable:1.0.0` (tema oscuro) y `front-canary:1.1.0` (paleta cálida + banner `ESTÁS VIENDO LA VERSIÓN CANARY 1.1.0`). |
 | [`evidencias/capturas/03-kubernetes-recursos-healthy.png`](evidencias/capturas/03-kubernetes-recursos-healthy.png) | TPF-05 | Salida de `kubectl get deploy,svc,ingress,pods,hpa -n terrasense` con todos los recursos `1/1 Running` y ambos Ingress activos. |
 
-### Evidencia a anexar por Integrante 2 *(rollout, estrés con hipótesis y videos)*
+### Evidencia técnica generada en el rollout, pruebas y videos *(Integrante 2)*
 
 | Archivo / Enlace | Etapa | Qué demuestra |
 | :--- | :---: | :--- |
-| `k6/front-canary-split.js` y reportes en `evidencias/reportes/` | Act. 1 | `[Pendiente Integrante 2: conteo de visitas y p(95) separados entre stable y canary en >= 2 etapas]` |
-| `k6/browser-canary.js` y lote de capturas en `evidencias/capturas/` | Act. 1 | `[Pendiente Integrante 2: grilla de 20 capturas de Chromium evidenciando el reparto visual real]` |
-| Script de estrés con hipótesis y reporte JSON/HTML en `evidencias/reportes/` | Act. 2 | `[Pendiente Integrante 2: comparativa cuantitativa entre versiones bajo carga equiparada]` |
-| Videos cortos (`< 3 min`) en `evidencias/videos/` (o enlaces) | Act. 4 | `[Pendiente Integrante 2: (1) HPA escalando y Pod eliminado en vivo; (2) cambio de peso Canary con navegador recargando]` |
+| [`k6/front-canary-split.js`](./k6/front-canary-split.js) y reportes [`10%`](./evidencias/reportes/rollout-etapa1-10pct.html), [`25%`](./evidencias/reportes/rollout-etapa2-25pct.html), [`50%`](./evidencias/reportes/rollout-etapa3-50pct.html), [`100%`](./evidencias/reportes/rollout-etapa4-100pct.html) *(+ JSON)* | Act. 1 | Distribución real del tráfico por header `X-App-Version` (`9,75%` en etapa 1, `24,61%` en etapa 2, `51,94%` en etapa 3, `100%` en etapa 4), `0,00%` fallos y `p(95) <= 2,41 ms`. |
+| [`k6/browser-canary.js`](./k6/browser-canary.js), [`hallazgo-mezcla-assets-1.1.0.png`](./evidencias/capturas/hallazgo-mezcla-assets-1.1.0.png) y [`hallazgo-mezcla-assets-1.0.0.png`](./evidencias/capturas/hallazgo-mezcla-assets-1.0.0.png) | Act. 1 (Hallazgo) | Detección en Chromium real de `6/20` (`30%`) pantallas en blanco por mezcla de hashes JS (`index-DRF0YwY2.js` vs `index-DWX9FPhn.js`) + `try_files` devolviendo `200 OK` HTML en lugar de JS (motivó rollback a `0` y fix con afinidad de sesión). |
+| [`grilla-canary-25pct.png`](./evidencias/capturas/grilla-canary-25pct.png) *(y `visita-01`..`20.png`, [`reporte`](./evidencias/reportes/rollout-etapa2-browser-fixed.json))* | Act. 1 (Fix) | Grilla de 20 visitas en Chromium tras activar afinidad por cookie: reparto exacto `15` (`1.0.0`) vs `5` (`1.1.0`), **`20/20` (`100%`) renderizadas completas** sin errores (`LCP p(95) = 470,8 ms`). |
+| [`k6/front-stress-ab.js`](./k6/front-stress-ab.js), [`stress-ab-50-50.json`](./evidencias/reportes/stress-ab-50-50.json) y [`stress-ab-50-50.html`](./evidencias/reportes/stress-ab-50-50.html) | Act. 2 | Prueba de estrés A/B `50/50` (`120.431` cargas HTML+JS hasta `500 VUs`): `0,00%` fallos en ambas versiones y apenas `+1,12%` de diferencia en `p(95)` (`319,41 ms` vs `315,88 ms`), confirmando ausencia de regresión. |
+| [`video-1-hpa-failover.mp4`](./evidencias/videos/video-1-hpa-failover.mp4) *(1m 38s, x2)* | Act. 4 | Grabación en vivo de `back-hpa` escalando a `4` réplicas bajo carga de `k6` y eliminación de `back-65bf649f7d-m67mb` reemplazado automáticamente por `back-65bf649f7d-b7l49`. |
+| [`video-2-canary-rollout.mp4`](./evidencias/videos/video-2-canary-rollout.mp4) *(1m 16s)* | Act. 4 | Grabación lado a lado (terminal + Firefox) cambiando `canary-weight` (`0 → 50 → 100 → 0` rollback) y observando el cambio en vivo entre `v1.0.0` y `v1.1.0` al limpiar la cookie sticky. |
 
 ---
 
 ## 11. Veredicto Final (`Go / No-Go`)
 
 ### 11.1. Promoción del Frontend `v1.1.0` (Panel de Monitoreo)
-- **Estado actual: CONDICIONADO AL CIERRE DEL ROLLOUT PROGRESIVO (`TPF-03` y `TPF-05` aprobados; pendiente métricas del Integrante 2).**
-- Desde el punto de vista de **calidad interna, seguridad e infraestructura**, la versión `1.1.0` merece un **GO parcial para iniciar exposición progresiva**:
-  - Pasó el pipeline de calidad (**ESLint** en `0` errores/warnings + suite Vitest).
-  - Pasó la auditoría SAST de **Horusec** ([`horusec-frontend-canary.json`](./evidencias/reportes/horusec-frontend-canary.json)) con `0` vulnerabilidades nuevas y `0` hallazgos `HIGH/CRITICAL`.
-  - Está desplegada en Kubernetes con etiquetas `track: canary`, sondas sobre `/version.txt` y canales observables (`X-App-Version`, `<meta>`).
-  - La promoción definitiva al **100 % (`GO final`)** se aprobará únicamente si las etapas `10% → 25% → 50%` y la prueba de estrés de la Actividad 2 confirman `http_req_failed < 1%` y ausencia de regresión significativa en `p(95)` frente a `v1.0.0`. En caso de anomalía, la arquitectura garantiza un **rollback inmediato en < 5 segundos** fijando `canary-weight: "0"`.
+- **Dictamen técnico: `GO` definitivo (promoción al `100%` ejecutada y validada).**
+- **Justificación con evidencia completa del ciclo:**
+  - **Calidad interna y seguridad (`TPF-01` / `TPF-03`):** pasó **ESLint** (`0` errores/warnings), la suite **Vitest** (22 tests) y la auditoría SAST de **Horusec** ([`horusec-frontend-canary.json`](./evidencias/reportes/horusec-frontend-canary.json)) con `0` vulnerabilidades nuevas y `0` hallazgos `HIGH/CRITICAL`.
+  - **Rollout progresivo (`Act. 1`):** detectó en etapa `25%` el riesgo de mezcla de hashes JS entre versiones mediante `k6/browser`, ejecutó **rollback inmediato a `0`**, incorporó afinidad de sesión por cookie (aislando la API en `terrasense-ingress-api`) y revalidó `20/20` cargas completas (`LCP p(95) = 470,8 ms`), completando luego las etapas `50%` y `100%` con `0,00%` de error y `p(95) <= 2,41 ms`.
+  - **Estrés comparativo A/B (`Act. 2`):** bajo carga extrema (`500 VUs`, `1.851 req/s`, `120.431` cargas completas), `v1.1.0` registró `0,00%` de fallos, `69m` CPU en pico y apenas `+1,12%` en `p(95)` respecto de `v1.0.0`, confirmando ausencia de regresión y respaldando su promoción definitiva a `front-stable`.
 
 ### 11.2. Ampliación del Contrato de 2.000 a 10.000 Sensores ESP32
 - **Dictamen técnico: `NO-GO` en las condiciones arquitectónicas actuales.**
@@ -372,3 +399,6 @@ Para alinear el recorrido técnico del cuatrimestre con la familia de normas **I
 6. **Persistencia acumulada en `PVC` de PostgreSQL entre corridas de `k6`**:
    - *Problema*: cada corrida de Load/Stress Test dejaba miles de filas en la tabla `productos` dentro del `StatefulSet` (`db-0`), haciendo que el `GET /getProductosPorFiltro` posterior creciera de ~1,2 KB a ~60 KB por respuesta y degradara el Smoke Test (`2,01 s`) y Experimento 1 (`32 MB` transferidos).
    - *Solución*: limpiar explícitamente los registros generados por `k6` en PostgreSQL mediante `kubectl exec -it db-0 -n terrasense -- psql -U admin -d iot_db` antes de reiniciar mediciones comparables.
+7. **Pantalla en blanco silenciosa en `k6/browser` (`6/20` visitas) por mezcla de assets + `try_files` sin afinidad de sesión**:
+   - *Problema*: al exponer `25%` en el canary sin afinidad de sesión, NGINX Ingress sorteaba cada request por separado. Como `v1.0.0` (`index-DRF0YwY2.js`) y `v1.1.0` (`index-DWX9FPhn.js`) tienen distinto hash de bundle JS y `frontend/nginx.conf.template` usa `try_files $uri $uri/ /index.html;`, las requests cruzadas recibían `200 OK` devolviendo `index.html` (`text/html`) en lugar del JavaScript. Así, `k6` HTTP reportaba `0%` error mientras `30%` de las visitas en Chromium quedaban en pantalla vacía (`rootBytes=0`).
+   - *Solución*: ejecutar rollback inmediato a `canary-weight: "0"`, separar `api.terrasense.local` en `k8s/base/06-ingress-api.yaml` para no contaminar el balanceo del backend y activar `affinity: "cookie"` (`terrasense-front`) en `terrasense-ingress-stable` y `terrasense-ingress-canary` (Anexo A.9), alcanzando `20/20` renders completos.

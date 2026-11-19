@@ -17,7 +17,12 @@ kubectl apply -f TPs/TP-Final/k8s/base/02-secret-demo.yaml
 kubectl apply -f TPs/TP-Final/k8s/base/03-db.yaml
 kubectl apply -f TPs/TP-Final/k8s/base/04-backend.yaml
 kubectl apply -f TPs/TP-Final/k8s/base/05-hpa.yaml
+kubectl apply -f TPs/TP-Final/k8s/base/06-ingress-api.yaml
 ```
+
+> **Nota sobre afinidad de sesión (Anexo A.9):** `terrasense-ingress-stable` y `terrasense-ingress-canary` utilizan afinidad de sesión por cookie (`terrasense-front`) para evitar mezcla de hashes JS/CSS entre `v1.0.0` y `v1.1.0`. Por eso `api.terrasense.local` se separó en `base/06-ingress-api.yaml`: así la cookie de frontend nunca fija clientes/sensores de la API a un único Pod del backend.
+
+> **Estado post-promoción en este repo:** tras completar el rollout progresivo, `stable/01-front-stable.yaml` quedó promovido a `terrasense-front:1.1.0`, `canary/02-ingress-canary.yaml` en `canary-weight: "0"` y `canary/01-front-canary.yaml` en `replicas: 0`. Para reproducir desde cero la convivencia `1.0.0` vs `1.1.0` en un Minikube limpio, cambiar `image: terrasense-front:1.0.0` en `stable/01-front-stable.yaml` y `replicas: 1` en `canary/01-front-canary.yaml` antes de aplicar.
 
 ### Migración desde el TP4 en un Minikube existente
 
@@ -129,4 +134,4 @@ kubectl get deploy,svc,ingress,pods,hpa -n terrasense
 kubectl get endpoints front-stable front-canary -n terrasense
 ```
 
-La API continúa publicada por el Ingress estable en `api.terrasense.local` y apunta al Service `back`.
+La API se publica en un Ingress propio (`terrasense-ingress-api` en `base/06-ingress-api.yaml`) bajo `api.terrasense.local` y apunta al Service `back`.
