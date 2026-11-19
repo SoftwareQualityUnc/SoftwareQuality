@@ -306,24 +306,26 @@
 <section class="slide" data-notes="(4:00 · 1 min 10 s) SonarQube. Objetivo: medir y corregir confiabilidad, seguridad y mantenibilidad con SonarQube. Agregamos SonarQube local en Docker, JaCoCo, Vitest y nuevos tests. Recorrer la tabla: bugs 15 a 2, vulnerabilidades 5 a 0, cobertura 7,9 a 33,1, tests de 21 con 6 fallos a 62 sin fallos. Ser honestos: la complejidad cognitiva subió un poco, de 124 a 129.">
   <div class="kicker"><span class="tag">03</span>SonarQube + tests</div>
   <h2>Cerramos 30 issues y cuadruplicamos la cobertura sin desactivar reglas</h2>
-  <div class="grid" style="grid-template-columns: 1fr 1.35fr">
+  <div class="grid" style="grid-template-columns: 1.25fr 1fr">
     <div class="col">
       <div class="card"><div class="label">Qué agregamos al repo</div>
-        <ul class="files">
+        <ul class="files" style="columns:2; column-gap:40px">
           <li>sonar-project.properties</li>
-          <li>docker-compose.sonar.yml <span>· SonarQube local</span></li>
+          <li>docker-compose.sonar.yml</li>
           <li>build.gradle <span>· JaCoCo</span></li>
-          <li>frontend/vitest.config.js <span>· Vitest + coverage</span></li>
-          <li>frontend/tests/*.test.jsx <span>· 5 suites nuevas</span></li>
-          <li>backend/src/test/.../*Test.java</li>
+          <li>vitest.config.js</li>
+          <li>tests/*.test.jsx <span>· 5 suites</span></li>
+          <li>*Test.java <span>· JUnit</span></li>
         </ul>
       </div>
-      <div class="card green"><div class="label">Resultado</div><p><b>55 → 25</b> issues abiertos. Evidencia: <code>analisis-inicial.json</code> y <code>analisis-final.json</code>, reportes JaCoCo y LCOV antes/después.</p></div>
+      <figure style="flex:1"><img src="../../TP3-SonarQube/evidence/sonar-1.jpeg" alt="Dashboard de SonarQube con Quality Gate Passed">
+        <figcaption><b>Dashboard de SonarQube (Overall Code):</b> Quality Gate <b>Passed</b>, 0 issues de seguridad y nota A en mantenibilidad.<span class="concl">La compuerta de calidad pasa sin desactivar reglas.</span></figcaption></figure>
     </div>
     <div class="tbl-card">
       <table>
         <thead><tr><th>Métrica SonarQube</th><th class="n">Antes</th><th class="n">Después</th></tr></thead>
         <tbody>
+          <tr class="ok"><td>Issues abiertos</td><td class="n">55</td><td class="n up">25</td></tr>
           <tr><td>Bugs</td><td class="n">15</td><td class="n up">2</td></tr>
           <tr><td>Vulnerabilidades</td><td class="n">5</td><td class="n up">0</td></tr>
           <tr><td>Code smells</td><td class="n">35</td><td class="n up">23</td></tr>
