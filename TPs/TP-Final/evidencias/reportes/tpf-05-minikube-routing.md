@@ -2,7 +2,7 @@
 
 ## Estado
 
-**Completado** para carga de imágenes, aplicación de recursos, ruteo y handoff reproducible. No implica el cierre de TPF-03 ni del rollout progresivo/load test del Integrante 2.
+**Completado** para carga de imágenes, aplicación de recursos, ruteo y handoff reproducible. La validación SAST de Horusec en TPF-03 fue cerrada posteriormente en [`tpf-03-canary.md`](tpf-03-canary.md); el rollout progresivo y la prueba de estrés con hipótesis quedan a cargo del Integrante 2.
 
 ## Evidencia observada
 
@@ -55,5 +55,5 @@ El Deployment/Service `front` del TP4 sigue presente, pero no es utilizado por l
 
 ## Pendientes fuera de TPF-05
 
-- TPF-03 continúa pendiente únicamente por la instalación y validación de Horusec.
-- El rollout progresivo y las pruebas de carga quedan a cargo del Integrante 2.
+- El rollout progresivo (`0 -> 10 -> 25 -> 50 -> 100`) y las pruebas de carga/estrés con k6 quedan a cargo del Integrante 2.
+- *(Nota: TPF-03 quedó cerrado al ejecutarse Horusec CLI `v2.8.0` sobre `frontend/` en [`horusec-frontend-canary.json`](horusec-frontend-canary.json) con 0 hallazgos HIGH/CRITICAL).*
