@@ -138,6 +138,7 @@
   .down { color: var(--red); font-weight: 700; }
   .overview td { font-size: 24px; padding: 14px 16px; vertical-align: middle; }
   .overview td.num { font-family: var(--mono); font-weight: 700; color: var(--green); font-size: 26px; }
+  tr.nogo-row td { background: var(--red-soft); }
   .tbl-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 14px 20px; }
 
   /* Distribution bars */
@@ -406,7 +407,7 @@
         </tbody>
       </table>
       <div class="card red" style="margin-top:18px"><p><b>Causa raíz:</b> <code>DriverManagerDataSource</code> sin pool abre una conexión por consulta y agota <code>max_connections = 100</code>. Además, <code>SELECT COUNT(*)</code> por alta y lecturas sin paginación.</p></div>
-      <p class="muted" style="margin-top:14px; font-size:22px">SLO: <code>p(95) &lt; 300 ms</code> y <code>errores &lt; 1 %</code>. Stress a <b>245 req/s</b>, por debajo de los 333 req/s de 10.000 sensores.</p>
+      <p class="muted" style="margin-top:14px; font-size:22px">SLO: <code>p(95) &lt; 300 ms</code> y <code>errores &lt; 1 %</code>. El stress test se quiebra desde <b>200 usuarios</b> concurrentes.</p>
     </div>
     <figure><img src="../../TP4-HPA-y-K6/evidence/image-12.png" alt="kubectl get hpa escalando de 1 a 5 replicas">
       <figcaption><b>HPA bajo el load test:</b> CPU 8 % → <b>380 % → 500 %</b>, réplicas 1 → 4 → 5; al terminar baja a 13 %.<span class="concl">El autoescalado funciona; el cuello de botella no es la CPU.</span></figcaption></figure>
@@ -457,11 +458,11 @@
     <svg viewBox="0 0 1000 560" style="width:100%; background:#fff; border:1px solid var(--line); border-radius:20px" font-family="Segoe UI, sans-serif">
       <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#55655c"/></marker></defs>
       <rect x="30" y="140" width="160" height="80" rx="14" fill="#14211b"/>
-      <text x="110" y="175" fill="#fff" font-size="21" font-weight="700" text-anchor="middle">Productores</text>
+      <text x="110" y="175" fill="#fff" font-size="21" font-weight="700" text-anchor="middle">Compradores</text>
       <text x="110" y="200" fill="#9fb3a7" font-size="15" text-anchor="middle">navegador</text>
       <rect x="30" y="340" width="160" height="80" rx="14" fill="#14211b"/>
-      <text x="110" y="375" fill="#fff" font-size="21" font-weight="700" text-anchor="middle">ESP32 / k6</text>
-      <text x="110" y="400" fill="#9fb3a7" font-size="15" text-anchor="middle">sensores</text>
+      <text x="110" y="375" fill="#fff" font-size="21" font-weight="700" text-anchor="middle">k6</text>
+      <text x="110" y="400" fill="#9fb3a7" font-size="15" text-anchor="middle">pruebas de carga</text>
       <line x1="190" y1="180" x2="282" y2="250" stroke="#55655c" stroke-width="3" marker-end="url(#ah)"/>
       <line x1="190" y1="380" x2="282" y2="320" stroke="#55655c" stroke-width="3" marker-end="url(#ah)"/>
       <rect x="290" y="195" width="200" height="180" rx="14" fill="#e2ecf6" stroke="#2d5f8f" stroke-width="2"/>
@@ -532,7 +533,7 @@
 <!-- 15 · DEMO FORZADO -->
 <section class="slide" data-notes="(10:55 · 45 s) Etapa 0, smoke: con peso 0 nadie ve la v1.1.0 salvo QA. Izquierda: el tráfico normal recibe 1.0.0 y el forzado por header o cookie recibe 1.1.0. Derecha: QA setea la cookie en el navegador, recarga y navega el panel nuevo.">
   <div class="kicker"><span class="tag">ETAPA 0</span>Smoke con peso 0</div>
-  <h2>QA ve el panel nuevo antes que cualquier productor</h2>
+  <h2>QA ve la tienda nueva antes que cualquier comprador</h2>
   <div class="grid g2">
     <figure>
       <div class="media"><span class="vtag">14 s</span>
@@ -718,41 +719,40 @@
 </section>
 
 <!-- CASO PRACTICO -->
-<section class="slide" data-notes="(17:20 · 1 min) Caso práctico. El escenario: TerraSense reemplazaba todos los pods de una vez y un release dejó a los productores 40 minutos con la pantalla en blanco. Recorrer cómo cada cosa que implementamos actúa sobre la v1.1.0, en orden. El punto clave es el canary: el 30 % de pantallas en blanco que vimos al 25 % habría sido el 100 % sin él. Y la pregunta de escalar a 10.000 sensores la contestan los datos de carga: eso es el veredicto.">
+<section class="slide" data-notes="(17:20 · 1 min) Caso práctico. Imaginemos el Cyber Monday justo cuando sale GTA VI: todo el mundo entra a MVC Informática a comprar una PS5, y ese mismo día marketing quiere estrenar la tienda rediseñada. Recorrer la tabla: cada problema realista de ese día y qué parte de lo que implementamos lo frena, con el dato que lo respalda. Cerrar con la última fila: lo que todavía no resolvemos es el pico de tráfico en sí, y eso es el veredicto.">
   <div class="kicker"><span class="tag" style="background:var(--green)">CASO</span>Ejemplo práctico</div>
-  <h2>TerraSense libera la v1.1.0 del panel: qué hace cada cosa que implementamos</h2>
-  <div class="grid" style="grid-template-columns: 1fr 1.9fr">
+  <h2>Cyber Monday + lanzamiento de GTA VI: todos vienen a comprar una PS5</h2>
+  <div class="grid" style="grid-template-columns: 1fr 2.1fr">
     <div class="col">
-      <div class="card red"><div class="label">El escenario</div><p>Cada release reemplazaba <b>todos los pods de una vez</b>. Uno dejó a los productores <b>40 minutos</b> con la pantalla en blanco, en una madrugada de helada.</p></div>
-      <div class="card blue"><div class="label">Lo que piden</div><p>Que ninguna versión llegue al 100 % sin demostrar que funciona, y saber si la plataforma soporta pasar de <b>2.000 a 10.000 sensores</b>.</p></div>
-      <div class="card dark"><p><b>Sin canary</b>, el 30 % de pantallas en blanco que detectamos al 25 % habría sido el <b>100 %</b> de los productores: el mismo incidente.</p></div>
+      <div class="card blue"><div class="label">El escenario</div><p>Miles de usuarios entran a la vez a <b>MVC Informática</b> a comprar PS5. Ese mismo día, marketing quiere estrenar la <b>tienda rediseñada (v1.1.0)</b>.</p></div>
+      <div class="card dark"><p><b>Sin canary</b>, el 30 % de pantallas en blanco que detectamos al 25 % habría sido el <b>100&nbsp;% de los compradores</b>, en el día de más ventas del año.</p></div>
     </div>
     <div class="tbl-card">
-      <table class="overview">
-        <thead><tr><th style="width:70px">#</th><th style="width:270px">Etapa</th><th>Qué hizo con la v1.1.0</th></tr></thead>
+      <table class="overview" style="font-size:22px">
+        <thead><tr><th style="width:60px">#</th><th style="width:430px">Qué pasa ese día</th><th>Qué lo frena</th></tr></thead>
         <tbody>
-          <tr><td class="num">01</td><td>Linters en CI</td><td>Push validado: <b>0</b> errores de Checkstyle y ESLint</td></tr>
-          <tr><td class="num">02</td><td>SAST</td><td><b>0</b> vulnerabilidades nuevas antes de construir la imagen</td></tr>
-          <tr><td class="num">03</td><td>Tests</td><td><b>22</b> tests de Vitest en verde sobre el rediseño</td></tr>
-          <tr><td class="num">04</td><td>Kubernetes</td><td>Imagen <code>1.1.0</code> versionada, con probes y recursos iguales a la estable</td></tr>
-          <tr class="hl"><td class="num">06</td><td>Canary al 25 %</td><td><b>6/20</b> pantallas en blanco → <b>rollback en un comando</b> y fix con afinidad</td></tr>
-          <tr><td class="num">05</td><td>Estrés A/B</td><td>Sin regresión: <b>+1,12 %</b> p(95) y 0 % de error → <b>promoción</b></td></tr>
-          <tr><td class="num">05</td><td>Carga a la API</td><td>Con 245 req/s ya falla el 99,8 %: <b>no alcanza</b> para 10.000 sensores</td></tr>
+          <tr><td class="num">01</td><td>Un dev sube un cambio apurado a último momento</td><td>El pipeline no deja pasar el push si rompe las reglas: <b>0 errores</b> exigidos</td></tr>
+          <tr><td class="num">02</td><td>El cambio expone un error o un secreto</td><td>Horusec frena cualquier <b>HIGH/CRITICAL</b> antes de construir la imagen</td></tr>
+          <tr><td class="num">03</td><td>Alguien agrega dos PS5 seguidas al carrito</td><td>El bug que <b>perdía altas consecutivas</b> ya está corregido y con tests</td></tr>
+          <tr><td class="num">04</td><td>Entra la ola de tráfico</td><td>El HPA escala de <b>1 a 5 pods</b> solo</td></tr>
+          <tr><td class="num">05</td><td>Se cae un pod en pleno pico</td><td>Kubernetes lo reemplaza: <b>0 % de errores</b> para el usuario (E1)</td></tr>
+          <tr class="hl"><td class="num">06</td><td>La tienda nueva deja pantallas en blanco</td><td>Solo lo ve el <b>25 %</b>; <b>rollback en un comando</b> y fix con afinidad</td></tr>
+          <tr class="nogo-row"><td class="num">05</td><td>Llegan 1.500 usuarios en 5 segundos</td><td><b>Todavía no lo aguantamos:</b> 100 % de fallos en el spike test</td></tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="footer"><span>Cómo lo implementado responde al caso</span><span>23</span></div>
+  <div class="footer"><span>Cómo lo implementado responde a un día real de e-commerce</span><span>23</span></div>
 </section>
 
 <!-- 23 · VEREDICTO -->
-<section class="slide" data-notes="(18:20 · 1 min) Veredicto. v1.1.0: GO, ya promovida; pasó todas las compuertas, el rollout detectó y corrigió un problema real, y el A/B no mostró regresión. 10.000 sensores: NO-GO hoy. Con 245 req/s ya fallaba el 99,8%, y 10.000 sensores son 333 req/s. La causa está en el código del backend, y damos un plan concreto para pasar a GO.">
+<section class="slide" data-notes="(18:20 · 1 min) Veredicto. v1.1.0: GO, ya promovida; pasó todas las compuertas, el rollout detectó y corrigió un problema real, y el A/B no mostró regresión. Cyber Monday: NO-GO hoy. Un pico de lanzamiento es justo lo que el spike test mostró que no aguantamos: 100% de fallos con 1.500 usuarios en 5 segundos. La causa está en el código del backend, no en la infraestructura, y damos un plan concreto para pasar a GO antes del evento.">
   <div class="kicker">Veredicto</div>
   <h2>Go / No-Go</h2>
   <div class="grid g2 fit" style="align-items:start">
     <div class="card green" style="padding:32px 40px">
       <span class="pill go">GO · promovida</span>
-      <h3 style="margin-top:16px; font-size:36px">Panel v1.1.0</h3>
+      <h3 style="margin-top:16px; font-size:36px">Tienda rediseñada v1.1.0</h3>
       <ul>
         <li>Pasó lint, 22 tests y Horusec sin hallazgos nuevos</li>
         <li>Rollout 10 → 25 → 50 → 100 % con <b>0 % de error</b></li>
@@ -763,16 +763,16 @@
     </div>
     <div class="card red" style="padding:32px 40px">
       <span class="pill nogo">NO-GO</span>
-      <h3 style="margin-top:16px; font-size:36px">Ampliar a 10.000 sensores</h3>
+      <h3 style="margin-top:16px; font-size:36px">Aguantar el pico del Cyber Monday</h3>
       <ul>
-        <li>10.000 sensores ≈ <b>333 req/s</b> sostenidos</li>
-        <li>Con 245 req/s ya hubo <b>99,8 %</b> de fallos en el stress test</li>
-        <li>Spike de 1.500 VUs: <b>100 %</b> de fallos</li>
-        <li>Causa: sin pool JDBC, <code>COUNT(*)</code> por alta, sin paginación</li>
+        <li>Spike de 1.500 usuarios en 5 s: <b>100 %</b> de fallos</li>
+        <li>Load de 2.000 usuarios: <b>98,1 %</b> de fallos, aun con 5 pods</li>
+        <li>Stress: se quiebra desde <b>200</b> usuarios (99,8 %)</li>
+        <li>Causa: sin pool JDBC, <code>COUNT(*)</code> por alta, catálogo sin paginación</li>
       </ul>
     </div>
   </div>
-  <div class="card blue" style="margin-top:26px"><p><b>Para pasar a GO:</b> HikariCP con pool por pod · secuencias de PostgreSQL · paginación · mínimo 2–3 réplicas · cola de ingesta (RabbitMQ/Kafka) para reconexiones masivas. Después, repetir el stress test a 333 req/s.</p></div>
+  <div class="card blue" style="margin-top:26px"><p><b>Para pasar a GO antes del evento:</b> HikariCP con pool por pod · secuencias de PostgreSQL · paginación del catálogo · escalar de antemano (<code>minReplicas</code> alto en la ventana del evento) porque el HPA tarda ~1 min en reaccionar. Después, repetir el spike test.</p></div>
   <div class="footer"><span>SLO: p(95) &lt; 300 ms · errores &lt; 1 %</span><span>24</span></div>
 </section>
 
