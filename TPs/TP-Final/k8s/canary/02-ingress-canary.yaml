@@ -9,7 +9,9 @@ metadata:
     nginx.ingress.kubernetes.io/canary-by-header: "X-Canary"
     nginx.ingress.kubernetes.io/canary-by-header-value: "always"
     nginx.ingress.kubernetes.io/canary-by-cookie: "canary"
-    nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "terrasense-front"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "3600"
 spec:
   ingressClassName: nginx
   rules:
